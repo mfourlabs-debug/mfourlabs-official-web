@@ -6,7 +6,7 @@
   
   <!-- Homepage -->
   <url>
-    <loc>https://mfourlabs.com/</loc>
+    <loc>https://mfourlabs.dev/</loc>
     <lastmod>2025-12-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
@@ -14,7 +14,7 @@
   
   <!-- Vision Section -->
   <url>
-    <loc>https://mfourlabs.com/#vision</loc>
+    <loc>https://mfourlabs.dev/#vision</loc>
     <lastmod>2025-12-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -22,7 +22,7 @@
   
   <!-- Philosophy/Manifesto Section -->
   <url>
-    <loc>https://mfourlabs.com/#philosophy</loc>
+    <loc>https://mfourlabs.dev/#philosophy</loc>
     <lastmod>2025-12-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -30,7 +30,7 @@
   
   <!-- Roadmap Section -->
   <url>
-    <loc>https://mfourlabs.com/#roadmap</loc>
+    <loc>https://mfourlabs.dev/#roadmap</loc>
     <lastmod>2025-12-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>

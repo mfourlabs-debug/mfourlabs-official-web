@@ -46,7 +46,7 @@ Helps search engines understand your business:
   "@type": "Organization",
   "name": "MFOURLABS",
   "alternateName": "MENT4AI Research Labs",
-  "url": "https://mfourlabs.com",
+  "url": "https://mfourlabs.dev",
   "description": "...",
   "foundingDate": "2025",
   "sameAs": [social media URLs],
@@ -60,7 +60,7 @@ Enables rich search results and site search:
 {
   "@type": "WebSite",
   "name": "MFOURLABS",
-  "url": "https://mfourlabs.com",
+  "url": "https://mfourlabs.dev",
   "potentialAction": {
     "@type": "SearchAction",
     ...
@@ -119,7 +119,7 @@ Location: `/public/site.webmanifest`
 
 ### Canonical URL
 ```html
-<link rel="canonical" href="https://mfourlabs.com/" />
+<link rel="canonical" href="https://mfourlabs.dev/" />
 ```
 Prevents duplicate content issues.
 
@@ -272,7 +272,7 @@ With these optimizations, you should see:
 
 ### Update These URLs
 Replace placeholder URLs in index.html with your actual domain:
-- `https://mfourlabs.com/` → Your actual domain
+- `https://mfourlabs.dev/` → Your actual domain
 - Social media handles (@mfourlabs) → Your actual handles
 - Email addresses → Your actual contact email
 
