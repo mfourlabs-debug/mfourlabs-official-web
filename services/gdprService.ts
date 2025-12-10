@@ -38,9 +38,11 @@ class GDPRService {
                 userData: userData.data(), // Store for audit trail
             };
 
-            const requestRef = await collection(db, this.DELETION_REQUESTS_COLLECTION);
-            const docRef = await doc(requestRef);
-            await updateDoc(docRef, deletionRequest);
+            // Add deletion request document
+            const deletionRequestRef = await addDoc(
+                collection(db, this.DELETION_REQUESTS_COLLECTION),
+                deletionRequest
+            );
 
             // Mark user as pending deletion
             await updateDoc(doc(db, this.COLLECTION_NAME, userId), {
@@ -51,10 +53,12 @@ class GDPRService {
 
             return {
                 success: true,
-                requestId: docRef.id,
+                requestId: deletionRequestRef.id,
             };
         } catch (error: any) {
-            console.error('Account deletion request failed:', error);
+            if (import.meta.env.DEV) {
+                console.error('Account deletion request failed:', error);
+            }
             return {
                 success: false,
                 error: error.message || 'Failed to process deletion request',

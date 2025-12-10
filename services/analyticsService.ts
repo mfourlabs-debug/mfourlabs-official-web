@@ -11,7 +11,9 @@ class AnalyticsService {
                 this.analytics = getAnalytics();
                 this.isInitialized = true;
             } catch (error) {
-                console.warn('Analytics not initialized:', error);
+                if (import.meta.env.DEV) {
+                    console.warn('Analytics not initialized:', error);
+                }
             }
         }
     }

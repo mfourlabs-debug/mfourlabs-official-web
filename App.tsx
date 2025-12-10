@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { HeroSection } from './components/HeroSection';
 import { ManifestoSection } from './components/ManifestoSection';
+import { CurriculumSection } from './components/CurriculumSection';
 import { RoadmapSection } from './components/RoadmapSection';
 import { LabRegistration } from './components/LabRegistration';
 import { ArrowUpRight, Menu, X, ExternalLink, Globe, ShieldCheck, ChevronRight } from 'lucide-react';
@@ -109,9 +110,9 @@ const App: React.FC = () => {
 
             {/* Desktop Links */}
             <div className="hidden md:flex items-center gap-1">
-              <a href="#vision" className="px-4 py-2 text-sm font-medium text-brand-gray hover:text-brand-white transition-colors hover:bg-white/5 rounded-full">Vision</a>
-              <a href="#philosophy" className="px-4 py-2 text-sm font-medium text-brand-gray hover:text-brand-white transition-colors hover:bg-white/5 rounded-full">Philosophy</a>
-              <a href="#roadmap" className="px-4 py-2 text-sm font-medium text-brand-gray hover:text-brand-white transition-colors hover:bg-white/5 rounded-full">Roadmap</a>
+              <a href="#vision" className="px-4 py-2 text-sm font-medium text-brand-gray hover:text-brand-white transition-colors hover:bg-white/5 rounded-full">Framework Docs</a>
+              <a href="#philosophy" className="px-4 py-2 text-sm font-medium text-brand-gray hover:text-brand-white transition-colors hover:bg-white/5 rounded-full">Manifesto</a>
+              <a href="#roadmap" className="px-4 py-2 text-sm font-medium text-brand-gray hover:text-brand-white transition-colors hover:bg-white/5 rounded-full">Get Certified</a>
             </div>
 
             {/* Action */}
@@ -119,9 +120,9 @@ const App: React.FC = () => {
               <button
                 onClick={handleEnterLab}
                 className="group flex items-center gap-2 px-5 py-2.5 rounded-full bg-brand-yellow text-brand-black text-sm font-semibold hover:bg-brand-white transition-all duration-300"
-                aria-label="Access the MFOURLABS research lab"
+                aria-label="Apply for the Certified Vibe Architect program"
               >
-                <span>Lab Access</span>
+                <span>Apply for CVA</span>
                 <ExternalLink className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
               </button>
 
@@ -140,9 +141,9 @@ const App: React.FC = () => {
           {/* Mobile Menu Overlay */}
           {isMobileMenuOpen && (
             <div className="md:hidden absolute top-20 left-4 right-4 bg-brand-surface border border-brand-border rounded-2xl p-6 flex flex-col gap-2 shadow-2xl animate-slide-up">
-              <a href="#vision" onClick={() => setIsMobileMenuOpen(false)} className="px-4 py-3 text-lg font-medium text-brand-white hover:bg-white/5 rounded-lg">Vision</a>
-              <a href="#philosophy" onClick={() => setIsMobileMenuOpen(false)} className="px-4 py-3 text-lg font-medium text-brand-white hover:bg-white/5 rounded-lg">Philosophy</a>
-              <a href="#roadmap" onClick={() => setIsMobileMenuOpen(false)} className="px-4 py-3 text-lg font-medium text-brand-white hover:bg-white/5 rounded-lg">Roadmap</a>
+              <a href="#vision" onClick={() => setIsMobileMenuOpen(false)} className="px-4 py-3 text-lg font-medium text-brand-white hover:bg-white/5 rounded-lg">Framework Docs</a>
+              <a href="#philosophy" onClick={() => setIsMobileMenuOpen(false)} className="px-4 py-3 text-lg font-medium text-brand-white hover:bg-white/5 rounded-lg">Manifesto</a>
+              <a href="#roadmap" onClick={() => setIsMobileMenuOpen(false)} className="px-4 py-3 text-lg font-medium text-brand-white hover:bg-white/5 rounded-lg">Get Certified</a>
             </div>
           )}
         </nav>
@@ -152,6 +153,7 @@ const App: React.FC = () => {
       <main className="bg-noise bg-repeat">
         <HeroSection onEnterLab={handleEnterLab} />
         <ManifestoSection />
+        <CurriculumSection />
         <RoadmapSection />
       </main>
 
@@ -209,7 +211,7 @@ const App: React.FC = () => {
           {/* Bottom Section */}
           <div className="pt-8 border-t border-brand-border flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-xs text-brand-sub font-mono">
-              © 2025 MENT4AI RESEARCH LABS. ALL RIGHTS RESERVED.
+              © 2025 MFOUR LABS. ALL RIGHTS RESERVED. The MFOUR Vibe Framework™ is licensed under CC BY-ND 4.0. Verified Authority: mfourlabs.dev | Global Standard: MF-CVA-02
             </p>
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
@@ -220,7 +222,7 @@ const App: React.FC = () => {
           {/* Big Text Background */}
           <div className="mt-20 border-t border-brand-border/30 pt-10 overflow-hidden select-none">
             <h1 className="text-[12vw] leading-none font-bold text-brand-white/5 text-center tracking-tighter">
-              ARCHITECTS
+              START ARCHITECTING
             </h1>
           </div>
 

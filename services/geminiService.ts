@@ -1,6 +1,6 @@
 import { GoogleGenAI } from "@google/genai";
 
-const API_KEY = process.env.API_KEY || '';
+const API_KEY = import.meta.env.VITE_GEMINI_API_KEY || '';
 
 // Initialize Gemini
 const ai = new GoogleGenAI({ apiKey: API_KEY });
@@ -42,7 +42,9 @@ export const streamGeminiResponse = async (
     const result = await chat.sendMessageStream({ message: userMessage });
     return result;
   } catch (error) {
-    console.error("Gemini API Error:", error);
+    if (import.meta.env.DEV) {
+      console.error("Gemini API Error:", error);
+    }
     throw error;
   }
 };

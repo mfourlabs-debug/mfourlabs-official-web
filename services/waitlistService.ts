@@ -42,8 +42,42 @@ export class WaitlistService {
             getCountFromServer(query(usersRef, where('status', '==', 'active'))),
         ]);
 
-        // Calculate average wait time (simplified - would need actual approval dates)
-        const averageWaitTime = 0; // TODO: Implement based on approvedAt timestamps
+        // Calculate average wait time based on approvedAt timestamps
+        let averageWaitTime = 0;
+        try {
+            const approvedUsersQuery = query(
+                usersRef,
+                where('status', '==', 'approved'),
+                where('approvedAt', '!=', null),
+                orderBy('approvedAt', 'desc')
+            );
+            const approvedSnapshot = await getDocs(approvedUsersQuery);
+
+            if (!approvedSnapshot.empty) {
+                let totalWaitMs = 0;
+                let countWithWaitTime = 0;
+
+                approvedSnapshot.forEach(doc => {
+                    const data = doc.data();
+                    const createdAt = data.createdAt?.toDate?.();
+                    const approvedAt = data.approvedAt?.toDate?.();
+
+                    if (createdAt && approvedAt) {
+                        totalWaitMs += approvedAt.getTime() - createdAt.getTime();
+                        countWithWaitTime++;
+                    }
+                });
+
+                if (countWithWaitTime > 0) {
+                    // Convert milliseconds to hours
+                    averageWaitTime = Math.round(totalWaitMs / countWithWaitTime / (1000 * 60 * 60));
+                }
+            }
+        } catch (error) {
+            if (import.meta.env.DEV) {
+                console.warn('Failed to calculate average wait time:', error);
+            }
+        }
 
         return {
             totalUsers: total.data().count,

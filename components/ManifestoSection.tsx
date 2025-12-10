@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Layers, Cpu, Ban, Braces, Database } from 'lucide-react';
+import { Zap, Brain, Shield, Target, BookOpen, Lightbulb } from 'lucide-react';
 
 const BentoCard: React.FC<{ 
     title: string; 
@@ -36,15 +36,15 @@ export const ManifestoSection: React.FC = () => {
         {/* Section Header */}
         <div className="mb-16 md:mb-20 grid grid-cols-1 md:grid-cols-2 gap-8 items-end">
           <div>
-              <span className="block font-mono text-xs text-brand-yellow uppercase tracking-widest mb-4">The Core Protocol</span>
+              <span className="block font-mono text-xs text-brand-yellow uppercase tracking-widest mb-4">2025 Manifesto</span>
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-medium text-brand-white tracking-tighter">
-                Engineering <br/> <span className="text-brand-sub">First Principles.</span>
+                Design the <br/> <span className="text-brand-sub">Mind.</span>
               </h2>
           </div>
           <div className="md:text-right">
               <p className="text-brand-gray max-w-md ml-auto leading-relaxed text-sm md:text-base">
-                Deconstructing modern software engineering to its mathematical and logical foundations. 
-                We don't teach tools. We teach how to build the tools.
+                The age of the coder is ending. The age of the architect has begun. 
+                We are engineering Vibe Architects—builders who orchestrate intelligence through rigorous systems design.
               </p>
           </div>
         </div>
@@ -52,57 +52,74 @@ export const ManifestoSection: React.FC = () => {
         {/* Bento Grid */}
         <div className="grid grid-cols-1 md:grid-cols-6 lg:grid-cols-12 gap-4 auto-rows-auto md:auto-rows-[340px]">
             
-            {/* First Principles - Large Card */}
+            {/* Vision - Large Card */}
             <BentoCard 
-                title="First Principles" 
-                subtitle="If you can't build it with Math and Python from scratch, you don't understand it. We reject abstraction until understanding is proven."
-                icon={<Box className="w-6 h-6" />}
+                title="The Shift" 
+                subtitle="Writing code is a commodity. Designing intelligence is a superpower."
+                icon={<Brain className="w-6 h-6" />}
                 className="md:col-span-3 lg:col-span-8 bg-gradient-to-br from-brand-surfaceHighlight to-brand-surface min-h-[300px]"
             >
                 <div className="mt-8 p-4 bg-brand-black/50 rounded-lg border border-brand-white/5 font-mono text-[10px] md:text-xs text-brand-sub">
-                    <div className="flex gap-2 mb-1"><span className="text-blue-400">class</span> <span className="text-brand-yellow">NeuralNet</span>:</div>
-                    <div className="pl-4 text-brand-gray">def __init__(self):</div>
-                    <div className="pl-8 text-brand-gray"># No Torch. Just Math.</div>
+                    <div className="flex gap-2 mb-1"><span className="text-blue-400">From:</span> <span className="text-brand-yellow">Hardcore Coding</span></div>
+                    <div className="flex gap-2"><span className="text-blue-400">To:</span> <span className="text-brand-yellow">Hardcore Architecture</span></div>
                 </div>
             </BentoCard>
 
-            {/* No Magic - Vertical */}
+            {/* Mission - Vertical */}
             <BentoCard 
-                title="No Magic" 
-                subtitle="We ban 'Black Boxes'. Open the library. Look inside."
-                icon={<Ban className="w-6 h-6" />}
+                title="Tame the Chaos" 
+                subtitle="We reject the Black Box. We force AI into rigorous Interface Contracts using the MVF Standard."
+                icon={<Zap className="w-6 h-6" />}
                 className="md:col-span-3 lg:col-span-4 min-h-[250px]"
             />
 
-            {/* Modern Stack - Tall/Wide */}
+            {/* Motive Statement */}
             <BentoCard 
-                title="Modern Architecture" 
-                subtitle="Replace outdated OOP inheritance with Composition & Data-Oriented Design (DOD). Align with high-performance standards."
-                icon={<Cpu className="w-6 h-6" />}
+                title="Prompting is Dead" 
+                subtitle="Prompt Engineering is guessing. Real Architects design Kernels, Synapses, and Anchors."
+                icon={<Shield className="w-6 h-6" />}
                 className="md:col-span-6 lg:col-span-6 min-h-[250px]"
             >
                <div className="mt-auto flex items-center gap-3 pt-6">
-                 <span className="px-3 py-1 rounded-full border border-brand-white/10 text-[10px] font-mono text-brand-gray uppercase">ECS Pattern</span>
-                 <span className="px-3 py-1 rounded-full border border-brand-white/10 text-[10px] font-mono text-brand-gray uppercase">Data-Locality</span>
+                 <span className="px-3 py-1 rounded-full border border-brand-white/10 text-[10px] font-mono text-brand-gray uppercase">Own the Framework</span>
+                 <span className="px-3 py-1 rounded-full border border-brand-white/10 text-[10px] font-mono text-brand-gray uppercase">Not the Tool</span>
                </div>
             </BentoCard>
 
-            {/* Architecture First */}
+            {/* Core Goals */}
             <BentoCard 
-                title="Design First" 
-                subtitle="Code is cheap. Structure is expensive. We design the system before writing a single line."
-                icon={<Layers className="w-6 h-6" />}
+                title="The Destination" 
+                subtitle="Make MVF the global standard. Eradicate black boxes. Prove top talent lives everywhere."
+                icon={<Target className="w-6 h-6" />}
                 className="md:col-span-6 lg:col-span-3 min-h-[250px]"
             />
 
-            {/* Struggle */}
+            {/* Brand Values */}
              <BentoCard 
-                title="Rigorous" 
-                subtitle="Real engineering isn't a 10-minute tutorial. It's struggle, failed experiments, and iteration."
-                icon={<Database className="w-6 h-6" />}
+                title="Core Values" 
+                subtitle="Architecture > Syntax. No Hallucinations. The Mirror Test. Rigorous Vibe."
+                icon={<Lightbulb className="w-6 h-6" />}
                 className="md:col-span-6 lg:col-span-3 bg-brand-yellow/10 border-brand-yellow/20 min-h-[250px]"
             />
 
+        </div>
+
+        {/* Rallying Cry Section */}
+        <div className="mt-16 md:mt-20 pt-12 md:pt-16 border-t border-brand-white/5">
+          <div className="max-w-3xl">
+            <h3 className="text-2xl md:text-3xl font-display font-medium text-brand-white mb-6">The Rallying Cry</h3>
+            <div className="space-y-4">
+              <p className="text-brand-yellow text-lg md:text-xl font-medium">
+                "Stop Prompting. Start Architecting."
+              </p>
+              <p className="text-brand-gray text-base md:text-lg">
+                <span className="text-brand-white font-medium">Secondary Tagline:</span> mfourlabs: Design the Mind.
+              </p>
+              <p className="text-brand-gray text-base md:text-lg">
+                <span className="text-brand-white font-medium">The Promise:</span> The Global Standard for Vibe Architecture.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </section>

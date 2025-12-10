@@ -55,17 +55,16 @@ export const HeroSection: React.FC<HeroProps> = ({ onEnterLab }) => {
         {/* Main Title - Massive & Responsive */}
         <div className="text-center mb-8 md:mb-10 relative">
           <h1 className="text-[13vw] md:text-[11vw] lg:text-[11rem] font-display font-bold tracking-tighter leading-[0.85] text-brand-white animate-slide-up opacity-0" style={{ animationDelay: '0.2s' }}>
-            ARCHITECTS
+            STOP
           </h1>
           <h1 className="text-[13vw] md:text-[11vw] lg:text-[11rem] font-display font-bold tracking-tighter leading-[0.85] text-transparent bg-clip-text bg-gradient-to-b from-brand-gray/50 to-brand-black/0 animate-slide-up opacity-0" style={{ animationDelay: '0.3s' }}>
-            NOT CODERS
+            PROMPTING
           </h1>
         </div>
 
         {/* Subtitle / Description */}
         <p className="text-base md:text-xl text-brand-gray max-w-xl md:max-w-2xl text-center mb-10 md:mb-14 leading-relaxed font-light animate-slide-up opacity-0 px-4" style={{ animationDelay: '0.4s' }}>
-          We bridge the gap between University Theory and Elite R&D.
-          Rejecting copy-paste culture to build from <span className="text-brand-white font-medium">First Principles</span>.
+          The Age of the Coder is ending. The Age of the Architect has begun. Master the <span className="text-brand-white font-medium">MFOUR Vibe Framework™ (MVF)</span> and design the systems of tomorrow.
         </p>
 
         {/* Actions */}
@@ -76,7 +75,7 @@ export const HeroSection: React.FC<HeroProps> = ({ onEnterLab }) => {
           >
             <div className="absolute inset-0 bg-brand-yellow translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
             <span className="relative flex items-center justify-center gap-2 group-hover:text-black transition-colors">
-              Enter mfourlabs.Lab <ArrowRight className="w-4 h-4" />
+              Download the MVF Canvas <ArrowRight className="w-4 h-4" />
             </span>
           </button>
 
@@ -84,7 +83,7 @@ export const HeroSection: React.FC<HeroProps> = ({ onEnterLab }) => {
             onClick={() => document.getElementById('philosophy')?.scrollIntoView({ behavior: 'smooth' })}
             className="w-full sm:w-auto px-8 py-4 text-brand-gray hover:text-brand-white transition-colors text-sm font-medium tracking-wide border-b border-transparent hover:border-brand-white/20"
           >
-            Read The Manifesto
+            Read The Whitepaper
           </button>
         </div>
 

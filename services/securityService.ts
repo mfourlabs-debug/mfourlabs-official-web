@@ -54,7 +54,9 @@ class SecurityService {
 
             return { allowed: true };
         } catch (error) {
-            console.error('Rate limit check failed:', error);
+            if (import.meta.env.DEV) {
+                console.error('Rate limit check failed:', error);
+            }
             // Fail open - allow registration if rate limit check fails
             return { allowed: true };
         }
@@ -72,7 +74,9 @@ class SecurityService {
                 timestamp: serverTimestamp(),
             });
         } catch (error) {
-            console.error('Failed to log rate limit attempt:', error);
+            if (import.meta.env.DEV) {
+                console.error('Failed to log rate limit attempt:', error);
+            }
         }
     }
 
@@ -105,7 +109,9 @@ class SecurityService {
 
             return { isDuplicate: false };
         } catch (error) {
-            console.error('Duplicate check failed:', error);
+            if (import.meta.env.DEV) {
+                console.error('Duplicate check failed:', error);
+            }
             // Fail open - allow registration if duplicate check fails
             return { isDuplicate: false };
         }
@@ -231,7 +237,9 @@ class SecurityService {
                 expiresAt: Timestamp.fromDate(new Date(Date.now() + 24 * 60 * 60 * 1000)), // 24 hours
             });
         } catch (error) {
-            console.error('Failed to create verification record:', error);
+            if (import.meta.env.DEV) {
+                console.error('Failed to create verification record:', error);
+            }
             throw error;
         }
     }
@@ -271,7 +279,9 @@ class SecurityService {
 
             return { valid: true, email: data.email };
         } catch (error) {
-            console.error('Email verification failed:', error);
+            if (import.meta.env.DEV) {
+                console.error('Email verification failed:', error);
+            }
             return { valid: false, error: 'Verification failed. Please try again.' };
         }
     }
@@ -290,7 +300,9 @@ class SecurityService {
             const snapshot = await getDocs(q);
             return !snapshot.empty;
         } catch (error) {
-            console.error('Email verification check failed:', error);
+            if (import.meta.env.DEV) {
+                console.error('Email verification check failed:', error);
+            }
             return false;
         }
     }

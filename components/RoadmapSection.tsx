@@ -4,20 +4,20 @@ import { RoadmapItem } from '../types';
 const ROADMAP_DATA: RoadmapItem[] = [
   {
     phase: "01",
-    title: "Foundation",
-    description: "Math Bootcamp & 'Death of Old OOP' series. Establishing the core curriculum for data-oriented design.",
+    title: "Phase I: Standardization",
+    description: "Certifying the first 100 Vibe Architects. Establishing the MFOUR Vibe Framework (MVF) as the universal language for System Design.",
     active: true
   },
   {
     phase: "02",
-    title: "Proof of Work",
-    description: "SOTA AI Safety paper reproduction (Alignment Faking). Live research streams demonstrating real-world engineering.",
+    title: "Phase II: The Open Kernel",
+    description: "Releasing the 'Linux of Vibes'. An open-source repository of pre-architected Kernels and Synapse patterns for global use.",
     active: false
   },
   {
     phase: "03",
-    title: "Standardization",
-    description: "Repository of 'Reference Architectures' for AI-Native Systems. Creating the industry standard for new engineers.",
+    title: "Phase III: Decentralized Intelligence",
+    description: "Building the MFOURLABS Network. A decentralized guild of Architects replacing traditional software houses with Agentic Systems.",
     active: false
   }
 ];
@@ -28,7 +28,7 @@ export const RoadmapSection: React.FC = () => {
        <div className="max-w-3xl mx-auto">
          <div className="text-center mb-24">
             <span className="font-mono text-xs text-brand-sub uppercase tracking-widest">Trajectory</span>
-            <h2 className="text-4xl font-display font-medium text-brand-white mt-4">The Master Plan</h2>
+            <h2 className="text-4xl font-display font-medium text-brand-white mt-4">Research Trajectory</h2>
          </div>
          
          <div className="relative pl-8 md:pl-0">
