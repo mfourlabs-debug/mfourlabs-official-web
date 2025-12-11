@@ -110,7 +110,7 @@ const App: React.FC = () => {
 
             {/* Desktop Links */}
             <div className="hidden md:flex items-center gap-1">
-              <a href="#vision" className="px-4 py-2 text-sm font-medium text-brand-gray hover:text-brand-white transition-colors hover:bg-white/5 rounded-full">Docs</a>
+              <a href="https://mfour-labs.gitbook.io/mfour-labs-docs/" className="px-4 py-2 text-sm font-medium text-brand-gray hover:text-brand-white transition-colors hover:bg-white/5 rounded-full">Docs</a>
               <a href="#philosophy" className="px-4 py-2 text-sm font-medium text-brand-gray hover:text-brand-white transition-colors hover:bg-white/5 rounded-full">Manifesto</a>
               <a href="#roadmap" className="px-4 py-2 text-sm font-medium text-brand-gray hover:text-brand-white transition-colors hover:bg-white/5 rounded-full">Research Trejectory</a>
             </div>
@@ -143,9 +143,9 @@ const App: React.FC = () => {
           {/* Mobile Menu Overlay */}
           {isMobileMenuOpen && (
             <div className="md:hidden absolute top-20 left-4 right-4 bg-brand-surface border border-brand-border rounded-2xl p-6 flex flex-col gap-2 shadow-2xl animate-slide-up">
-              <a href="#vision" onClick={() => setIsMobileMenuOpen(false)} className="px-4 py-3 text-lg font-medium text-brand-white hover:bg-white/5 rounded-lg">Framework Docs</a>
+              <a href="https://mfour-labs.gitbook.io/mfour-labs-docs/" onClick={() => setIsMobileMenuOpen(false)} className="px-4 py-3 text-lg font-medium text-brand-white hover:bg-white/5 rounded-lg">Docs</a>
               <a href="#philosophy" onClick={() => setIsMobileMenuOpen(false)} className="px-4 py-3 text-lg font-medium text-brand-white hover:bg-white/5 rounded-lg">Manifesto</a>
-              <a href="#roadmap" onClick={() => setIsMobileMenuOpen(false)} className="px-4 py-3 text-lg font-medium text-brand-white hover:bg-white/5 rounded-lg">Get Certified</a>
+              <a href="#roadmap" onClick={() => setIsMobileMenuOpen(false)} className="px-4 py-3 text-lg font-medium text-brand-white hover:bg-white/5 rounded-lg">Research Trejectory</a>
             </div>
           )}
         </nav>
