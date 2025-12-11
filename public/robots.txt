@@ -1,5 +1,5 @@
 # robots.txt for MFOURLABS
-# https://mfourlabs.com/robots.txt
+# https://mfourlabs.dev/robots.txt
 
 User-agent: *
 Allow: /
@@ -9,7 +9,7 @@ Allow: /
 # Disallow: /private/
 
 # Sitemap location
-Sitemap: https://mfourlabs.com/sitemap.xml
+Sitemap: https://mfourlabs.dev/sitemap.xml
 
 # Crawl-delay (optional, adjust as needed)
 Crawl-delay: 1

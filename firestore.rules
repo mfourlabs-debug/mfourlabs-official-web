@@ -1,0 +1,146 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Helper functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    function isAdmin() {
+      return isAuthenticated() && 
+             get(/databases/$(database)/documents/admins/$(request.auth.uid)).data.role == 'admin';
+    }
+    
+    function isValidEmail(email) {
+      return email.matches('^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$');
+    }
+    
+    function isRateLimited(email, ipAddress) {
+      // Check if there are more than 3 attempts from this IP in the last hour
+      let ipAttempts = query(/databases/$(database)/documents/rate_limits,
+        where('ipAddress', '==', ipAddress),
+        where('timestamp', '>', request.time - duration.value(1, 'h'))
+      ).size;
+      
+      // Check if there are more than 5 attempts from this email in the last day
+      let emailAttempts = query(/databases/$(database)/documents/rate_limits,
+        where('email', '==', email.lower()),
+        where('timestamp', '>', request.time - duration.value(1, 'd'))
+      ).size;
+      
+      return ipAttempts >= 3 || emailAttempts >= 5;
+    }
+    
+    // Lab Early Access Users Collection
+    match /lab_early_access_users/{userId} {
+      // Allow read if authenticated or if it's the user's own document
+      allow read: if isAuthenticated() || 
+                     (resource.data.email == request.auth.token.email);
+      
+      // Allow create with security checks
+      allow create: if 
+        // Must have valid email
+        isValidEmail(request.resource.data.email) &&
+        // Email must not already exist (checked in app, but double-check here)
+        !exists(/databases/$(database)/documents/lab_early_access_users/$(request.resource.data.email)) &&
+        // Must have required fields
+        request.resource.data.keys().hasAll(['name', 'email', 'dob', 'role', 'organization', 'privacy']) &&
+        // Privacy must be accepted
+        request.resource.data.privacy == true &&
+        // Name must be reasonable length
+        request.resource.data.name.size() >= 2 && request.resource.data.name.size() <= 100 &&
+        // Email must be reasonable length
+        request.resource.data.email.size() >= 5 && request.resource.data.email.size() <= 100 &&
+        // Organization must be provided
+        request.resource.data.organization.size() >= 2 &&
+        // Must have timestamp
+        request.resource.data.createdAt == request.time;
+      
+      // Allow update only by admins or the user themselves
+      allow update: if isAdmin() || 
+                       (isAuthenticated() && resource.data.email == request.auth.token.email);
+      
+      // Allow delete only by admins or for GDPR deletion requests
+      allow delete: if isAdmin();
+    }
+    
+    // Rate Limits Collection
+    match /rate_limits/{limitId} {
+      // Only allow creation (for logging attempts)
+      allow create: if 
+        request.resource.data.keys().hasAll(['email', 'ipAddress', 'timestamp']) &&
+        request.resource.data.timestamp == request.time;
+      
+      // Only admins can read rate limits
+      allow read: if isAdmin();
+      
+      // No updates or deletes (except by admins for cleanup)
+      allow update, delete: if isAdmin();
+    }
+    
+    // Email Verifications Collection
+    match /email_verifications/{verificationId} {
+      // Allow creation for new verifications
+      allow create: if 
+        request.resource.data.keys().hasAll(['email', 'token', 'verified', 'createdAt', 'expiresAt']) &&
+        request.resource.data.verified == false &&
+        request.resource.data.createdAt == request.time;
+      
+      // Allow read for verification checks
+      allow read: if true; // Public read for token verification
+      
+      // Allow update only to mark as verified
+      allow update: if 
+        resource.data.verified == false &&
+        request.resource.data.verified == true &&
+        request.resource.data.verifiedAt == request.time;
+      
+      // Only admins can delete
+      allow delete: if isAdmin();
+    }
+    
+    // GDPR Deletion Requests Collection
+    match /gdpr_deletion_requests/{requestId} {
+      // Allow creation for deletion requests
+      allow create: if 
+        request.resource.data.keys().hasAll(['userId', 'email', 'requestedAt', 'status']) &&
+        request.resource.data.status == 'pending';
+      
+      // Allow read by admins or the user who made the request
+      allow read: if isAdmin() || 
+                     (isAuthenticated() && resource.data.email == request.auth.token.email);
+      
+      // Only admins can update (to process requests)
+      allow update: if isAdmin();
+      
+      // Only admins can delete
+      allow delete: if isAdmin();
+    }
+    
+    // GDPR Export Requests Collection
+    match /gdpr_export_requests/{requestId} {
+      // Allow creation for export requests
+      allow create: if 
+        request.resource.data.keys().hasAll(['userId', 'email', 'requestedAt', 'status']);
+      
+      // Allow read by admins or the user who made the request
+      allow read: if isAdmin() || 
+                     (isAuthenticated() && resource.data.email == request.auth.token.email);
+      
+      // Only admins can update/delete
+      allow update, delete: if isAdmin();
+    }
+    
+    // Admins Collection (for role-based access control)
+    match /admins/{adminId} {
+      // Only admins can read/write admin records
+      allow read, write: if isAdmin();
+    }
+    
+    // Default deny all other collections
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

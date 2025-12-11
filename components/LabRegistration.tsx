@@ -1,7 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import { X, QrCode, Terminal, ChevronRight, CheckCircle2, Twitter, MessageCircle, Edit3, Wallet, Shield, UserCircle, Calendar, Building2, ScanLine, ArrowRight, Mail, GraduationCap, BookOpen, Layers } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import { X, QrCode, Terminal, ChevronRight, CheckCircle2, Edit3, Wallet, Shield, UserCircle, Calendar, Building2, ScanLine, ArrowRight, Mail, GraduationCap, BookOpen, Layers, Globe, AlertTriangle, Linkedin, Copy, Check } from 'lucide-react';
 import { auth, db } from '../services/firebase';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
+import { PrivacyPolicy } from './PrivacyPolicy';
+import { SocialProofBanner } from './SocialProofBanner';
+import { TermsOfService } from './TermsOfService';
+import { GDPRDataManagement } from './GDPRDataManagement';
+import { analytics, RegistrationSession } from '../services/analyticsService';
+import { securityService } from '../services/securityService';
 
 interface LabRegistrationProps {
    onClose: () => void;
@@ -17,7 +23,13 @@ export const LabRegistration: React.FC<LabRegistrationProps> = ({ onClose }) => 
       degree: '',
       organization: '',
       privacy: false,
-      newsletter: true,
+      // New fields for enhanced data collection
+      interestAreas: [] as string[],
+      experienceLevel: '',
+      referralSource: '',
+      motivation: '',
+      // Security: Honeypot field (hidden from users, should remain empty)
+      website: '', // Honeypot field
    });
    const [isSubmitting, setIsSubmitting] = useState(false);
    const [accessId, setAccessId] = useState('');
@@ -25,6 +37,19 @@ export const LabRegistration: React.FC<LabRegistrationProps> = ({ onClose }) => 
    const [mobileTab, setMobileTab] = useState<'form' | 'preview'>('form');
    const [isLoading, setIsLoading] = useState(true);
    const [errors, setErrors] = useState<Record<string, string>>({});
+   const [referralCode, setReferralCode] = useState('');
+   const [waitlistPosition, setWaitlistPosition] = useState<number | null>(null);
+   const [showPrivacyPolicy, setShowPrivacyPolicy] = useState(false);
+   const [showTermsOfService, setShowTermsOfService] = useState(false);
+   const [showGDPRManagement, setShowGDPRManagement] = useState(false);
+   const [registrationSession] = useState(() => new RegistrationSession());
+   const [securityErrors, setSecurityErrors] = useState<string[]>([]);
+   const [securityWarnings, setSecurityWarnings] = useState<string[]>([]);
+   const [toastMessage, setToastMessage] = useState<{ message: string; type: 'success' | 'error' } | null>(null);
+   const [copyButtonState, setCopyButtonState] = useState<'idle' | 'copied'>('idle');
+
+   // Ref for scrollable container
+   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
    const validateForm = () => {
       const newErrors: Record<string, string> = {};
@@ -56,6 +81,19 @@ export const LabRegistration: React.FC<LabRegistrationProps> = ({ onClose }) => 
          newErrors.degree = "Degree/Major is required";
       }
 
+      // New field validations
+      if (formData.interestAreas.length === 0) {
+         newErrors.interestAreas = "Please select at least one area of interest";
+      }
+
+      if (!formData.experienceLevel) {
+         newErrors.experienceLevel = "Experience level is required";
+      }
+
+      if (!formData.referralSource) {
+         newErrors.referralSource = "Please tell us how you heard about us";
+      }
+
       if (!formData.privacy) {
          newErrors.privacy = "You must accept the privacy policy";
       }
@@ -84,21 +122,54 @@ export const LabRegistration: React.FC<LabRegistrationProps> = ({ onClose }) => 
          }
       };
 
-      // Generate a new ID if we don't have one yet
+      // Generate unique IDs if we don't have them yet
       if (step === 1) {
          setAccessId(Math.random().toString(36).substring(2, 10).toUpperCase());
+         // Generate referral code: MFOUR-XXXXX format
+         const refCode = 'MFOUR-' + Math.random().toString(36).substring(2, 7).toUpperCase();
+         setReferralCode(refCode);
       }
 
       checkAccess();
    }, []);
 
-   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+   // Scroll to top when modal opens or step changes
+   useEffect(() => {
+      if (scrollContainerRef.current) {
+         scrollContainerRef.current.scrollTop = 0;
+      }
+   }, [step, mobileTab]);
+
+   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
       const { name, value, type } = e.target;
       if (type === 'checkbox') {
          const checked = (e.target as HTMLInputElement).checked;
-         setFormData(prev => ({ ...prev, [name]: checked }));
+
+         // Handle interest areas (checkbox array)
+         if (name === 'interestAreas') {
+            const interestValue = value;
+            setFormData(prev => ({
+               ...prev,
+               interestAreas: checked
+                  ? [...prev.interestAreas, interestValue]
+                  : prev.interestAreas.filter(area => area !== interestValue)
+            }));
+            if (checked) {
+               registrationSession.trackFieldCompletion('interestAreas');
+            }
+         } else {
+            // Handle regular checkboxes (privacy, newsletter)
+            setFormData(prev => ({ ...prev, [name]: checked }));
+            if (checked && name === 'privacy') {
+               registrationSession.trackFieldCompletion('privacy');
+            }
+         }
       } else {
          setFormData(prev => ({ ...prev, [name]: value }));
+         // Track field completion when user enters data
+         if (value && value.length > 0) {
+            registrationSession.trackFieldCompletion(name);
+         }
       }
    };
 
@@ -108,14 +179,83 @@ export const LabRegistration: React.FC<LabRegistrationProps> = ({ onClose }) => 
       if (!validateForm()) return;
 
       setIsSubmitting(true);
+      setSecurityErrors([]);
+      setSecurityWarnings([]);
 
       try {
-         // 1. Store Data in Firestore (No Auth)
+         // Get URL parameters for referral tracking
+         const urlParams = new URLSearchParams(window.location.search);
+         const referredByCode = urlParams.get('ref');
+
+         // Get user metadata
+         const userAgent = navigator.userAgent;
+         let ipAddress = 'unknown';
+
+         // Try to get IP address (optional - requires external service)
+         try {
+            const ipResponse = await fetch('https://api.ipify.org?format=json');
+            const ipData = await ipResponse.json();
+            ipAddress = ipData.ip;
+         } catch (error) {
+            console.log('Could not fetch IP address');
+         }
+
+         // SECURITY CHECKS
+         console.log('🔒 Running security checks...');
+         const securityCheck = await securityService.performSecurityChecks({
+            email: formData.email,
+            ipAddress,
+            userAgent,
+            honeypot: formData.website, // Honeypot field
+         });
+
+         if (!securityCheck.passed) {
+            setSecurityErrors(securityCheck.errors);
+            setSecurityWarnings(securityCheck.warnings);
+            analytics.trackError('security_check_failed', securityCheck.errors.join('; '));
+            setIsSubmitting(false);
+            return;
+         }
+
+         if (securityCheck.warnings.length > 0) {
+            setSecurityWarnings(securityCheck.warnings);
+         }
+
+         // Log rate limit attempt
+         await securityService.logRateLimitAttempt(formData.email, ipAddress, userAgent);
+
+         console.log('✅ Security checks passed');
+
+         // Calculate waitlist position (count existing users + 1)
+         const { getCountFromServer, collection: firestoreCollection, query } = await import('firebase/firestore');
+         const usersRef = firestoreCollection(db, "lab_early_access_users");
+         const snapshot = await getCountFromServer(usersRef);
+         const position = snapshot.data().count + 1;
+         setWaitlistPosition(position);
+
+         // Build comprehensive registration data
          const registrationData = {
+            // Basic user info
             ...formData,
             accessId,
+
+            // Referral system
+            referralCode,
+            referredBy: referredByCode || null,
+
+            // Waitlist & Status
+            waitlistPosition: position,
+            status: 'pending' as const, // Start as pending, admin can approve
+            approvedAt: null,
+            lastActiveAt: serverTimestamp(),
+
+            // Timestamps
             createdAt: serverTimestamp(),
-            status: 'active'
+            updatedAt: serverTimestamp(),
+
+            // Metadata for fraud detection
+            ipAddress,
+            userAgent,
          };
 
          await addDoc(collection(db, "lab_early_access_users"), registrationData);
@@ -123,12 +263,26 @@ export const LabRegistration: React.FC<LabRegistrationProps> = ({ onClose }) => 
          // 2. Persist locally
          localStorage.setItem('ment4ai_lab_access_id', accessId);
          localStorage.setItem('ment4ai_lab_user_name', formData.name);
+         localStorage.setItem('ment4ai_lab_referral_code', referralCode);
+         localStorage.setItem('ment4ai_lab_waitlist_position', position.toString());
 
          // 3. Success State
+         registrationSession.trackCompletion({
+            role: formData.role,
+            organization: formData.organization,
+            experienceLevel: formData.experienceLevel,
+            interestAreas: formData.interestAreas,
+            referralSource: formData.referralSource,
+         });
+         analytics.trackWaitlistPosition(position);
+         if (referredByCode) {
+            analytics.trackReferralUsage(referralCode, referredByCode);
+         }
          setStep(2);
          setMobileTab('preview'); // Show card on success
       } catch (error: any) {
          console.error("Registration Error:", error);
+         registrationSession.trackFailure(error.message || "Unknown error");
          alert(`Connection to the Node failed: ${error.message || "Unknown error"}`);
       } finally {
          setIsSubmitting(false);
@@ -208,9 +362,9 @@ export const LabRegistration: React.FC<LabRegistrationProps> = ({ onClose }) => 
                </div>
 
                {/* Content - Optimized spacing */}
-               <div className="flex-1 overflow-y-auto p-4 md:p-6 pb-40 md:pb-6 scrollbar-hide">
+               <div ref={scrollContainerRef} className="flex-1 overflow-y-auto p-4 md:p-6 pb-40 md:pb-6 scrollbar-hide">
                   {step === 1 ? (
-                     <div className="max-w-3xl mx-auto h-full flex flex-col justify-center">
+                     <div className="max-w-3xl mx-auto flex flex-col justify-start">
 
                         {/* Briefing (Compact) */}
                         <div className="mb-6 flex items-center gap-3 p-3 rounded-lg bg-gradient-to-r from-neutral-900 to-transparent border border-white/5 shrink-0">
@@ -223,8 +377,67 @@ export const LabRegistration: React.FC<LabRegistrationProps> = ({ onClose }) => 
                            </div>
                         </div>
 
+                        {/* Social Proof & Urgency Banner */}
+                        <div className="mb-6">
+                           <SocialProofBanner
+                              earlyAccessEndDate={new Date(Date.now() + 90 * 24 * 60 * 60 * 1000)}
+                           />
+                        </div>
+
                         {/* Form */}
                         <form onSubmit={handleSubmit} className="space-y-4">
+
+                           {/* Honeypot Field - Hidden from users, catches bots */}
+                           <div className="hidden" aria-hidden="true">
+                              <label htmlFor="website">Website (leave blank)</label>
+                              <input
+                                 type="text"
+                                 name="website"
+                                 id="website"
+                                 value={formData.website}
+                                 onChange={handleChange}
+                                 tabIndex={-1}
+                                 autoComplete="off"
+                              />
+                           </div>
+
+                           {/* Security Errors Display */}
+                           {securityErrors.length > 0 && (
+                              <div className="bg-red-950/20 border border-red-500/30 rounded-xl p-4 animate-fade-in">
+                                 <div className="flex items-start gap-3">
+                                    <AlertTriangle className="w-5 h-5 text-red-400 mt-0.5 flex-shrink-0" />
+                                    <div className="flex-1">
+                                       <h4 className="text-sm font-semibold text-red-300 mb-2">Security Check Failed</h4>
+                                       <ul className="space-y-1">
+                                          {securityErrors.map((error, index) => (
+                                             <li key={index} className="text-xs text-red-200 leading-relaxed">
+                                                • {error}
+                                             </li>
+                                          ))}
+                                       </ul>
+                                    </div>
+                                 </div>
+                              </div>
+                           )}
+
+                           {/* Security Warnings Display */}
+                           {securityWarnings.length > 0 && securityErrors.length === 0 && (
+                              <div className="bg-orange-950/20 border border-orange-500/30 rounded-xl p-4 animate-fade-in">
+                                 <div className="flex items-start gap-3">
+                                    <AlertTriangle className="w-5 h-5 text-orange-400 mt-0.5 flex-shrink-0" />
+                                    <div className="flex-1">
+                                       <h4 className="text-sm font-semibold text-orange-300 mb-2">Security Notice</h4>
+                                       <ul className="space-y-1">
+                                          {securityWarnings.map((warning, index) => (
+                                             <li key={index} className="text-xs text-orange-200 leading-relaxed">
+                                                • {warning}
+                                             </li>
+                                          ))}
+                                       </ul>
+                                    </div>
+                                 </div>
+                              </div>
+                           )}
 
                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                               {/* Name */}
@@ -358,6 +571,122 @@ export const LabRegistration: React.FC<LabRegistrationProps> = ({ onClose }) => 
                               </div>
                            </div>
 
+                           {/* NEW ENHANCED DATA COLLECTION SECTION */}
+                           <div className="pt-6 border-t border-white/10">
+                              <div className="mb-4 flex items-center gap-2">
+                                 <Layers className="w-4 h-4 text-brand-yellow" />
+                                 <h3 className="text-sm font-semibold text-white tracking-wide">Tell Us More About You</h3>
+                              </div>
+
+                              <div className="space-y-4">
+                                 {/* Interest Areas - Multi-select */}
+                                 <div className="space-y-2">
+                                    <label className={labelClass}>AREAS OF INTEREST (SELECT ALL THAT APPLY)</label>
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                                       {[
+                                          { value: 'System Design', label: 'System Design' },
+                                          { value: 'AI/ML Engineering', label: 'AI/ML Engineering' },
+                                          { value: 'Backend Architecture', label: 'Backend Architecture' },
+                                          { value: 'Frontend Engineering', label: 'Frontend Engineering' },
+                                          { value: 'DevOps/Infrastructure', label: 'DevOps/Infrastructure' },
+                                          { value: 'Research & Publications', label: 'Research & Publications' },
+                                       ].map((interest) => (
+                                          <label
+                                             key={interest.value}
+                                             className={`flex items-center gap-3 p-3 rounded-lg border transition-all cursor-pointer group ${formData.interestAreas.includes(interest.value)
+                                                ? 'border-brand-yellow/60 bg-brand-yellow/5'
+                                                : 'border-white/10 bg-neutral-900/40 hover:bg-neutral-900 hover:border-white/20'
+                                                }`}
+                                          >
+                                             <div className="relative flex items-center justify-center">
+                                                <input
+                                                   type="checkbox"
+                                                   name="interestAreas"
+                                                   value={interest.value}
+                                                   checked={formData.interestAreas.includes(interest.value)}
+                                                   onChange={handleChange}
+                                                   className="peer appearance-none w-4 h-4 rounded border border-white/20 bg-black/40 checked:bg-brand-yellow checked:border-brand-yellow transition-all"
+                                                />
+                                                <CheckCircle2 className="w-3 h-3 text-black absolute opacity-0 peer-checked:opacity-100 pointer-events-none transition-opacity" />
+                                             </div>
+                                             <span className={`text-xs transition-colors ${formData.interestAreas.includes(interest.value) ? 'text-white font-medium' : 'text-neutral-400 group-hover:text-neutral-200'
+                                                }`}>
+                                                {interest.label}
+                                             </span>
+                                          </label>
+                                       ))}
+                                    </div>
+                                    {errors.interestAreas && <div className={errorClass}>{errors.interestAreas}</div>}
+                                 </div>
+
+                                 {/* Experience Level */}
+                                 <div className="space-y-0.5">
+                                    <label className={labelClass}>EXPERIENCE LEVEL</label>
+                                    <div className={`${inputContainerClass(!!errors.experienceLevel)} ring-1 ring-white/5 focus-within:ring-brand-yellow/50`}>
+                                       <div className="absolute left-0 top-0 bottom-0 w-1 bg-brand-yellow/60"></div>
+                                       <GraduationCap className={iconClass} />
+                                       <select
+                                          name="experienceLevel"
+                                          value={formData.experienceLevel}
+                                          onChange={handleChange}
+                                          className={selectClass}
+                                       >
+                                          <option value="">Select your experience level</option>
+                                          <option value="Beginner (0-2 years)">Beginner (0-2 years)</option>
+                                          <option value="Intermediate (2-5 years)">Intermediate (2-5 years)</option>
+                                          <option value="Advanced (5-10 years)">Advanced (5-10 years)</option>
+                                          <option value="Expert (10+ years)">Expert (10+ years)</option>
+                                       </select>
+                                       <ChevronRight className="absolute right-3 top-3 w-3 h-3 text-neutral-500 rotate-90 pointer-events-none" />
+                                    </div>
+                                    {errors.experienceLevel && <div className={errorClass}>{errors.experienceLevel}</div>}
+                                 </div>
+
+                                 {/* Referral Source */}
+                                 <div className="space-y-0.5">
+                                    <label className={labelClass}>HOW DID YOU HEAR ABOUT US?</label>
+                                    <div className={`${inputContainerClass(!!errors.referralSource)} ring-1 ring-white/5 focus-within:ring-brand-yellow/50`}>
+                                       <div className="absolute left-0 top-0 bottom-0 w-1 bg-brand-yellow/60"></div>
+                                       <Globe className={iconClass} />
+                                       <select
+                                          name="referralSource"
+                                          value={formData.referralSource}
+                                          onChange={handleChange}
+                                          className={selectClass}
+                                       >
+                                          <option value="">Select a source</option>
+                                          <option value="Twitter/X">Twitter/X</option>
+                                          <option value="YouTube">YouTube</option>
+                                          <option value="Friend/Colleague">Friend/Colleague</option>
+                                          <option value="Search Engine">Search Engine</option>
+                                          <option value="LinkedIn">LinkedIn</option>
+                                          <option value="Reddit">Reddit</option>
+                                          <option value="Other">Other</option>
+                                       </select>
+                                       <ChevronRight className="absolute right-3 top-3 w-3 h-3 text-neutral-500 rotate-90 pointer-events-none" />
+                                    </div>
+                                    {errors.referralSource && <div className={errorClass}>{errors.referralSource}</div>}
+                                 </div>
+
+                                 {/* Motivation - Text Area */}
+                                 <div className="space-y-0.5">
+                                    <label className={labelClass}>WHAT ARE YOU MOST EXCITED ABOUT? (OPTIONAL)</label>
+                                    <div className={inputContainerClass(false)}>
+                                       <Edit3 className="absolute left-3 top-3 w-4 h-4 text-neutral-600 group-focus-within:text-brand-yellow transition-colors duration-300 pointer-events-none" />
+                                       <textarea
+                                          name="motivation"
+                                          value={formData.motivation}
+                                          onChange={handleChange}
+                                          placeholder="Share what excites you about first principles engineering, what you hope to learn, or what you want to build..."
+                                          rows={3}
+                                          className="w-full bg-transparent border-none py-2.5 pl-10 pr-4 text-base md:text-sm text-white placeholder-neutral-600 focus:ring-0 focus:outline-none transition-all resize-none"
+                                       />
+                                    </div>
+                                    <div className="text-[9px] text-neutral-600 ml-1 mt-1">Help us understand your goals and tailor the experience for you</div>
+                                 </div>
+                              </div>
+                           </div>
+
                            {/* Compliance Checkboxes - IMPROVED UI */}
                            <div className="pt-2 space-y-3">
                               {/* Privacy Card */}
@@ -373,24 +702,7 @@ export const LabRegistration: React.FC<LabRegistrationProps> = ({ onClose }) => 
                                     <CheckCircle2 className="w-3.5 h-3.5 text-black absolute opacity-0 peer-checked:opacity-100 pointer-events-none transition-opacity" />
                                  </div>
                                  <span className="text-xs text-neutral-400 group-hover:text-neutral-200 transition-colors leading-relaxed">
-                                    I accept the <span className="text-white underline decoration-white/20 underline-offset-2">Privacy Policy</span> and agree to the processing of my research data for lab access credentials.
-                                 </span>
-                              </label>
-
-                              {/* Newsletter Card */}
-                              <label className="flex items-start gap-4 p-4 rounded-xl border border-white/5 bg-neutral-900/40 hover:bg-neutral-900 hover:border-white/10 transition-all cursor-pointer group">
-                                 <div className="relative flex items-center justify-center mt-0.5">
-                                    <input
-                                       type="checkbox"
-                                       name="newsletter"
-                                       checked={formData.newsletter}
-                                       onChange={handleChange}
-                                       className="peer appearance-none w-5 h-5 rounded border border-white/20 bg-black/40 checked:bg-neutral-700 checked:border-neutral-600 transition-all"
-                                    />
-                                    <CheckCircle2 className="w-3.5 h-3.5 text-white absolute opacity-0 peer-checked:opacity-100 pointer-events-none transition-opacity" />
-                                 </div>
-                                 <span className="text-xs text-neutral-400 group-hover:text-neutral-200 transition-colors leading-relaxed">
-                                    Subscribe to the <span className="text-white">"First Principles"</span> weekly engineering digest.
+                                    I accept the <button type="button" onClick={(e) => { e.preventDefault(); setShowPrivacyPolicy(true); }} className="text-brand-yellow underline decoration-brand-yellow/40 underline-offset-2 hover:decoration-brand-yellow transition-colors">Privacy Policy</button> and <button type="button" onClick={(e) => { e.preventDefault(); setShowTermsOfService(true); }} className="text-brand-yellow underline decoration-brand-yellow/40 underline-offset-2 hover:decoration-brand-yellow transition-colors">Terms of Service</button>, and agree to the processing of my research data for lab access credentials.
                                  </span>
                               </label>
                               {errors.privacy && <div className="text-[10px] text-red-400 text-center animate-fade-in">{errors.privacy}</div>}
@@ -420,25 +732,101 @@ export const LabRegistration: React.FC<LabRegistrationProps> = ({ onClose }) => 
                            <CheckCircle2 className="w-10 h-10" />
                         </div>
                         <div className="space-y-2">
-                           <h3 className="text-4xl font-display font-medium text-white">Access Granted</h3>
+                           <h3 className="text-4xl font-display font-medium text-white">You're On The List!</h3>
                            <p className="text-neutral-400 max-w-md mx-auto text-sm leading-relaxed">
-                              Welcome to the Node, <span className="text-white font-medium">{formData.name}</span>. Your digital pass has been generated. Proceed to the community channels for onboarding.
+                              Welcome to the Node, <span className="text-white font-medium">{formData.name}</span>. Your early access request has been received.
                            </p>
                         </div>
 
+                        {/* Referral Code */}
+                        <div className="w-full max-w-md space-y-3">
+                           <div className="text-xs font-semibold text-white uppercase tracking-wide flex items-center gap-2">
+                              <div className="w-1 h-4 bg-brand-yellow rounded-full"></div>
+                              Share Your Referral Code
+                           </div>
+                           <div className="relative">
+                              <div className="flex flex-col sm:flex-row items-stretch gap-2 p-4 rounded-xl bg-gradient-to-br from-neutral-900 to-neutral-950 border border-brand-yellow/30 hover:border-brand-yellow/50 transition-colors duration-300 shadow-lg shadow-brand-yellow/5">
+                                 <div className="flex-1 font-mono text-sm font-semibold text-brand-yellow flex items-center px-2">{referralCode}</div>
+                                 <button
+                                    onClick={() => {
+                                       const referralLink = `${window.location.origin}?ref=${referralCode}`;
+                                       navigator.clipboard.writeText(referralLink).then(() => {
+                                          setCopyButtonState('copied');
+                                          setToastMessage({ message: 'Referral link copied to clipboard!', type: 'success' });
+                                          setTimeout(() => setCopyButtonState('idle'), 2000);
+                                          setTimeout(() => setToastMessage(null), 3000);
+                                       }).catch(() => {
+                                          setToastMessage({ message: 'Failed to copy link', type: 'error' });
+                                          setTimeout(() => setToastMessage(null), 3000);
+                                       });
+                                    }}
+                                    className={`flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg font-bold text-xs tracking-wide transition-all duration-300 whitespace-nowrap shadow-lg ${
+                                       copyButtonState === 'copied'
+                                          ? 'bg-green-500/20 border border-green-500/50 text-green-400 hover:bg-green-500/30'
+                                          : 'bg-brand-yellow text-black hover:bg-white hover:shadow-lg hover:shadow-brand-yellow/40 active:scale-95'
+                                    }`}
+                                 >
+                                    {copyButtonState === 'copied' ? (
+                                       <>
+                                          <Check className="w-4 h-4" />
+                                          Copied
+                                       </>
+                                    ) : (
+                                       <>
+                                          <Copy className="w-4 h-4" />
+                                          Copy Link
+                                       </>
+                                    )}
+                                 </button>
+                              </div>
+                              <div className="text-[10px] text-neutral-500 mt-2 flex items-center gap-1">
+                                 <div className="w-1 h-1 rounded-full bg-neutral-600"></div>
+                                 Share with friends to help them join the lab
+                              </div>
+                           </div>
+                        </div>
+
                         <div className="flex flex-col sm:flex-row gap-4 w-full max-w-md">
-                           <a href="https://discord.com" target="_blank" rel="noreferrer" className="flex-1 flex items-center justify-center gap-3 p-4 rounded-xl bg-[#5865F2] text-white hover:bg-[#4752C4] transition-all shadow-lg shadow-[#5865F2]/20">
-                              <MessageCircle className="w-5 h-5" />
-                              <span className="font-bold">Join Discord</span>
+                           <a href="https://x.com/mfourlabs" target="_blank" rel="noreferrer" className="flex-1 flex items-center justify-center gap-3 p-4 rounded-xl bg-neutral-800 text-white hover:bg-neutral-700 transition-all border border-white/10">
+                              <X className="w-5 h-5" />
+                              <span className="font-medium">Follow on X</span>
                            </a>
-                           <a href="https://twitter.com" target="_blank" rel="noreferrer" className="flex-1 flex items-center justify-center gap-3 p-4 rounded-xl bg-neutral-800 text-white hover:bg-neutral-700 transition-all border border-white/10">
-                              <Twitter className="w-5 h-5" />
-                              <span className="font-medium">Follow Lab</span>
+                           <a href="https://www.linkedin.com/company/mfourlabs" target="_blank" rel="noreferrer" className="flex-1 flex items-center justify-center gap-3 p-4 rounded-xl bg-[#0A66C2] text-white hover:bg-[#004182] transition-all shadow-lg shadow-[#0A66C2]/20">
+                              <Linkedin className="w-5 h-5" />
+                              <span className="font-bold">Connect on LinkedIn</span>
                            </a>
                         </div>
 
+                        {/* GDPR Data Management Link */}
+                        <button
+                           onClick={() => setShowGDPRManagement(true)}
+                           className="text-xs text-neutral-500 hover:text-brand-yellow transition-colors underline decoration-neutral-600 underline-offset-2 hover:decoration-brand-yellow"
+                        >
+                           Manage My Data (GDPR)
+                        </button>
+
+                        {/* Reset Registration Button (for testing) */}
+                        <button
+                           onClick={() => {
+                              if (confirm('Clear your registration and start over? This is for testing purposes only.')) {
+                                 localStorage.removeItem('ment4ai_lab_access_id');
+                                 localStorage.removeItem('ment4ai_lab_user_name');
+                                 localStorage.removeItem('ment4ai_lab_referral_code');
+                                 localStorage.removeItem('ment4ai_lab_waitlist_position');
+                                 setStep(1);
+                                 setMobileTab('form');
+                                 setAccessId(Math.random().toString(36).substring(2, 10).toUpperCase());
+                                 const refCode = 'MFOUR-' + Math.random().toString(36).substring(2, 7).toUpperCase();
+                                 setReferralCode(refCode);
+                              }
+                           }}
+                           className="text-xs text-orange-500 hover:text-orange-400 transition-colors underline decoration-orange-600 underline-offset-2 hover:decoration-orange-400"
+                        >
+                           Reset Registration (Testing)
+                        </button>
+
                         <div className="text-[10px] font-mono text-neutral-600 mt-8 border px-4 py-2 rounded-full border-white/5">
-                           REF ID: <span className="text-neutral-400">{accessId}</span>
+                           ACCESS ID: <span className="text-neutral-400">{accessId}</span>
                         </div>
                      </div>
                   )}
@@ -574,6 +962,11 @@ export const LabRegistration: React.FC<LabRegistrationProps> = ({ onClose }) => 
           0% { transform: translateX(-150%) skewX(-12deg); }
           50%, 100% { transform: translateX(150%) skewX(-12deg); }
         }
+
+        @keyframes shrink {
+          0% { width: 100%; }
+          100% { width: 0%; }
+        }
         
         .animate-float {
           animation: float 6s ease-in-out infinite;
@@ -589,6 +982,35 @@ export const LabRegistration: React.FC<LabRegistrationProps> = ({ onClose }) => 
           transform: rotateY(0) rotateX(0) translateY(0) scale(1.05);
         }
       `}</style>
+
+         {/* Toast Notification */}
+         {toastMessage && (
+            <div className={`fixed bottom-8 left-8 right-8 md:bottom-auto md:top-8 md:left-auto md:right-8 max-w-md z-[70] animate-fade-in transition-all duration-300 ${
+               toastMessage.type === 'success' 
+                  ? 'bg-green-500/20 border border-green-500/50 text-green-300' 
+                  : 'bg-red-500/20 border border-red-500/50 text-red-300'
+            } p-4 rounded-xl flex items-center gap-3 backdrop-blur-md shadow-lg`}>
+               {toastMessage.type === 'success' ? (
+                  <Check className="w-5 h-5 flex-shrink-0 text-green-400" />
+               ) : (
+                  <AlertTriangle className="w-5 h-5 flex-shrink-0 text-red-400" />
+               )}
+               <span className="text-sm font-medium">{toastMessage.message}</span>
+               <div className="absolute bottom-0 left-0 h-1 bg-gradient-to-r from-green-500 to-brand-yellow animate-pulse rounded-full" style={{
+                  width: '100%',
+                  animation: 'shrink 3s ease-in forwards'
+               }}></div>
+            </div>
+         )}
+
+         {/* Privacy Policy Modal */}
+         {showPrivacyPolicy && <PrivacyPolicy onClose={() => setShowPrivacyPolicy(false)} />}
+
+         {/* Terms of Service Modal */}
+         {showTermsOfService && <TermsOfService onClose={() => setShowTermsOfService(false)} />}
+
+         {/* GDPR Data Management Modal */}
+         {showGDPRManagement && <GDPRDataManagement onClose={() => setShowGDPRManagement(false)} userEmail={formData.email} />}
       </div>
    );
 };

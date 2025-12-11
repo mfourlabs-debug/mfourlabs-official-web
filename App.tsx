@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { HeroSection } from './components/HeroSection';
 import { ManifestoSection } from './components/ManifestoSection';
+import { CurriculumSection } from './components/CurriculumSection';
 import { RoadmapSection } from './components/RoadmapSection';
 import { LabRegistration } from './components/LabRegistration';
 import { ArrowUpRight, Menu, X, ExternalLink, Globe, ShieldCheck, ChevronRight } from 'lucide-react';
@@ -109,20 +110,22 @@ const App: React.FC = () => {
 
             {/* Desktop Links */}
             <div className="hidden md:flex items-center gap-1">
-              <a href="#vision" className="px-4 py-2 text-sm font-medium text-brand-gray hover:text-brand-white transition-colors hover:bg-white/5 rounded-full">Vision</a>
-              <a href="#philosophy" className="px-4 py-2 text-sm font-medium text-brand-gray hover:text-brand-white transition-colors hover:bg-white/5 rounded-full">Philosophy</a>
-              <a href="#roadmap" className="px-4 py-2 text-sm font-medium text-brand-gray hover:text-brand-white transition-colors hover:bg-white/5 rounded-full">Roadmap</a>
+              <a href="#vision" className="px-4 py-2 text-sm font-medium text-brand-gray hover:text-brand-white transition-colors hover:bg-white/5 rounded-full">Docs</a>
+              <a href="#philosophy" className="px-4 py-2 text-sm font-medium text-brand-gray hover:text-brand-white transition-colors hover:bg-white/5 rounded-full">Manifesto</a>
+              <a href="#roadmap" className="px-4 py-2 text-sm font-medium text-brand-gray hover:text-brand-white transition-colors hover:bg-white/5 rounded-full">Research Trejectory</a>
             </div>
 
             {/* Action */}
             <div className="flex items-center gap-4">
+              {/* Lab Registration - Coming Soon */}
               <button
-                onClick={handleEnterLab}
-                className="group flex items-center gap-2 px-5 py-2.5 rounded-full bg-brand-yellow text-brand-black text-sm font-semibold hover:bg-brand-white transition-all duration-300"
-                aria-label="Access the MFOURLABS research lab"
+                disabled
+                className="group flex items-center gap-2 px-5 py-2.5 rounded-full bg-brand-gray text-brand-sub text-sm font-semibold opacity-50 cursor-not-allowed transition-all duration-300"
+                aria-label="Lab Registration coming soon"
+                title="Coming Soon"
               >
-                <span>Lab Access</span>
-                <ExternalLink className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                <span>Lab (Coming Soon)</span>
+                <ExternalLink className="w-3.5 h-3.5" />
               </button>
 
               {/* Mobile Toggle */}
@@ -140,9 +143,9 @@ const App: React.FC = () => {
           {/* Mobile Menu Overlay */}
           {isMobileMenuOpen && (
             <div className="md:hidden absolute top-20 left-4 right-4 bg-brand-surface border border-brand-border rounded-2xl p-6 flex flex-col gap-2 shadow-2xl animate-slide-up">
-              <a href="#vision" onClick={() => setIsMobileMenuOpen(false)} className="px-4 py-3 text-lg font-medium text-brand-white hover:bg-white/5 rounded-lg">Vision</a>
-              <a href="#philosophy" onClick={() => setIsMobileMenuOpen(false)} className="px-4 py-3 text-lg font-medium text-brand-white hover:bg-white/5 rounded-lg">Philosophy</a>
-              <a href="#roadmap" onClick={() => setIsMobileMenuOpen(false)} className="px-4 py-3 text-lg font-medium text-brand-white hover:bg-white/5 rounded-lg">Roadmap</a>
+              <a href="#vision" onClick={() => setIsMobileMenuOpen(false)} className="px-4 py-3 text-lg font-medium text-brand-white hover:bg-white/5 rounded-lg">Framework Docs</a>
+              <a href="#philosophy" onClick={() => setIsMobileMenuOpen(false)} className="px-4 py-3 text-lg font-medium text-brand-white hover:bg-white/5 rounded-lg">Manifesto</a>
+              <a href="#roadmap" onClick={() => setIsMobileMenuOpen(false)} className="px-4 py-3 text-lg font-medium text-brand-white hover:bg-white/5 rounded-lg">Get Certified</a>
             </div>
           )}
         </nav>
@@ -152,6 +155,7 @@ const App: React.FC = () => {
       <main className="bg-noise bg-repeat">
         <HeroSection onEnterLab={handleEnterLab} />
         <ManifestoSection />
+        <CurriculumSection />
         <RoadmapSection />
       </main>
 
@@ -177,39 +181,37 @@ const App: React.FC = () => {
 
             <div className="flex flex-col gap-4">
               <h4 className="text-sm font-semibold text-brand-white">Platform</h4>
-              <a href="#" onClick={handleEnterLab} className="text-sm text-brand-gray hover:text-brand-yellow transition-colors">mfourlabs.Lab</a>
-              <a href="#" className="text-sm text-brand-gray hover:text-brand-white transition-colors">Documentation</a>
-              <a href="#" className="text-sm text-brand-gray hover:text-brand-white transition-colors">System Design</a>
-              <a href="#" className="text-sm text-brand-gray hover:text-brand-white transition-colors">Changelog</a>
+              <button disabled className="text-sm text-brand-gray/50 cursor-not-allowed text-left" title="Coming Soon">mfourlabs.Lab (Coming Soon)</button>
+              <a href="https://mfour-labs.gitbook.io/mfour-labs-docs/" className="text-sm text-brand-gray hover:text-brand-white transition-colors text-left">Documentation</a>
+              <button onClick={() => window.scrollTo(0, 0)} className="text-sm text-brand-gray hover:text-brand-white transition-colors text-left">System Design</button>
+              <button onClick={() => window.scrollTo(0, 0)} className="text-sm text-brand-gray hover:text-brand-white transition-colors text-left">Changelog</button>
             </div>
 
             <div className="flex flex-col gap-4">
               <h4 className="text-sm font-semibold text-brand-white">Research</h4>
-              <a href="#" className="text-sm text-brand-gray hover:text-brand-white transition-colors">Methodology</a>
-              <a href="#" className="text-sm text-brand-gray hover:text-brand-white transition-colors">Publications</a>
-              <a href="#" className="text-sm text-brand-gray hover:text-brand-white transition-colors">Case Studies</a>
-              <a href="#" className="text-sm text-brand-gray hover:text-brand-white transition-colors">Open Source</a>
+              <button onClick={() => window.scrollTo(0, 0)} className="text-sm text-brand-gray hover:text-brand-white transition-colors text-left">Methodology</button>
+              <button onClick={() => window.scrollTo(0, 0)} className="text-sm text-brand-gray hover:text-brand-white transition-colors text-left">Publications</button>
+              <button onClick={() => window.scrollTo(0, 0)} className="text-sm text-brand-gray hover:text-brand-white transition-colors text-left">Case Studies</button>
+              <button onClick={() => window.scrollTo(0, 0)} className="text-sm text-brand-gray hover:text-brand-white transition-colors text-left">Open Source</button>
             </div>
 
             <div className="flex flex-col gap-4">
               <h4 className="text-sm font-semibold text-brand-white">Community</h4>
-              <a href="#" className="text-sm text-brand-gray hover:text-brand-white transition-colors">YouTube</a>
-              <a href="#" className="text-sm text-brand-gray hover:text-brand-white transition-colors">Discord</a>
-              <a href="#" className="text-sm text-brand-gray hover:text-brand-white transition-colors">GitHub</a>
-              <a href="#" className="text-sm text-brand-gray hover:text-brand-white transition-colors">X / Twitter</a>
+              <a href="https://x.com/mfourlabs" target="_blank" rel="noreferrer" className="text-sm text-brand-gray hover:text-brand-white transition-colors">X (Twitter)</a>
+              <a href="https://www.linkedin.com/company/mfourlabs" target="_blank" rel="noreferrer" className="text-sm text-brand-gray hover:text-brand-white transition-colors">LinkedIn</a>
             </div>
 
             <div className="flex flex-col gap-4">
               <h4 className="text-sm font-semibold text-brand-white">Legal</h4>
-              <a href="#" className="text-sm text-brand-gray hover:text-brand-white transition-colors">Privacy</a>
-              <a href="#" className="text-sm text-brand-gray hover:text-brand-white transition-colors">Terms</a>
+              <button onClick={() => window.scrollTo(0, 0)} className="text-sm text-brand-gray hover:text-brand-white transition-colors text-left">Privacy</button>
+              <button onClick={() => window.scrollTo(0, 0)} className="text-sm text-brand-gray hover:text-brand-white transition-colors text-left">Terms</button>
             </div>
           </div>
 
           {/* Bottom Section */}
           <div className="pt-8 border-t border-brand-border flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-xs text-brand-sub font-mono">
-              © 2025 MENT4AI RESEARCH LABS. ALL RIGHTS RESERVED.
+              © 2025 MFOUR LABS. ALL RIGHTS RESERVED. The MFOUR Vibe Framework™ is licensed under CC BY-ND 4.0. Verified Authority: mfourlabs.dev | Global Standard: MF-CVA-02
             </p>
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
@@ -220,7 +222,7 @@ const App: React.FC = () => {
           {/* Big Text Background */}
           <div className="mt-20 border-t border-brand-border/30 pt-10 overflow-hidden select-none">
             <h1 className="text-[12vw] leading-none font-bold text-brand-white/5 text-center tracking-tighter">
-              ARCHITECTS
+              START ARCHITECTING
             </h1>
           </div>
 

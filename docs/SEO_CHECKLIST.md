@@ -54,9 +54,9 @@
 - [ ] Create logo.png for structured data in /public folder
 
 ### Important (Do Soon)
-- [ ] Replace "https://mfourlabs.com/" with your actual domain in index.html
+- [ ] Replace "https://mfourlabs.dev/" with your actual domain in index.html
 - [ ] Update @mfourlabs with your actual Twitter handle
-- [ ] Update research@mfourlabs.com with your actual email
+- [ ] Update research@mfourlabs.dev with your actual email
 - [ ] Update social media URLs in structured data
 - [ ] Verify domain ownership in Google Search Console
 - [ ] Submit sitemap to Google Search Console

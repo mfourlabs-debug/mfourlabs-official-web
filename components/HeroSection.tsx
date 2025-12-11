@@ -9,6 +9,14 @@ interface HeroProps {
 
 export const HeroSection: React.FC<HeroProps> = ({ onEnterLab }) => {
   const [dailyInsight, setDailyInsight] = useState<string>("INITIALIZING PROTOCOLS...");
+  const [heroTitle, setHeroTitle] = useState({
+    line1: "STOP",
+    line2: "PROMPTING",
+    size1: "text-[13vw] md:text-[11vw] lg:text-[11rem]",
+    size2: "text-[13vw] md:text-[11vw] lg:text-[11rem]",
+    key: "initial"
+  });
+  const [isExiting, setIsExiting] = useState(false);
 
   useEffect(() => {
     const fetchInsight = async () => {
@@ -34,6 +42,28 @@ export const HeroSection: React.FC<HeroProps> = ({ onEnterLab }) => {
     fetchInsight();
   }, []);
 
+  useEffect(() => {
+    const fadeTimer = setTimeout(() => {
+      setIsExiting(true);
+    }, 3000);
+
+    const switchTimer = setTimeout(() => {
+      setHeroTitle({
+        line1: "THE WORLD'S FIRST",
+        line2: "VIBE ARCHITECTURE",
+        size1: "text-[6vw] md:text-[5vw] lg:text-[6rem]",
+        size2: "text-[7vw] md:text-[6vw] lg:text-[7rem]",
+        key: "final"
+      });
+      setIsExiting(false);
+    }, 3800);
+
+    return () => {
+      clearTimeout(fadeTimer);
+      clearTimeout(switchTimer);
+    };
+  }, []);
+
   return (
     <section id="vision" className="relative min-h-screen flex flex-col justify-center items-center px-4 sm:px-6 pt-24 md:pt-24 overflow-hidden bg-brand-black">
 
@@ -54,37 +84,39 @@ export const HeroSection: React.FC<HeroProps> = ({ onEnterLab }) => {
 
         {/* Main Title - Massive & Responsive */}
         <div className="text-center mb-8 md:mb-10 relative">
-          <h1 className="text-[13vw] md:text-[11vw] lg:text-[11rem] font-display font-bold tracking-tighter leading-[0.85] text-brand-white animate-slide-up opacity-0" style={{ animationDelay: '0.2s' }}>
-            ARCHITECTS
-          </h1>
-          <h1 className="text-[13vw] md:text-[11vw] lg:text-[11rem] font-display font-bold tracking-tighter leading-[0.85] text-transparent bg-clip-text bg-gradient-to-b from-brand-gray/50 to-brand-black/0 animate-slide-up opacity-0" style={{ animationDelay: '0.3s' }}>
-            NOT CODERS
-          </h1>
+          <div className={`transition-opacity duration-700 ${isExiting ? 'opacity-0' : 'opacity-100'}`}>
+            <h1 key={`${heroTitle.key}-1`} className={`${heroTitle.size1} font-display font-bold tracking-tighter leading-[0.85] text-brand-white animate-slide-up opacity-0`} style={{ animationDelay: '0.2s' }}>
+              {heroTitle.line1}
+            </h1>
+            <h1 key={`${heroTitle.key}-2`} className={`${heroTitle.size2} font-display font-bold tracking-tighter leading-[0.85] text-transparent bg-clip-text bg-gradient-to-b from-brand-gray/50 to-brand-black/0 animate-slide-up opacity-0`} style={{ animationDelay: '0.3s' }}>
+              {heroTitle.line2}
+            </h1>
+          </div>
         </div>
 
         {/* Subtitle / Description */}
         <p className="text-base md:text-xl text-brand-gray max-w-xl md:max-w-2xl text-center mb-10 md:mb-14 leading-relaxed font-light animate-slide-up opacity-0 px-4" style={{ animationDelay: '0.4s' }}>
-          We bridge the gap between University Theory and Elite R&D.
-          Rejecting copy-paste culture to build from <span className="text-brand-white font-medium">First Principles</span>.
+          The Age of the Coder is ending. The Age of the Architect has begun. Master the <span className="text-brand-white font-medium">MFOUR Vibe Framework™ (MVF)</span> and design the systems of tomorrow.
         </p>
 
         {/* Actions */}
         <div className="flex flex-col sm:flex-row gap-4 sm:gap-5 items-center animate-slide-up opacity-0 w-full sm:w-auto px-4" style={{ animationDelay: '0.5s' }}>
           <button
-            onClick={onEnterLab}
-            className="w-full sm:w-auto group relative px-8 py-4 bg-brand-white text-black rounded-full font-medium tracking-tight overflow-hidden transition-all hover:scale-105 active:scale-95 text-center"
+            disabled
+            title="Coming Soon"
+            className="w-full sm:w-auto group relative px-8 py-4 bg-brand-gray text-brand-sub rounded-full font-medium tracking-tight overflow-hidden transition-all opacity-50 cursor-not-allowed text-center"
           >
-            <div className="absolute inset-0 bg-brand-yellow translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
-            <span className="relative flex items-center justify-center gap-2 group-hover:text-black transition-colors">
-              Enter mfourlabs.Lab <ArrowRight className="w-4 h-4" />
+            <div className="absolute inset-0 bg-brand-gray translate-y-full transition-transform duration-300"></div>
+            <span className="relative flex items-center justify-center gap-2 transition-colors">
+              Lab (Coming Soon) <ArrowRight className="w-4 h-4" />
             </span>
           </button>
 
           <button
-            onClick={() => document.getElementById('philosophy')?.scrollIntoView({ behavior: 'smooth' })}
+            href="https://mfour-labs.gitbook.io/mfour-labs-docs/"
             className="w-full sm:w-auto px-8 py-4 text-brand-gray hover:text-brand-white transition-colors text-sm font-medium tracking-wide border-b border-transparent hover:border-brand-white/20"
           >
-            Read The Manifesto
+            Read The Whitepaper
           </button>
         </div>
 
