@@ -1,5 +1,5 @@
 import { db } from './firebase';
-import { collection, doc, getDoc, getDocs, query, where, deleteDoc, updateDoc, serverTimestamp } from 'firebase/firestore';
+import { collection, doc, getDoc, getDocs, query, where, deleteDoc, updateDoc, serverTimestamp, addDoc, setDoc } from 'firebase/firestore';
 
 // GDPR Compliance Service
 class GDPRService {
@@ -137,7 +137,7 @@ class GDPRService {
 
             const requestRef = collection(db, this.DATA_EXPORT_REQUESTS_COLLECTION);
             const docRef = doc(requestRef);
-            await updateDoc(docRef, exportRequest);
+            await setDoc(docRef, exportRequest);
 
             // Prepare data export (remove sensitive internal fields)
             const exportData = {
