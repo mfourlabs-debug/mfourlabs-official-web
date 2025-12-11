@@ -11,19 +11,19 @@ export const CurriculumSection: React.FC = () => {
   const layers: ProtocolLayer[] = [
     {
       number: "01",
-      name: "The Kernel Specification",
+      name: "The MVF Kernel Specification",
       focus: ["Interface Contracts", "Constraint Engineering", "System Boundaries"],
       description: "Define the rigid contract boundaries between systems. No vague intentions—only explicit specifications."
     },
     {
       number: "02",
-      name: "The Synapse Fabric",
+      name: "The Synapse Strategy",
       focus: ["Agentic Routing", "Tool-Use Authorization", "Agent Orchestration"],
       description: "Route intelligence through verified pathways. Every connection is audited, every tool-call is authorized."
     },
     {
       number: "03",
-      name: "The Mirror Protocol",
+      name: "The Mirror Test",
       focus: ["Automated Auditing", "Vibe Integrity Score", "Continuous Verification"],
       description: "Observe systems in real-time. Measure integrity constantly. The system that cannot observe itself, cannot trust itself."
     }

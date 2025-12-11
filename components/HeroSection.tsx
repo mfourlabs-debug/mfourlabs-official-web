@@ -70,17 +70,18 @@ export const HeroSection: React.FC<HeroProps> = ({ onEnterLab }) => {
         {/* Actions */}
         <div className="flex flex-col sm:flex-row gap-4 sm:gap-5 items-center animate-slide-up opacity-0 w-full sm:w-auto px-4" style={{ animationDelay: '0.5s' }}>
           <button
-            onClick={onEnterLab}
-            className="w-full sm:w-auto group relative px-8 py-4 bg-brand-white text-black rounded-full font-medium tracking-tight overflow-hidden transition-all hover:scale-105 active:scale-95 text-center"
+            disabled
+            title="Coming Soon"
+            className="w-full sm:w-auto group relative px-8 py-4 bg-brand-gray text-brand-sub rounded-full font-medium tracking-tight overflow-hidden transition-all opacity-50 cursor-not-allowed text-center"
           >
-            <div className="absolute inset-0 bg-brand-yellow translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
-            <span className="relative flex items-center justify-center gap-2 group-hover:text-black transition-colors">
-              Download the MVF Canvas <ArrowRight className="w-4 h-4" />
+            <div className="absolute inset-0 bg-brand-gray translate-y-full transition-transform duration-300"></div>
+            <span className="relative flex items-center justify-center gap-2 transition-colors">
+              Lab (Coming Soon) <ArrowRight className="w-4 h-4" />
             </span>
           </button>
 
           <button
-            onClick={() => document.getElementById('philosophy')?.scrollIntoView({ behavior: 'smooth' })}
+            href="https://mfour-labs.gitbook.io/mfour-labs-docs/"
             className="w-full sm:w-auto px-8 py-4 text-brand-gray hover:text-brand-white transition-colors text-sm font-medium tracking-wide border-b border-transparent hover:border-brand-white/20"
           >
             Read The Whitepaper

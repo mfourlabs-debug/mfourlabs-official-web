@@ -110,20 +110,22 @@ const App: React.FC = () => {
 
             {/* Desktop Links */}
             <div className="hidden md:flex items-center gap-1">
-              <a href="#vision" className="px-4 py-2 text-sm font-medium text-brand-gray hover:text-brand-white transition-colors hover:bg-white/5 rounded-full">Framework Docs</a>
+              <a href="#vision" className="px-4 py-2 text-sm font-medium text-brand-gray hover:text-brand-white transition-colors hover:bg-white/5 rounded-full">Docs</a>
               <a href="#philosophy" className="px-4 py-2 text-sm font-medium text-brand-gray hover:text-brand-white transition-colors hover:bg-white/5 rounded-full">Manifesto</a>
-              <a href="#roadmap" className="px-4 py-2 text-sm font-medium text-brand-gray hover:text-brand-white transition-colors hover:bg-white/5 rounded-full">Get Certified</a>
+              <a href="#roadmap" className="px-4 py-2 text-sm font-medium text-brand-gray hover:text-brand-white transition-colors hover:bg-white/5 rounded-full">Research Trejectory</a>
             </div>
 
             {/* Action */}
             <div className="flex items-center gap-4">
+              {/* Lab Registration - Coming Soon */}
               <button
-                onClick={handleEnterLab}
-                className="group flex items-center gap-2 px-5 py-2.5 rounded-full bg-brand-yellow text-brand-black text-sm font-semibold hover:bg-brand-white transition-all duration-300"
-                aria-label="Apply for the Certified Vibe Architect program"
+                disabled
+                className="group flex items-center gap-2 px-5 py-2.5 rounded-full bg-brand-gray text-brand-sub text-sm font-semibold opacity-50 cursor-not-allowed transition-all duration-300"
+                aria-label="Lab Registration coming soon"
+                title="Coming Soon"
               >
-                <span>Apply for CVA</span>
-                <ExternalLink className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                <span>Lab (Coming Soon)</span>
+                <ExternalLink className="w-3.5 h-3.5" />
               </button>
 
               {/* Mobile Toggle */}
@@ -179,7 +181,7 @@ const App: React.FC = () => {
 
             <div className="flex flex-col gap-4">
               <h4 className="text-sm font-semibold text-brand-white">Platform</h4>
-              <a href="#" onClick={handleEnterLab} className="text-sm text-brand-gray hover:text-brand-yellow transition-colors">mfourlabs.Lab</a>
+              <a href="#" className="text-sm text-brand-gray/50 cursor-not-allowed" title="Coming Soon">mfourlabs.Lab (Coming Soon)</a>
               <a href="#" className="text-sm text-brand-gray hover:text-brand-white transition-colors">Documentation</a>
               <a href="#" className="text-sm text-brand-gray hover:text-brand-white transition-colors">System Design</a>
               <a href="#" className="text-sm text-brand-gray hover:text-brand-white transition-colors">Changelog</a>
