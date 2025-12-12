@@ -17,7 +17,7 @@ export const SocialProofBanner: React.FC<SocialProofBannerProps> = ({
     const [progress, setProgress] = useState(100);
 
     // Total duration: 90 days in milliseconds
-    const TOTAL_DURATION = 90 * 24 * 60 * 60 * 1000;
+    const TOTAL_DURATION = 6 * 24 * 60 * 60 * 1000;
 
     useEffect(() => {
         const calculateTimeLeft = () => {
