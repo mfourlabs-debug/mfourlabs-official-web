@@ -64,10 +64,23 @@ export const LabRegistration: React.FC<LabRegistrationProps> = ({ onClose }) => 
       if (!formData.dob) {
          newErrors.dob = "Date of birth is required";
       } else {
-         const birthDate = new Date(formData.dob);
+         const [year, month, day] = formData.dob.split('-').map(Number);
+         const birthDate = new Date(year, month - 1, day);
          const today = new Date();
-         if (birthDate >= today) {
-            newErrors.dob = "Date of birth must be in the past";
+         today.setHours(0, 0, 0, 0);
+
+         if (birthDate > today) {
+            newErrors.dob = "Date of birth cannot be in the future";
+         } else {
+            let age = today.getFullYear() - birthDate.getFullYear();
+            const m = today.getMonth() - birthDate.getMonth();
+            if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+               age--;
+            }
+
+            if (age < 16) {
+               newErrors.dob = "You must be at least 16 years old to register";
+            }
          }
       }
 
@@ -217,9 +230,20 @@ export const LabRegistration: React.FC<LabRegistrationProps> = ({ onClose }) => 
 
          console.log('✅ Security checks passed');
 
-         // Calculate waitlist position (count existing users + 1)
-         const { getCountFromServer, collection: firestoreCollection, query } = await import('firebase/firestore');
-         const usersRef = firestoreCollection(db, "mvf_cli_beta_access_users");
+         // Check for duplicate email & Calculate waitlist position
+         const { getCountFromServer, query, where, getDocs } = await import('firebase/firestore');
+         const usersRef = collection(db, "mvf_cli_beta_access_users");
+
+         // Check if email already exists
+         const duplicateCheckQuery = query(usersRef, where("email", "==", formData.email));
+         const duplicateCheckSnapshot = await getDocs(duplicateCheckQuery);
+
+         if (!duplicateCheckSnapshot.empty) {
+            setErrors({ ...errors, email: "This email is already registered" });
+            setIsSubmitting(false);
+            return;
+         }
+
          const snapshot = await getCountFromServer(usersRef);
          const position = snapshot.data().count + 1;
          setWaitlistPosition(position);
@@ -565,45 +589,6 @@ export const LabRegistration: React.FC<LabRegistrationProps> = ({ onClose }) => 
                               </div>
 
                               <div className="space-y-4">
-                                 {/* Interest Areas - Multi-select */}
-                                 <div className="space-y-2">
-                                    <label className={labelClass}>AREAS OF INTEREST (SELECT ALL THAT APPLY)</label>
-                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-                                       {[
-                                          { value: 'System Design', label: 'System Design' },
-                                          { value: 'AI/ML Engineering', label: 'AI/ML Engineering' },
-                                          { value: 'Backend Architecture', label: 'Backend Architecture' },
-                                          { value: 'Frontend Engineering', label: 'Frontend Engineering' },
-                                          { value: 'DevOps/Infrastructure', label: 'DevOps/Infrastructure' },
-                                          { value: 'Research & Publications', label: 'Research & Publications' },
-                                       ].map((interest) => (
-                                          <label
-                                             key={interest.value}
-                                             className={`flex items-center gap-3 p-3 rounded-lg border transition-all cursor-pointer group ${formData.interestAreas.includes(interest.value)
-                                                ? 'border-brand-yellow/60 bg-brand-yellow/5'
-                                                : 'border-white/10 bg-neutral-900/40 hover:bg-neutral-900 hover:border-white/20'
-                                                }`}
-                                          >
-                                             <div className="relative flex items-center justify-center">
-                                                <input
-                                                   type="checkbox"
-                                                   name="interestAreas"
-                                                   value={interest.value}
-                                                   checked={formData.interestAreas.includes(interest.value)}
-                                                   onChange={handleChange}
-                                                   className="peer appearance-none w-4 h-4 rounded border border-white/20 bg-black/40 checked:bg-brand-yellow checked:border-brand-yellow transition-all"
-                                                />
-                                                <CheckCircle2 className="w-3 h-3 text-black absolute opacity-0 peer-checked:opacity-100 pointer-events-none transition-opacity" />
-                                             </div>
-                                             <span className={`text-xs transition-colors ${formData.interestAreas.includes(interest.value) ? 'text-white font-medium' : 'text-neutral-400 group-hover:text-neutral-200'
-                                                }`}>
-                                                {interest.label}
-                                             </span>
-                                          </label>
-                                       ))}
-                                    </div>
-                                    {errors.interestAreas && <div className={errorClass}>{errors.interestAreas}</div>}
-                                 </div>
 
                                  {/* Experience Level */}
                                  <div className="space-y-0.5">
@@ -712,31 +697,6 @@ export const LabRegistration: React.FC<LabRegistrationProps> = ({ onClose }) => 
                               <span className="font-bold">Connect on LinkedIn</span>
                            </a>
                         </div>
-
-                        {/* GDPR Data Management Link */}
-                        <button
-                           onClick={() => setShowGDPRManagement(true)}
-                           className="text-xs text-neutral-500 hover:text-brand-yellow transition-colors underline decoration-neutral-600 underline-offset-2 hover:decoration-brand-yellow"
-                        >
-                           Manage My Data (GDPR)
-                        </button>
-
-                        {/* Reset Registration Button (for testing) */}
-                        <button
-                           onClick={() => {
-                              if (confirm('Clear your registration and start over? This is for testing purposes only.')) {
-                                 localStorage.removeItem('ment4ai_lab_access_id');
-                                 localStorage.removeItem('ment4ai_lab_user_name');
-                                 localStorage.removeItem('ment4ai_lab_waitlist_position');
-                                 setStep(1);
-                                 setMobileTab('form');
-                                 setAccessId(Math.random().toString(36).substring(2, 10).toUpperCase());
-                              }
-                           }}
-                           className="text-xs text-orange-500 hover:text-orange-400 transition-colors underline decoration-orange-600 underline-offset-2 hover:decoration-orange-400"
-                        >
-                           Reset Registration (Testing)
-                        </button>
 
                         <div className="text-[10px] font-mono text-neutral-600 mt-8 border px-4 py-2 rounded-full border-white/5">
                            ACCESS ID: <span className="text-neutral-400">{accessId}</span>
