@@ -366,7 +366,7 @@ export const LabRegistration: React.FC<LabRegistrationProps> = ({ onClose }) => 
                         {/* Social Proof & Urgency Banner */}
                         <div className="mb-6">
                            <SocialProofBanner
-                              earlyAccessEndDate={new Date(Date.now() + 90 * 24 * 60 * 60 * 1000)}
+                              earlyAccessEndDate={new Date(Date.now() + 60 * 24 * 60 * 60 * 1000)}
                            />
                         </div>
 
