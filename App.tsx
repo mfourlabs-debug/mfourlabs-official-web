@@ -119,12 +119,11 @@ const App: React.FC = () => {
             <div className="flex items-center gap-4">
               {/* Lab Registration - Coming Soon */}
               <button
-                disabled
-                className="group flex items-center gap-2 px-5 py-2.5 rounded-full bg-brand-gray text-brand-sub text-sm font-semibold opacity-50 cursor-not-allowed transition-all duration-300"
-                aria-label="Lab Registration coming soon"
-                title="Coming Soon"
+                onClick={handleEnterLab}
+                className="group flex items-center gap-2 px-5 py-2.5 rounded-full bg-brand-white text-brand-black text-sm font-semibold hover:bg-brand-white/90 transition-all duration-300 transform hover:scale-105"
+                aria-label="Lab Registration"
               >
-                <span>Lab (Coming Soon)</span>
+                <span>MVF CLI (beta) </span>
                 <ExternalLink className="w-3.5 h-3.5" />
               </button>
 
@@ -181,7 +180,7 @@ const App: React.FC = () => {
 
             <div className="flex flex-col gap-4">
               <h4 className="text-sm font-semibold text-brand-white">Platform</h4>
-              <button disabled className="text-sm text-brand-gray/50 cursor-not-allowed text-left" title="Coming Soon">mfourlabs.Lab (Coming Soon)</button>
+              <button onClick={handleEnterLab} className="text-sm text-brand-gray hover:text-brand-white transition-colors text-left">MVF CLI (beta) </button>
               <a href="https://mfour-labs.gitbook.io/mfour-labs-docs/" className="text-sm text-brand-gray hover:text-brand-white transition-colors text-left">Documentation</a>
               <button onClick={() => window.scrollTo(0, 0)} className="text-sm text-brand-gray hover:text-brand-white transition-colors text-left">System Design</button>
               <button onClick={() => window.scrollTo(0, 0)} className="text-sm text-brand-gray hover:text-brand-white transition-colors text-left">Changelog</button>

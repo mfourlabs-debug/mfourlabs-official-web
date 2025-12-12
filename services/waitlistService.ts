@@ -12,7 +12,7 @@ import {
 } from 'firebase/firestore';
 import { EarlyAccessUser, WaitlistStats, PriorityScore } from '../types/earlyAccess';
 
-const COLLECTION_NAME = 'lab_early_access_users';
+const COLLECTION_NAME = 'mvf_cli_beta_access_users';
 
 /**
  * Waitlist Management Service

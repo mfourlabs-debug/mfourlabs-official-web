@@ -32,8 +32,8 @@ service cloud.firestore {
       return ipAttempts >= 3 || emailAttempts >= 5;
     }
     
-    // Lab Early Access Users Collection
-    match /lab_early_access_users/{userId} {
+    // MVF CLI Beta Access Users Collection
+    match /mvf_cli_beta_access_users/{userId} {
       // Allow read if authenticated or if it's the user's own document
       allow read: if isAuthenticated() || 
                      (resource.data.email == request.auth.token.email);
@@ -43,7 +43,7 @@ service cloud.firestore {
         // Must have valid email
         isValidEmail(request.resource.data.email) &&
         // Email must not already exist (checked in app, but double-check here)
-        !exists(/databases/$(database)/documents/lab_early_access_users/$(request.resource.data.email)) &&
+        !exists(/databases/$(database)/documents/mvf_cli_beta_access_users/$(request.resource.data.email)) &&
         // Must have required fields
         request.resource.data.keys().hasAll(['name', 'email', 'dob', 'role', 'organization', 'privacy']) &&
         // Privacy must be accepted

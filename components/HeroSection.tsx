@@ -102,13 +102,11 @@ export const HeroSection: React.FC<HeroProps> = ({ onEnterLab }) => {
         {/* Actions */}
         <div className="flex flex-col sm:flex-row gap-4 sm:gap-5 items-center animate-slide-up opacity-0 w-full sm:w-auto px-4" style={{ animationDelay: '0.5s' }}>
           <button
-            disabled
-            title="Coming Soon"
-            className="w-full sm:w-auto group relative px-8 py-4 bg-brand-gray text-brand-sub rounded-full font-medium tracking-tight overflow-hidden transition-all opacity-50 cursor-not-allowed text-center"
+            onClick={onEnterLab}
+            className="w-full sm:w-auto group relative px-8 py-4 bg-brand-white text-brand-black rounded-full font-medium tracking-tight overflow-hidden transition-all hover:bg-brand-white/90 hover:scale-[1.02] active:scale-[0.98]"
           >
-            <div className="absolute inset-0 bg-brand-gray translate-y-full transition-transform duration-300"></div>
             <span className="relative flex items-center justify-center gap-2 transition-colors">
-              Lab (Coming Soon) <ArrowRight className="w-4 h-4" />
+              Early Access for MVF CLI (beta) <ArrowRight className="w-4 h-4" />
             </span>
           </button>
 

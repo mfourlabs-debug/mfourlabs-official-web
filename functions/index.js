@@ -15,7 +15,7 @@ const FROM_EMAIL = 'noreply@mfourlabs.dev';
  */
 exports.sendWelcomeEmail = onDocumentCreated(
   {
-    document: 'lab_early_access_users/{userId}',
+    document: 'mvf_cli_beta_access_users/{userId}',
     secrets: [RESEND_API_KEY],
   },
   async (event) => {
@@ -48,7 +48,7 @@ exports.sendWelcomeEmail = onDocumentCreated(
                   <tr>
                     <td style="padding: 40px 40px 32px; text-align: center; background-color: #ffffff;">
                       <img src="${LOGO_URL}" alt="MFOURLABS" style="width: 80px; height: 80px; margin-bottom: 24px; display: block; margin-left: auto; margin-right: auto;">
-                      <h1 style="margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif; font-size: 28px; font-weight: 600; color: #1a1a1a; line-height: 1.3;">Welcome to MFOURLABS</h1>
+                      <h1 style="margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif; font-size: 28px; font-weight: 600; color: #1a1a1a; line-height: 1.3;">Welcome to MFOUR LABS</h1>
                     </td>
                   </tr>
                   
@@ -57,27 +57,16 @@ exports.sendWelcomeEmail = onDocumentCreated(
                     <td style="padding: 0 40px 40px;">
                       <p style="margin: 0 0 16px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif; font-size: 16px; line-height: 1.5; color: #1a1a1a;">Hi <strong>${user.name}</strong>,</p>
                       
-                      <p style="margin: 0 0 24px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif; font-size: 16px; line-height: 1.6; color: #4a4a4a;">Thank you for joining <strong>MFOURLABS Early Access</strong>. We're building a first principles engineering research lab, and you're now part of this journey.</p>
+                      <p style="margin: 0 0 24px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif; font-size: 16px; line-height: 1.6; color: #4a4a4a;">Thank you for requesting early access to the <strong>MVF CLI Beta</strong>. We're building the future of first principles engineering tools, and we're excited to have you on the waitlist.</p>
                       
-                      <!-- Referral Code Box -->
-                      <table role="presentation" style="width: 100%; border-collapse: collapse; margin: 32px 0;">
-                        <tr>
-                          <td style="padding: 24px; background-color: #f8f9fa; border-radius: 8px; border: 1px solid #e9ecef;">
-                            <p style="margin: 0 0 12px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif; font-size: 12px; font-weight: 600; color: #6c757d; text-transform: uppercase; letter-spacing: 0.5px;">Your Referral Code</p>
-                            <div style="padding: 16px; background-color: #ffffff; border-radius: 6px; text-align: center; border: 1px solid #dee2e6;">
-                              <code style="font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace; font-size: 24px; font-weight: 600; color: #1a1a1a; letter-spacing: 2px;">${user.referralCode}</code>
-                            </div>
-                            <p style="margin: 16px 0 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif; font-size: 14px; line-height: 1.5; color: #6c757d; text-align: center;">Share this code with friends to help them join the lab</p>
-                          </td>
-                        </tr>
-                      </table>
+
                       
                       <!-- What's Next Section -->
                       <h2 style="margin: 32px 0 16px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif; font-size: 20px; font-weight: 600; color: #1a1a1a;">What's Next?</h2>
                       <ul style="margin: 0; padding-left: 20px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif; font-size: 15px; line-height: 1.8; color: #4a4a4a;">
                         <li style="margin-bottom: 8px;">We'll notify you when your access is approved</li>
-                        <li style="margin-bottom: 8px;">Follow us on X for updates</li>
-                        <li style="margin-bottom: 8px;">Connect with us on LinkedIn</li>
+                        <li style="margin-bottom: 8px;"><a href="https://x.com/mfourlabs" style="color: #4a4a4a; text-decoration: none; border-bottom: 1px solid #4a4a4a;">Follow us on X for updates</a></li>
+                        <li style="margin-bottom: 8px;"><a href="https://www.linkedin.com/company/mfourlabs" style="color: #4a4a4a; text-decoration: none; border-bottom: 1px solid #4a4a4a;">Connect with us on LinkedIn</a></li>
                       </ul>
                       
                       <!-- Access ID -->
@@ -118,7 +107,7 @@ exports.sendWelcomeEmail = onDocumentCreated(
  */
 exports.sendAccessGrantedEmail = onDocumentUpdated(
   {
-    document: 'lab_early_access_users/{userId}',
+    document: 'mvf_cli_beta_access_users/{userId}',
     secrets: [RESEND_API_KEY],
   },
   async (event) => {
@@ -135,7 +124,7 @@ exports.sendAccessGrantedEmail = onDocumentUpdated(
         await resend.emails.send({
           from: FROM_EMAIL,
           to: after.email,
-          subject: '🚀 Your MFOURLABS Access Has Been Approved',
+          subject: '🚀 You\'re In: MVF CLI Beta Access Granted',
           html: `
           <!DOCTYPE html>
           <html lang="en">
@@ -152,7 +141,7 @@ exports.sendAccessGrantedEmail = onDocumentUpdated(
                     
                     <!-- Success Header with Logo -->
                     <tr>
-                      <td style="padding: 48px 40px; text-align: center; background: linear-gradient(135deg, #00C853 0%, #00E676 100%);">
+                      <td style="padding: 48px 40px; text-align: center; background: black;">
                         <img src="${LOGO_URL}" alt="MFOURLABS" style="width: 80px; height: 80px; margin-bottom: 24px; display: block; margin-left: auto; margin-right: auto; filter: brightness(0) invert(1);">
                         <h1 style="margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif; font-size: 32px; font-weight: 700; color: #ffffff; line-height: 1.2;">Access Granted! 🚀</h1>
                       </td>
@@ -163,18 +152,18 @@ exports.sendAccessGrantedEmail = onDocumentUpdated(
                       <td style="padding: 40px 40px 32px;">
                         <h2 style="margin: 0 0 16px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif; font-size: 24px; font-weight: 600; color: #1a1a1a;">Congratulations, ${after.name}!</h2>
                         
-                        <p style="margin: 0 0 24px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif; font-size: 16px; line-height: 1.6; color: #4a4a4a;">Your early access to <strong>MFOURLABS</strong> has been approved. You're now part of an exclusive group building the future of first principles engineering.</p>
+                        <p style="margin: 0 0 24px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif; font-size: 16px; line-height: 1.6; color: #4a4a4a;">Your access to the <strong>MVF CLI Beta</strong> has been approved. You're now part of an exclusive group of engineers shaping the future of software architecture.</p>
                         
                         <!-- Getting Started Box -->
                         <table role="presentation" style="width: 100%; border-collapse: collapse; margin: 32px 0;">
                           <tr>
-                            <td style="padding: 24px; background-color: #f8f9fa; border-radius: 8px; border-left: 4px solid #00C853;">
-                              <h3 style="margin: 0 0 16px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif; font-size: 18px; font-weight: 600; color: #1a1a1a;">🎯 Getting Started</h3>
+                            <td style="padding: 24px; background-color: #f8f9fa; border-radius: 8px; border-left: 4px solid yellow;">
+                              <h3 style="margin: 0 0 16px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif; font-size: 18px; font-weight: 600; color: #1a1a1a;">🎯 Getting Started with MVF CLI</h3>
                               <ol style="margin: 0; padding-left: 20px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif; font-size: 15px; line-height: 1.8; color: #4a4a4a;">
-                                <li style="margin-bottom: 8px;">Visit <a href="https://mfourlabs.dev" style="color: #00C853; text-decoration: none; font-weight: 600;">mfourlabs.dev</a></li>
-                                <li style="margin-bottom: 8px;">Click "Lab Access" and use your credentials</li>
-                                <li style="margin-bottom: 8px;">Complete your profile setup</li>
-                                <li style="margin-bottom: 0;">Explore the platform and start learning</li>
+                                <li style="margin-bottom: 8px;">Visit <a href="https://mfourlabs.dev" style="color: rgb(0, 0, 0); text-decoration: none; font-weight: 600;">mfourlabs.dev</a> documentation</li>
+                                <li style="margin-bottom: 8px;">Install the CLI using your access credentials</li>
+                                <li style="margin-bottom: 8px;">Initialize your first project</li>
+                                <li style="margin-bottom: 0;">Follow us on <a href="https://x.com/mfourlabs" style="color: rgb(0, 0, 0); text-decoration: none; font-weight: 600;">X</a> for updates</li>
                               </ol>
                             </td>
                           </tr>
@@ -200,7 +189,7 @@ exports.sendAccessGrantedEmail = onDocumentUpdated(
                         </div>
                         
                         <!-- Help Text -->
-                        <p style="margin: 24px 0 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif; font-size: 14px; line-height: 1.5; color: #6c757d; text-align: center;">Need help? Reply to this email or reach out on X.</p>
+                        <p style="margin: 24px 0 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif; font-size: 14px; line-height: 1.5; color: #6c757d; text-align: center;">Need help? Reply to this email or reach out on <a href="https://x.com/mfourlabs" style="color: #6c757d; text-decoration: underline;">X</a>.</p>
                       </td>
                     </tr>
                     

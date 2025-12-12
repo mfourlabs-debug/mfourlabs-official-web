@@ -87,7 +87,7 @@ class AnalyticsService {
         studentLevel?: string;
         experienceLevel?: string;
         interestAreas?: string[];
-        referralSource?: string;
+
     }) {
         if (!this.isInitialized) return;
 
@@ -158,16 +158,7 @@ class AnalyticsService {
         });
     }
 
-    // Track referral code usage
-    trackReferralUsage(referralCode: string, referredBy?: string) {
-        if (!this.isInitialized) return;
 
-        logEvent(this.analytics, 'referral_used', {
-            referral_code: referralCode,
-            referred_by: referredBy,
-            timestamp: new Date().toISOString(),
-        });
-    }
 
     // Track waitlist position
     trackWaitlistPosition(position: number) {

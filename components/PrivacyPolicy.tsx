@@ -48,7 +48,7 @@ export const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ onClose }) => {
                             <h3 className="text-lg font-display font-semibold text-white">Introduction</h3>
                         </div>
                         <p className="text-sm text-neutral-300 leading-relaxed">
-                            Welcome to <span className="text-white font-semibold">MFOURLABS</span> ("we," "our," or "us"). We are committed to protecting your privacy and ensuring the security of your personal information. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you register for lab access on our platform.
+                            Welcome to <span className="text-white font-semibold">MFOURLABS</span> ("we," "our," or "us"). We are committed to protecting your privacy and ensuring the security of your personal information. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you register for access on our platform.
                         </p>
                         <p className="text-sm text-neutral-300 leading-relaxed">
                             By using our services and submitting your registration, you agree to the collection and use of information in accordance with this policy.

@@ -26,7 +26,6 @@ export const LabRegistration: React.FC<LabRegistrationProps> = ({ onClose }) => 
       // New fields for enhanced data collection
       interestAreas: [] as string[],
       experienceLevel: '',
-      referralSource: '',
       motivation: '',
       // Security: Honeypot field (hidden from users, should remain empty)
       website: '', // Honeypot field
@@ -37,7 +36,6 @@ export const LabRegistration: React.FC<LabRegistrationProps> = ({ onClose }) => 
    const [mobileTab, setMobileTab] = useState<'form' | 'preview'>('form');
    const [isLoading, setIsLoading] = useState(true);
    const [errors, setErrors] = useState<Record<string, string>>({});
-   const [referralCode, setReferralCode] = useState('');
    const [waitlistPosition, setWaitlistPosition] = useState<number | null>(null);
    const [showPrivacyPolicy, setShowPrivacyPolicy] = useState(false);
    const [showTermsOfService, setShowTermsOfService] = useState(false);
@@ -90,9 +88,7 @@ export const LabRegistration: React.FC<LabRegistrationProps> = ({ onClose }) => 
          newErrors.experienceLevel = "Experience level is required";
       }
 
-      if (!formData.referralSource) {
-         newErrors.referralSource = "Please tell us how you heard about us";
-      }
+
 
       if (!formData.privacy) {
          newErrors.privacy = "You must accept the privacy policy";
@@ -125,9 +121,6 @@ export const LabRegistration: React.FC<LabRegistrationProps> = ({ onClose }) => 
       // Generate unique IDs if we don't have them yet
       if (step === 1) {
          setAccessId(Math.random().toString(36).substring(2, 10).toUpperCase());
-         // Generate referral code: MFOUR-XXXXX format
-         const refCode = 'MFOUR-' + Math.random().toString(36).substring(2, 7).toUpperCase();
-         setReferralCode(refCode);
       }
 
       checkAccess();
@@ -183,9 +176,7 @@ export const LabRegistration: React.FC<LabRegistrationProps> = ({ onClose }) => 
       setSecurityWarnings([]);
 
       try {
-         // Get URL parameters for referral tracking
-         const urlParams = new URLSearchParams(window.location.search);
-         const referredByCode = urlParams.get('ref');
+
 
          // Get user metadata
          const userAgent = navigator.userAgent;
@@ -228,7 +219,7 @@ export const LabRegistration: React.FC<LabRegistrationProps> = ({ onClose }) => 
 
          // Calculate waitlist position (count existing users + 1)
          const { getCountFromServer, collection: firestoreCollection, query } = await import('firebase/firestore');
-         const usersRef = firestoreCollection(db, "lab_early_access_users");
+         const usersRef = firestoreCollection(db, "mvf_cli_beta_access_users");
          const snapshot = await getCountFromServer(usersRef);
          const position = snapshot.data().count + 1;
          setWaitlistPosition(position);
@@ -239,9 +230,8 @@ export const LabRegistration: React.FC<LabRegistrationProps> = ({ onClose }) => 
             ...formData,
             accessId,
 
-            // Referral system
-            referralCode,
-            referredBy: referredByCode || null,
+
+
 
             // Waitlist & Status
             waitlistPosition: position,
@@ -258,12 +248,11 @@ export const LabRegistration: React.FC<LabRegistrationProps> = ({ onClose }) => 
             userAgent,
          };
 
-         await addDoc(collection(db, "lab_early_access_users"), registrationData);
+         await addDoc(collection(db, "mvf_cli_beta_access_users"), registrationData);
 
          // 2. Persist locally
          localStorage.setItem('ment4ai_lab_access_id', accessId);
          localStorage.setItem('ment4ai_lab_user_name', formData.name);
-         localStorage.setItem('ment4ai_lab_referral_code', referralCode);
          localStorage.setItem('ment4ai_lab_waitlist_position', position.toString());
 
          // 3. Success State
@@ -272,12 +261,9 @@ export const LabRegistration: React.FC<LabRegistrationProps> = ({ onClose }) => 
             organization: formData.organization,
             experienceLevel: formData.experienceLevel,
             interestAreas: formData.interestAreas,
-            referralSource: formData.referralSource,
+
          });
          analytics.trackWaitlistPosition(position);
-         if (referredByCode) {
-            analytics.trackReferralUsage(referralCode, referredByCode);
-         }
          setStep(2);
          setMobileTab('preview'); // Show card on success
       } catch (error: any) {
@@ -380,7 +366,7 @@ export const LabRegistration: React.FC<LabRegistrationProps> = ({ onClose }) => 
                         {/* Social Proof & Urgency Banner */}
                         <div className="mb-6">
                            <SocialProofBanner
-                              earlyAccessEndDate={new Date(Date.now() + 90 * 24 * 60 * 60 * 1000)}
+                              earlyAccessEndDate={new Date(Date.now() + 60 * 24 * 60 * 60 * 1000)}
                            />
                         </div>
 
@@ -642,31 +628,7 @@ export const LabRegistration: React.FC<LabRegistrationProps> = ({ onClose }) => 
                                     {errors.experienceLevel && <div className={errorClass}>{errors.experienceLevel}</div>}
                                  </div>
 
-                                 {/* Referral Source */}
-                                 <div className="space-y-0.5">
-                                    <label className={labelClass}>HOW DID YOU HEAR ABOUT US?</label>
-                                    <div className={`${inputContainerClass(!!errors.referralSource)} ring-1 ring-white/5 focus-within:ring-brand-yellow/50`}>
-                                       <div className="absolute left-0 top-0 bottom-0 w-1 bg-brand-yellow/60"></div>
-                                       <Globe className={iconClass} />
-                                       <select
-                                          name="referralSource"
-                                          value={formData.referralSource}
-                                          onChange={handleChange}
-                                          className={selectClass}
-                                       >
-                                          <option value="">Select a source</option>
-                                          <option value="Twitter/X">Twitter/X</option>
-                                          <option value="YouTube">YouTube</option>
-                                          <option value="Friend/Colleague">Friend/Colleague</option>
-                                          <option value="Search Engine">Search Engine</option>
-                                          <option value="LinkedIn">LinkedIn</option>
-                                          <option value="Reddit">Reddit</option>
-                                          <option value="Other">Other</option>
-                                       </select>
-                                       <ChevronRight className="absolute right-3 top-3 w-3 h-3 text-neutral-500 rotate-90 pointer-events-none" />
-                                    </div>
-                                    {errors.referralSource && <div className={errorClass}>{errors.referralSource}</div>}
-                                 </div>
+
 
                                  {/* Motivation - Text Area */}
                                  <div className="space-y-0.5">
@@ -738,53 +700,7 @@ export const LabRegistration: React.FC<LabRegistrationProps> = ({ onClose }) => 
                            </p>
                         </div>
 
-                        {/* Referral Code */}
-                        <div className="w-full max-w-md space-y-3">
-                           <div className="text-xs font-semibold text-white uppercase tracking-wide flex items-center gap-2">
-                              <div className="w-1 h-4 bg-brand-yellow rounded-full"></div>
-                              Share Your Referral Code
-                           </div>
-                           <div className="relative">
-                              <div className="flex flex-col sm:flex-row items-stretch gap-2 p-4 rounded-xl bg-gradient-to-br from-neutral-900 to-neutral-950 border border-brand-yellow/30 hover:border-brand-yellow/50 transition-colors duration-300 shadow-lg shadow-brand-yellow/5">
-                                 <div className="flex-1 font-mono text-sm font-semibold text-brand-yellow flex items-center px-2">{referralCode}</div>
-                                 <button
-                                    onClick={() => {
-                                       const referralLink = `${window.location.origin}?ref=${referralCode}`;
-                                       navigator.clipboard.writeText(referralLink).then(() => {
-                                          setCopyButtonState('copied');
-                                          setToastMessage({ message: 'Referral link copied to clipboard!', type: 'success' });
-                                          setTimeout(() => setCopyButtonState('idle'), 2000);
-                                          setTimeout(() => setToastMessage(null), 3000);
-                                       }).catch(() => {
-                                          setToastMessage({ message: 'Failed to copy link', type: 'error' });
-                                          setTimeout(() => setToastMessage(null), 3000);
-                                       });
-                                    }}
-                                    className={`flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg font-bold text-xs tracking-wide transition-all duration-300 whitespace-nowrap shadow-lg ${
-                                       copyButtonState === 'copied'
-                                          ? 'bg-green-500/20 border border-green-500/50 text-green-400 hover:bg-green-500/30'
-                                          : 'bg-brand-yellow text-black hover:bg-white hover:shadow-lg hover:shadow-brand-yellow/40 active:scale-95'
-                                    }`}
-                                 >
-                                    {copyButtonState === 'copied' ? (
-                                       <>
-                                          <Check className="w-4 h-4" />
-                                          Copied
-                                       </>
-                                    ) : (
-                                       <>
-                                          <Copy className="w-4 h-4" />
-                                          Copy Link
-                                       </>
-                                    )}
-                                 </button>
-                              </div>
-                              <div className="text-[10px] text-neutral-500 mt-2 flex items-center gap-1">
-                                 <div className="w-1 h-1 rounded-full bg-neutral-600"></div>
-                                 Share with friends to help them join the lab
-                              </div>
-                           </div>
-                        </div>
+
 
                         <div className="flex flex-col sm:flex-row gap-4 w-full max-w-md">
                            <a href="https://x.com/mfourlabs" target="_blank" rel="noreferrer" className="flex-1 flex items-center justify-center gap-3 p-4 rounded-xl bg-neutral-800 text-white hover:bg-neutral-700 transition-all border border-white/10">
@@ -811,13 +727,10 @@ export const LabRegistration: React.FC<LabRegistrationProps> = ({ onClose }) => 
                               if (confirm('Clear your registration and start over? This is for testing purposes only.')) {
                                  localStorage.removeItem('ment4ai_lab_access_id');
                                  localStorage.removeItem('ment4ai_lab_user_name');
-                                 localStorage.removeItem('ment4ai_lab_referral_code');
                                  localStorage.removeItem('ment4ai_lab_waitlist_position');
                                  setStep(1);
                                  setMobileTab('form');
                                  setAccessId(Math.random().toString(36).substring(2, 10).toUpperCase());
-                                 const refCode = 'MFOUR-' + Math.random().toString(36).substring(2, 7).toUpperCase();
-                                 setReferralCode(refCode);
                               }
                            }}
                            className="text-xs text-orange-500 hover:text-orange-400 transition-colors underline decoration-orange-600 underline-offset-2 hover:decoration-orange-400"
@@ -869,8 +782,8 @@ export const LabRegistration: React.FC<LabRegistrationProps> = ({ onClose }) => 
                                  {/* Minimalist M4 Logo */}
                                  <div className="w-8 h-8 rounded-lg bg-white text-black flex items-center justify-center font-display font-bold text-sm shadow-lg">M4</div>
                                  <div>
-                                    <div className="text-[9px] font-bold text-brand-yellow uppercase tracking-widest mb-0.5">Global Research</div>
-                                    <div className="text-xs font-semibold text-white tracking-tight">mfourlabs Lab</div>
+                                    <div className="text-[9px] font-bold text-brand-yellow uppercase tracking-widest mb-0.5">Early Access</div>
+                                    <div className="text-xs font-semibold text-white tracking-tight">MVF CLI (beta)</div>
                                  </div>
                               </div>
 
@@ -985,11 +898,10 @@ export const LabRegistration: React.FC<LabRegistrationProps> = ({ onClose }) => 
 
          {/* Toast Notification */}
          {toastMessage && (
-            <div className={`fixed bottom-8 left-8 right-8 md:bottom-auto md:top-8 md:left-auto md:right-8 max-w-md z-[70] animate-fade-in transition-all duration-300 ${
-               toastMessage.type === 'success' 
-                  ? 'bg-green-500/20 border border-green-500/50 text-green-300' 
-                  : 'bg-red-500/20 border border-red-500/50 text-red-300'
-            } p-4 rounded-xl flex items-center gap-3 backdrop-blur-md shadow-lg`}>
+            <div className={`fixed bottom-8 left-8 right-8 md:bottom-auto md:top-8 md:left-auto md:right-8 max-w-md z-[70] animate-fade-in transition-all duration-300 ${toastMessage.type === 'success'
+               ? 'bg-green-500/20 border border-green-500/50 text-green-300'
+               : 'bg-red-500/20 border border-red-500/50 text-red-300'
+               } p-4 rounded-xl flex items-center gap-3 backdrop-blur-md shadow-lg`}>
                {toastMessage.type === 'success' ? (
                   <Check className="w-5 h-5 flex-shrink-0 text-green-400" />
                ) : (

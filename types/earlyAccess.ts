@@ -2,7 +2,7 @@ import { Timestamp } from 'firebase/firestore';
 
 /**
  * Early Access User Registration Schema
- * Collection: lab_early_access_users
+ * Collection: mvf_cli_beta_access_users
  */
 export interface EarlyAccessUser {
     // Basic User Information
