@@ -81,8 +81,7 @@ exports.sendWelcomeEmail = onDocumentCreated(
                   <!-- Footer -->
                   <tr>
                     <td style="padding: 32px 40px; background-color: #f8f9fa; border-top: 1px solid #e9ecef;">
-                      <p style="margin: 0 0 8px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif; font-size: 13px; line-height: 1.5; color: #6c757d; text-align: center;">© 2025 MFOURLABS. All rights reserved.</p>
-                      <p style="margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif; font-size: 12px; line-height: 1.5; color: #adb5bd; text-align: center;">First Principles Engineering Research Lab</p>
+                      <p style="margin: 0 0 8px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif; font-size: 13px; line-height: 1.5; color: #6c757d; text-align: center;">© 2025 MFOUR LABS. All rights reserved.</p>
                     </td>
                   </tr>
                   
@@ -196,8 +195,7 @@ exports.sendAccessGrantedEmail = onDocumentUpdated(
                     <!-- Footer -->
                     <tr>
                       <td style="padding: 32px 40px; background-color: #f8f9fa; border-top: 1px solid #e9ecef;">
-                        <p style="margin: 0 0 8px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif; font-size: 13px; line-height: 1.5; color: #6c757d; text-align: center;">© 2025 MFOURLABS. All rights reserved.</p>
-                        <p style="margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif; font-size: 12px; line-height: 1.5; color: #adb5bd; text-align: center;">First Principles Engineering Research Lab</p>
+                        <p style="margin: 0 0 8px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif; font-size: 13px; line-height: 1.5; color: #6c757d; text-align: center;">© 2025 MFOUR LABS. All rights reserved.</p>
                       </td>
                     </tr>
                     
