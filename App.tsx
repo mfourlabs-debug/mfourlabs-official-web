@@ -120,7 +120,8 @@ const App: React.FC = () => {
               {/* Lab Registration - Coming Soon */}
               <button
                 onClick={handleEnterLab}
-                className="group flex items-center gap-2 px-5 py-2.5 rounded-full bg-brand-white text-brand-black text-sm font-semibold hover:bg-brand-white/90 transition-all duration-300 transform hover:scale-105"
+                disabled
+                className="group flex items-center gap-2 px-5 py-2.5 rounded-full bg-brand-white/30 text-brand-gray text-sm font-semibold transition-all duration-300 cursor-not-allowed opacity-50"
                 aria-label="Lab Registration"
               >
                 <span>Request MVF Cloud (alpha)</span>

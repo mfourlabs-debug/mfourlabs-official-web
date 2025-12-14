@@ -10,10 +10,8 @@ interface HeroProps {
 export const HeroSection: React.FC<HeroProps> = ({ onEnterLab }) => {
   const [dailyInsight, setDailyInsight] = useState<string>("INITIALIZING PROTOCOLS...");
   const [heroTitle, setHeroTitle] = useState({
-    line1: "STOP",
-    line2: "PROMPTING",
-    size1: "text-[13vw] md:text-[11vw] lg:text-[11rem]",
-    size2: "text-[13vw] md:text-[11vw] lg:text-[11rem]",
+    line1: "The Global Standard",
+    size1: "text-[8vw] md:text-[8vw] lg:text-[8rem]",
     key: "initial"
   });
   const [isExiting, setIsExiting] = useState(false);
@@ -49,8 +47,8 @@ export const HeroSection: React.FC<HeroProps> = ({ onEnterLab }) => {
 
     const switchTimer = setTimeout(() => {
       setHeroTitle({
-        line1: "THE WORLD'S FIRST",
-        line2: "VIBE ARCHITECTURE",
+        line1: "For Deterministic AI",
+        line2: "Governance",
         size1: "text-[6vw] md:text-[5vw] lg:text-[6rem]",
         size2: "text-[7vw] md:text-[6vw] lg:text-[7rem]",
         key: "final"
@@ -103,7 +101,8 @@ export const HeroSection: React.FC<HeroProps> = ({ onEnterLab }) => {
         <div className="flex flex-col sm:flex-row gap-4 sm:gap-5 items-center animate-slide-up opacity-0 w-full sm:w-auto px-4" style={{ animationDelay: '0.5s' }}>
           <button
             onClick={onEnterLab}
-            className="w-full sm:w-auto group relative px-8 py-4 bg-brand-white text-brand-black rounded-full font-medium tracking-tight overflow-hidden transition-all hover:bg-brand-white/90 hover:scale-[1.02] active:scale-[0.98]"
+            disabled
+            className="w-full sm:w-auto group relative px-8 py-4 bg-brand-white/30 text-brand-gray rounded-full font-medium tracking-tight overflow-hidden transition-all cursor-not-allowed opacity-50"
           >
             <span className="relative flex items-center justify-center gap-2 transition-colors">
               Request MVF Cloud (alpha) <ArrowRight className="w-4 h-4" />
