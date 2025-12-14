@@ -30,12 +30,12 @@ export const CurriculumSection: React.FC = () => {
   ];
 
   return (
-    <section id="framework-specs" className="py-24 md:py-32 px-4 md:px-6 bg-brand-black border-t border-brand-white/10">
+    <section id="framework-specs" className="py-24 md:py-32 px-4 md:px-6 bg-brand-black border-t border-brand-white/10" aria-labelledby="mvf-spec-heading">
       <div className="max-w-6xl mx-auto">
-        
+
         {/* Header */}
-        <div className="mb-20 border-b border-brand-white/10 pb-12">
-          <h2 className="text-5xl md:text-6xl lg:text-7xl font-display font-bold text-brand-white tracking-tighter mb-6">
+        <header className="mb-20 border-b border-brand-white/10 pb-12">
+          <h2 id="mvf-spec-heading" className="text-5xl md:text-6xl lg:text-7xl font-display font-bold text-brand-white tracking-tighter mb-6">
             The MVF Specification
           </h2>
           <div className="flex flex-col md:flex-row md:items-center gap-4 md:gap-12">
@@ -49,12 +49,12 @@ export const CurriculumSection: React.FC = () => {
             </div>
             <div className="border-l border-brand-white/10 pl-6 md:pl-8">
               <p className="text-sm text-brand-gray leading-relaxed max-w-md">
-                The authoritative specification for building rigorous AI systems. 
+                The authoritative specification for building rigorous AI systems.
                 Three interconnected layers that define the future of vibe architecture.
               </p>
             </div>
           </div>
-        </div>
+        </header>
 
         {/* Layers */}
         <div className="space-y-0">
@@ -123,7 +123,7 @@ export const CurriculumSection: React.FC = () => {
           {/* Specification Notice */}
           <div className="text-center">
             <p className="font-mono text-xs text-brand-sub uppercase tracking-widest">
-              The MFOUR Vibe Framework™ is licensed under CC BY-ND 4.0. 
+              The MFOUR Vibe Framework™ is licensed under CC BY-ND 4.0.
               <span className="block mt-2 text-brand-gray">
                 Published by MFOUR LABS. All Systems Operational.
               </span>

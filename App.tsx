@@ -110,19 +110,20 @@ const App: React.FC = () => {
 
             {/* Desktop Links */}
             <div className="hidden md:flex items-center gap-1">
-              <a href="https://mfour-labs.gitbook.io/mfour-labs-docs/" className="px-4 py-2 text-sm font-medium text-brand-gray hover:text-brand-white transition-colors hover:bg-white/5 rounded-full">Docs</a>
-              <a href="#philosophy" className="px-4 py-2 text-sm font-medium text-brand-gray hover:text-brand-white transition-colors hover:bg-white/5 rounded-full">Manifesto</a>
-              <a href="#roadmap" className="px-4 py-2 text-sm font-medium text-brand-gray hover:text-brand-white transition-colors hover:bg-white/5 rounded-full">Research Trejectory</a>
+              <a id="nav-docs-link" href="https://mfour-labs.gitbook.io/mfour-labs-docs/" className="px-4 py-2 text-sm font-medium text-brand-gray hover:text-brand-white transition-colors hover:bg-white/5 rounded-full" target="_blank" rel="noopener noreferrer" aria-label="View MFOUR Labs documentation">Docs</a>
+              <a id="nav-manifesto-link" href="#philosophy" className="px-4 py-2 text-sm font-medium text-brand-gray hover:text-brand-white transition-colors hover:bg-white/5 rounded-full" aria-label="Read our manifesto">Manifesto</a>
+              <a id="nav-roadmap-link" href="#roadmap" className="px-4 py-2 text-sm font-medium text-brand-gray hover:text-brand-white transition-colors hover:bg-white/5 rounded-full" aria-label="View research trajectory">Research Trajectory</a>
             </div>
 
             {/* Action */}
             <div className="flex items-center gap-4">
               {/* Lab Registration - Coming Soon */}
               <button
+                id="nav-mvf-cloud-request"
                 onClick={handleEnterLab}
                 disabled
                 className="group flex items-center gap-2 px-5 py-2.5 rounded-full bg-brand-white/30 text-brand-gray text-sm font-semibold transition-all duration-300 cursor-not-allowed opacity-50"
-                aria-label="Lab Registration"
+                aria-label="Request MVF Cloud alpha access - Coming soon"
               >
                 <span>Request MVF Cloud (alpha)</span>
                 <ExternalLink className="w-3.5 h-3.5" />
@@ -152,7 +153,7 @@ const App: React.FC = () => {
       </header>
 
 
-      <main className="bg-noise bg-repeat">
+      <main className="bg-noise bg-repeat" role="main">
         <HeroSection onEnterLab={handleEnterLab} />
         <ManifestoSection />
         <CurriculumSection />
@@ -160,7 +161,7 @@ const App: React.FC = () => {
       </main>
 
       {/* Massive Architectural Footer */}
-      <footer className="pt-32 pb-12 px-6 bg-brand-offblack border-t border-brand-border font-sans">
+      <footer className="pt-32 pb-12 px-6 bg-brand-offblack border-t border-brand-border font-sans" role="contentinfo">
         <div className="max-w-7xl mx-auto">
 
           {/* Top Section */}
