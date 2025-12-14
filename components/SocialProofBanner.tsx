@@ -14,10 +14,10 @@ export const SocialProofBanner: React.FC<SocialProofBannerProps> = ({
         minutes: 0,
         seconds: 0,
     });
-    const [progress, setProgress] = useState(100);
+
 
     // Total duration: 60 days in milliseconds
-    const TOTAL_DURATION = 60 * 24 * 60 * 60 * 1000;
+
 
     useEffect(() => {
         const calculateTimeLeft = () => {
@@ -32,13 +32,8 @@ export const SocialProofBanner: React.FC<SocialProofBannerProps> = ({
                 const seconds = Math.floor((difference % (1000 * 60)) / 1000);
 
                 setTimeLeft({ days, hours, minutes, seconds });
-
-                // Calculate progress percentage (time remaining out of 90 days)
-                const progressPercentage = (difference / TOTAL_DURATION) * 100;
-                setProgress(Math.min(100, Math.max(0, progressPercentage)));
             } else {
                 setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
-                setProgress(0);
             }
         };
 
@@ -139,50 +134,34 @@ export const SocialProofBanner: React.FC<SocialProofBannerProps> = ({
                     </div>
                 </div>
 
-                {/* Progress Bar */}
-                <div className="space-y-2">
-                    <div className="flex items-center justify-between text-xs">
-                        <span className="text-neutral-400">Time Remaining</span>
-                        <span className={`font-semibold ${colors.text}`}>{Math.round(progress)}%</span>
-                    </div>
-                    <div className={`h-2 ${colors.progressBg} rounded-full overflow-hidden`}>
-                        <div
-                            className={`h-full ${colors.progressFill} transition-all duration-1000 ease-linear relative overflow-hidden`}
-                            style={{ width: `${progress}%` }}
-                        >
-                            {/* Shimmer effect */}
-                            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-shimmer"></div>
-                        </div>
-                    </div>
-                </div>
             </div>
 
             {/* Animations */}
             <style>{`
-        @keyframes shimmer {
-          0% { transform: translateX(-100%); }
-          100% { transform: translateX(100%); }
-        }
+                @keyframes shimmer {
+                    0% { transform: translateX(-100%); }
+                    100% { transform: translateX(100%); }
+                }
 
-        @keyframes pulse-border {
-          0%, 100% { 
-            border-color: rgba(239, 68, 68, 0.3);
-            box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4);
-          }
-          50% { 
-            border-color: rgba(239, 68, 68, 0.6);
-            box-shadow: 0 0 20px 0 rgba(239, 68, 68, 0.2);
-          }
-        }
+                @keyframes pulse-border {
+                    0%, 100% { 
+                        border-color: rgba(239, 68, 68, 0.3);
+                        box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4);
+                    }
+                    50% { 
+                        border-color: rgba(239, 68, 68, 0.6);
+                        box-shadow: 0 0 20px 0 rgba(239, 68, 68, 0.2);
+                    }
+                }
 
-        .animate-shimmer {
-          animation: shimmer 3s infinite;
-        }
+                .animate-shimmer {
+                    animation: shimmer 3s infinite;
+                }
 
-        .animate-pulse-border {
-          animation: pulse-border 2s ease-in-out infinite;
-        }
-      `}</style>
+                .animate-pulse-border {
+                    animation: pulse-border 2s ease-in-out infinite;
+                }
+            `}</style>
         </div>
     );
 };

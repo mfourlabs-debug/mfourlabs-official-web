@@ -3,7 +3,6 @@ import { X, QrCode, Terminal, ChevronRight, CheckCircle2, Edit3, Wallet, Shield,
 import { auth, db } from '../services/firebase';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { PrivacyPolicy } from './PrivacyPolicy';
-import { SocialProofBanner } from './SocialProofBanner';
 import { TermsOfService } from './TermsOfService';
 import { GDPRDataManagement } from './GDPRDataManagement';
 import { analytics, RegistrationSession } from '../services/analyticsService';
@@ -372,13 +371,6 @@ export const LabRegistration: React.FC<LabRegistrationProps> = ({ onClose }) => 
                               <h4 className="text-xs font-medium text-white tracking-wide">Classified Research Access</h4>
                               <p className="text-[10px] text-neutral-500 mt-0.5">First Principles Engineering. No Abstractions.</p>
                            </div>
-                        </div>
-
-                        {/* Social Proof & Urgency Banner */}
-                        <div className="mb-6">
-                           <SocialProofBanner
-                              earlyAccessEndDate={new Date('2026-02-11T23:59:59Z')} // Fixed deadline: exactly 60 days from Dec 13
-                           />
                         </div>
 
                         {/* Form */}
