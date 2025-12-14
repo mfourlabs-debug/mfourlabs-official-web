@@ -110,12 +110,12 @@ export const HeroSection: React.FC<HeroProps> = ({ onEnterLab }) => {
             </span>
           </button>
 
-          <button
-            href="https://mfour-labs.gitbook.io/mfour-labs-docs/"
+          <a
+            href="https://doi.org/10.5281/zenodo.17924469"
             className="w-full sm:w-auto px-8 py-4 text-brand-gray hover:text-brand-white transition-colors text-sm font-medium tracking-wide border-b border-transparent hover:border-brand-white/20"
           >
             Read The Whitepaper
-          </button>
+          </a>
         </div>
 
         {/* AI Insight Terminal */}
