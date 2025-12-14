@@ -121,12 +121,11 @@ const App: React.FC = () => {
               <button
                 id="nav-mvf-cloud-request"
                 onClick={handleEnterLab}
-                disabled
-                className="group flex items-center gap-2 px-5 py-2.5 rounded-full bg-brand-white/30 text-brand-gray text-sm font-semibold transition-all duration-300 cursor-not-allowed opacity-50"
-                aria-label="Request MVF Cloud alpha access - Coming soon"
+                className="group flex items-center gap-2 px-5 py-2.5 rounded-full bg-brand-yellow text-brand-black text-sm font-semibold transition-all duration-300 hover:bg-brand-yellowDim hover:scale-105 active:scale-95"
+                aria-label="Request MVF Cloud alpha access"
               >
                 <span>Request MVF Cloud (alpha)</span>
-                <ExternalLink className="w-3.5 h-3.5" />
+                <ExternalLink className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
               </button>
 
               {/* Mobile Toggle */}

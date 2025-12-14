@@ -102,12 +102,11 @@ export const HeroSection: React.FC<HeroProps> = ({ onEnterLab }) => {
           <button
             id="request-mvf-cloud-hero"
             onClick={onEnterLab}
-            disabled
-            className="w-full sm:w-auto group relative px-8 py-4 bg-brand-white/30 text-brand-gray rounded-full font-medium tracking-tight overflow-hidden transition-all cursor-not-allowed opacity-50"
-            aria-label="Request MVF Cloud alpha access - Coming soon"
+            className="w-full sm:w-auto group relative px-8 py-4 bg-brand-yellow text-brand-black rounded-full font-medium tracking-tight overflow-hidden transition-all hover:scale-105 active:scale-95"
+            aria-label="Request MVF Cloud alpha access"
           >
             <span className="relative flex items-center justify-center gap-2 transition-colors">
-              Request MVF Cloud (alpha) <ArrowRight className="w-4 h-4" />
+              Request MVF Cloud (alpha) <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </span>
           </button>
 
