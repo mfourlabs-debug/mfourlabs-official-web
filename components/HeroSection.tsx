@@ -63,16 +63,16 @@ export const HeroSection: React.FC<HeroProps> = ({ onEnterLab }) => {
   }, []);
 
   return (
-    <section id="vision" className="relative min-h-screen flex flex-col justify-center items-center px-4 sm:px-6 pt-24 md:pt-24 overflow-hidden bg-brand-black">
+    <section id="vision" className="relative min-h-screen flex flex-col justify-center items-center px-4 sm:px-6 pt-24 md:pt-24 overflow-hidden bg-brand-black" aria-labelledby="hero-heading">
 
       {/* Dynamic Background Grid */}
       <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] pointer-events-none"></div>
 
       {/* Content Container */}
-      <div className="relative z-10 max-w-7xl mx-auto w-full flex flex-col items-center">
+      <article className="relative z-10 max-w-7xl mx-auto w-full flex flex-col items-center">
 
         {/* Status Badge */}
-        <div className="mb-8 md:mb-10 animate-slide-up opacity-0 flex items-center gap-3 px-4 py-1.5 rounded-full border border-brand-white/10 bg-brand-white/5 backdrop-blur" style={{ animationDelay: '0.1s' }}>
+        <div className="mb-8 md:mb-10 animate-slide-up opacity-0 flex items-center gap-3 px-4 py-1.5 rounded-full border border-brand-white/10 bg-brand-white/5 backdrop-blur" style={{ animationDelay: '0.1s' }} role="status" aria-live="polite">
           <span className="relative flex h-2 w-2">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-yellow opacity-75"></span>
             <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-yellow"></span>
@@ -81,16 +81,16 @@ export const HeroSection: React.FC<HeroProps> = ({ onEnterLab }) => {
         </div>
 
         {/* Main Title - Massive & Responsive */}
-        <div className="text-center mb-8 md:mb-10 relative">
+        <header className="text-center mb-8 md:mb-10 relative">
           <div className={`transition-opacity duration-700 ${isExiting ? 'opacity-0' : 'opacity-100'}`}>
-            <h1 key={`${heroTitle.key}-1`} className={`${heroTitle.size1} font-display font-bold tracking-tighter leading-[0.85] text-brand-white animate-slide-up opacity-0`} style={{ animationDelay: '0.2s' }}>
+            <h1 id="hero-heading" key={`${heroTitle.key}-1`} className={`${heroTitle.size1} font-display font-bold tracking-tighter leading-[0.85] text-brand-white animate-slide-up opacity-0`} style={{ animationDelay: '0.2s' }}>
               {heroTitle.line1}
             </h1>
-            <h1 key={`${heroTitle.key}-2`} className={`${heroTitle.size2} font-display font-bold tracking-tighter leading-[0.85] text-transparent bg-clip-text bg-gradient-to-b from-brand-gray/50 to-brand-black/0 animate-slide-up opacity-0`} style={{ animationDelay: '0.3s' }}>
+            <p key={`${heroTitle.key}-2`} className={`${heroTitle.size2} font-display font-bold tracking-tighter leading-[0.85] text-transparent bg-clip-text bg-gradient-to-b from-brand-gray/50 to-brand-black/0 animate-slide-up opacity-0`} style={{ animationDelay: '0.3s' }} aria-label="For Deterministic AI Governance">
               {heroTitle.line2}
-            </h1>
+            </p>
           </div>
-        </div>
+        </header>
 
         {/* Subtitle / Description */}
         <p className="text-base md:text-xl text-brand-gray max-w-xl md:max-w-2xl text-center mb-10 md:mb-14 leading-relaxed font-light animate-slide-up opacity-0 px-4" style={{ animationDelay: '0.4s' }}>
@@ -100,9 +100,11 @@ export const HeroSection: React.FC<HeroProps> = ({ onEnterLab }) => {
         {/* Actions */}
         <div className="flex flex-col sm:flex-row gap-4 sm:gap-5 items-center animate-slide-up opacity-0 w-full sm:w-auto px-4" style={{ animationDelay: '0.5s' }}>
           <button
+            id="request-mvf-cloud-hero"
             onClick={onEnterLab}
             disabled
             className="w-full sm:w-auto group relative px-8 py-4 bg-brand-white/30 text-brand-gray rounded-full font-medium tracking-tight overflow-hidden transition-all cursor-not-allowed opacity-50"
+            aria-label="Request MVF Cloud alpha access - Coming soon"
           >
             <span className="relative flex items-center justify-center gap-2 transition-colors">
               Request MVF Cloud (alpha) <ArrowRight className="w-4 h-4" />
@@ -110,15 +112,19 @@ export const HeroSection: React.FC<HeroProps> = ({ onEnterLab }) => {
           </button>
 
           <a
+            id="whitepaper-link-hero"
             href="https://doi.org/10.5281/zenodo.17924469"
             className="w-full sm:w-auto px-8 py-4 text-brand-gray hover:text-brand-white transition-colors text-sm font-medium tracking-wide border-b border-transparent hover:border-brand-white/20"
+            aria-label="Read the MFOUR Vibe Framework whitepaper on Zenodo"
+            target="_blank"
+            rel="noopener noreferrer"
           >
             Read The Whitepaper
           </a>
         </div>
 
         {/* AI Insight Terminal */}
-        <div className="absolute bottom-10 left-6 md:left-10 animate-fade-in opacity-0 hidden lg:block" style={{ animationDelay: '1.2s' }}>
+        <aside className="absolute bottom-10 left-6 md:left-10 animate-fade-in opacity-0 hidden lg:block" style={{ animationDelay: '1.2s' }} aria-label="Daily system broadcast">
           <div className="flex items-center gap-2 text-[10px] font-mono text-brand-sub mb-2 uppercase tracking-widest">
             <Terminal className="w-3 h-3" />
             <span>System Broadcast // Daily-Ref</span>
@@ -126,9 +132,9 @@ export const HeroSection: React.FC<HeroProps> = ({ onEnterLab }) => {
           <div className="pl-3 border-l border-brand-yellow/50">
             <p className="text-xs text-brand-gray font-mono max-w-[200px] uppercase">{dailyInsight}</p>
           </div>
-        </div>
+        </aside>
 
-      </div>
+      </article>
     </section>
   );
 };
