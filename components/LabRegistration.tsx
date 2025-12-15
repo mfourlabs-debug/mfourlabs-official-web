@@ -606,13 +606,6 @@ export const LabRegistration: React.FC<LabRegistrationProps> = ({ onClose }) => 
                                     </div>
                                     {errors.experienceLevel && <div className={errorClass}>{errors.experienceLevel}</div>}
                                  </div>
-
-
-
-
-
-
-
                                  {/* Motivation - Text Area */}
                                  <div className="space-y-0.5">
                                     <label className={labelClass}>WHAT ARE YOU MOST EXCITED ABOUT? (OPTIONAL)</label>
@@ -622,7 +615,7 @@ export const LabRegistration: React.FC<LabRegistrationProps> = ({ onClose }) => 
                                           name="motivation"
                                           value={formData.motivation}
                                           onChange={handleChange}
-                                          placeholder="Share what excites you about first principles engineering, what you hope to learn, or what you want to build..."
+                                          placeholder="Share what excites you about MVF Protocol, what you hope to learn, or what you want to build..."
                                           rows={3}
                                           className="w-full bg-transparent border-none py-2.5 pl-10 pr-4 text-base md:text-sm text-white placeholder-neutral-600 focus:ring-0 focus:outline-none transition-all resize-none"
                                        />
