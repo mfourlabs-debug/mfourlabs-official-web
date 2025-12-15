@@ -29,7 +29,7 @@ exports.sendWelcomeEmail = onDocumentCreated(
       await resend.emails.send({
         from: FROM_EMAIL,
         to: user.email,
-        subject: 'Welcome to MVF Cloud (alpha) - Early Access',
+        subject: 'Status Update: MVF Cloud Access',
         html: `
         <!DOCTYPE html>
         <html lang="en">
@@ -37,51 +37,137 @@ exports.sendWelcomeEmail = onDocumentCreated(
           <meta charset="UTF-8">
           <meta name="viewport" content="width=device-width, initial-scale=1.0">
           <meta http-equiv="X-UA-Compatible" content="IE=edge">
+          <title>Status Update: MVF Cloud Access</title>
+          <style>
+            /* General Styles */
+            body {
+              margin: 0;
+              padding: 0;
+              background-color: #f6f9fc;
+              font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
+            }
+            table {
+              border-spacing: 0;
+              border-collapse: collapse;
+            }
+            a {
+              color: #1a73e8;
+              text-decoration: none;
+              font-weight: 500;
+            }
+
+            /* Responsive Container */
+            .container {
+              width: 100%;
+              max-width: 600px;
+              border-collapse: collapse;
+              background-color: #ffffff;
+              border-radius: 8px;
+              overflow: hidden;
+              box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            }
+
+            /* Content Styling */
+            .primary-text {
+              color: #1a1a1a;
+            }
+            .secondary-text {
+              color: #5f6368;
+            }
+            
+            /* Status Highlighting */
+            .status-card {
+              background-color: #f8f9fa;
+              border: 1px solid #e0e0e0;
+              padding: 20px;
+              border-radius: 6px;
+              margin-bottom: 24px;
+            }
+            .status-badge {
+              display: inline-block;
+              padding: 6px 10px;
+              font-weight: 600;
+              border-radius: 4px;
+              text-transform: uppercase;
+              letter-spacing: 0.5px;
+              font-size: 12px;
+              background-color: #e8f0fe;
+              color: #1a73e8;
+            }
+          </style>
         </head>
         <body style="margin: 0; padding: 0; background-color: #f6f9fc;">
           <table role="presentation" style="width: 100%; border-collapse: collapse; background-color: #f6f9fc;">
             <tr>
               <td align="center" style="padding: 40px 0;">
-                <table role="presentation" style="width: 100%; max-width: 600px; border-collapse: collapse; background-color: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+                <table role="presentation" class="container" style="width: 100%; max-width: 600px; border-collapse: collapse; background-color: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
                   
-                  <!-- Header with Logo -->
+                  <!-- Header -->
                   <tr>
                     <td style="padding: 40px 40px 32px; text-align: center; background-color: #ffffff;">
-                      <img src="${LOGO_URL}" alt="MFOURLABS" style="width: 80px; height: 80px; margin-bottom: 24px; display: block; margin-left: auto; margin-right: auto;">
-                      <h1 style="margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif; font-size: 28px; font-weight: 600; color: #1a1a1a; line-height: 1.3;">Welcome to MFOUR LABS</h1>
+                      <img src="${LOGO_URL}" alt="MFOURLABS" style="width: 80px; height: 80px; margin-bottom: 24px; display: block; margin-left: auto; margin-right: auto; filter: brightness(0) invert(1);">
+                      <h1 style="margin: 0; font-family: inherit; font-size: 28px; font-weight: 600; line-height: 1.3; color: #1a1a1a;">MVF Cloud Access Update</h1>
                     </td>
                   </tr>
                   
                   <!-- Main Content -->
                   <tr>
                     <td style="padding: 0 40px 40px;">
-                      <p style="margin: 0 0 16px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif; font-size: 16px; line-height: 1.5; color: #1a1a1a;">Hi <strong>${user.name}</strong>,</p>
+                      <p style="margin: 0 0 16px; font-family: inherit; font-size: 16px; line-height: 1.5; color: #1a1a1a;">Hi <strong>${user.name}</strong>,</p>
                       
-                      <p style="margin: 0 0 24px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif; font-size: 16px; line-height: 1.6; color: #4a4a4a;">Thank you for requesting early access to <strong>MVF Cloud (alpha)</strong>. We're building the future of AI governance and first principles engineering tools, and we're excited to have you on the waitlist.</p>
+                      <p style="margin: 0 0 24px; font-family: inherit; font-size: 16px; line-height: 1.6; color: #4a4a4a;">
+                        We are pleased to confirm your registration for MVF Cloud (Alpha). Your access details have been processed.
+                      </p>
                       
-
-                      
-                      <!-- What's Next Section -->
-                      <h2 style="margin: 32px 0 16px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif; font-size: 20px; font-weight: 600; color: #1a1a1a;">What's Next?</h2>
-                      <ul style="margin: 0; padding-left: 20px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif; font-size: 15px; line-height: 1.8; color: #4a4a4a;">
-                        <li style="margin-bottom: 8px;">We'll notify you when your access is approved</li>
-                        <li style="margin-bottom: 8px;"><a href="https://x.com/mfourlabs" style="color: #4a4a4a; text-decoration: none; border-bottom: 1px solid #4a4a4a;">Follow us on X for updates</a></li>
-                        <li style="margin-bottom: 8px;"><a href="https://www.linkedin.com/company/mfourlabs" style="color: #4a4a4a; text-decoration: none; border-bottom: 1px solid #4a4a4a;">Connect with us on LinkedIn</a></li>
-                      </ul>
-                      
-                      <!-- Access ID -->
-                      <div style="margin-top: 32px; padding-top: 24px; border-top: 1px solid #e9ecef;">
-                        <p style="margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif; font-size: 13px; color: #6c757d;">
-                          <strong>Access ID:</strong> ${user.accessId}
+                      <!-- Priority Access Status Card -->
+                      <div class="status-card" style="background-color: #f8f9fa; border: 1px solid #e0e0e0; padding: 20px; border-radius: 6px; margin-bottom: 24px;">
+                        <h2 style="margin: 0 0 12px; font-family: inherit; font-size: 18px; font-weight: 600; color: black;">Priority Queue Status</h2>
+                        <p style="margin: 0; font-family: inherit; font-size: 15px; line-height: 1.6; color: #4a4a4a;">
+                          You have been successfully placed in the Priority Access Queue. We are currently provisioning environments for the first cohort of "Standard-Compliant" teams.
                         </p>
                       </div>
+
+                      <!-- Registration Details -->
+                      <h2 style="margin: 32px 0 16px; font-family: inherit; font-size: 18px; font-weight: 600; color: #1a1a1a;">Registration Details</h2>
+                      
+                      <table role="presentation" style="width: 100%; border-collapse: collapse; font-family: inherit; font-size: 15px;">
+                        <tr>
+                          <td style="padding: 8px 0; width: 35%; color: #5f6368; font-weight: 500;">Status:</td>
+                          <td style="padding: 8px 0; width: 65%;">
+                            <span class="status-badge" style="display: inline-block; padding: 6px 10px; font-weight: 600; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.5px; font-size: 12px; background-color: #e8f0fe; color: green;">
+                              WAITLIST - CONFIRMED
+                            </span>
+                          </td>
+                        </tr>
+                        
+                        <tr>
+                          <td style="padding: 8px 0; color: #5f6368; font-weight: 500;">Next Step:</td>
+                          <td style="padding: 8px 0; color: #1a1a1a;">Access is granted on a selective basis. Selected users will be notified.</td>
+                        </tr>
+                      </table>
+
+                      <p style="margin: 40px 0 0 0; font-family: inherit; font-size: 16px; line-height: 1.5; color: #1a1a1a;">
+                        Sincerely,
+                      </p>
+                      <p style="margin: 5px 0 0 0; font-family: inherit; font-size: 16px; line-height: 1.5; color: #1a1a1a; font-weight: 600;">
+                        The MFOUR LABS Team
+                      </p>
                     </td>
                   </tr>
                   
                   <!-- Footer -->
                   <tr>
                     <td style="padding: 32px 40px; background-color: #f8f9fa; border-top: 1px solid #e9ecef;">
-                      <p style="margin: 0 0 8px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif; font-size: 13px; line-height: 1.5; color: #6c757d; text-align: center;">© 2025 MFOUR LABS. All rights reserved.</p>
+                      <p style="margin: 0 0 10px; font-family: inherit; font-size: 12px; line-height: 1.5; color: #6c757d; text-align: center;">
+                        **MFOUR LABS** | Research Governance & Standards Division
+                      </p>
+                      <p style="margin: 0; font-family: inherit; font-size: 12px; line-height: 1.5; color: #6c757d; text-align: center;">
+                        <a href="mailto:research@mfourlabs.dev" style="color: #6c757d; text-decoration: underline;">research@mfourlabs.dev</a> | 
+                        <a href="https://www.mfourlabs.dev" style="color: #6c757d; text-decoration: underline;">www.mfourlabs.dev</a>
+                      </p>
+                      <p style="margin: 10px 0 0; font-family: inherit; font-size: 11px; line-height: 1.5; color: #9aa0a6; text-align: center;">
+                        © 2025 MFOUR LABS. All rights reserved.
+                      </p>
                     </td>
                   </tr>
                   
@@ -123,7 +209,7 @@ exports.sendAccessGrantedEmail = onDocumentUpdated(
         await resend.emails.send({
           from: FROM_EMAIL,
           to: after.email,
-          subject: '🚀 You\'re In: MVF Cloud (alpha) Access Granted',
+          subject: 'Access Granted: MVF Cloud (alpha)',
           html: `
           <!DOCTYPE html>
           <html lang="en">
@@ -131,71 +217,159 @@ exports.sendAccessGrantedEmail = onDocumentUpdated(
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <title>Access Granted: MVF Cloud (alpha)</title>
+            <style>
+              /* General Styles */
+              body {
+                margin: 0;
+                padding: 0;
+                background-color: #f6f9fc;
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
+              }
+              table {
+                border-spacing: 0;
+                border-collapse: collapse;
+              }
+              a {
+                color: #1a73e8;
+                text-decoration: none;
+                font-weight: 500;
+              }
+
+              /* Responsive Container */
+              .container {
+                width: 100%;
+                max-width: 600px;
+                border-collapse: collapse;
+                background-color: #ffffff;
+                border-radius: 8px;
+                overflow: hidden;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+              }
+
+              /* Content Styling */
+              .primary-text {
+                color: #1a1a1a;
+              }
+              .secondary-text {
+                color: #5f6368;
+              }
+              
+              /* Status Highlighting */
+              .status-card {
+                background-color: #f8f9fa;
+                border: 1px solid #e0e0e0;
+                padding: 20px;
+                border-radius: 6px;
+                margin-bottom: 24px;
+              }
+              .status-badge {
+                display: inline-block;
+                padding: 6px 10px;
+                font-weight: 600;
+                border-radius: 4px;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+                font-size: 12px;
+                background-color: #d4edda;
+                color: #155724;
+              }
+            </style>
           </head>
           <body style="margin: 0; padding: 0; background-color: #f6f9fc;">
             <table role="presentation" style="width: 100%; border-collapse: collapse; background-color: #f6f9fc;">
               <tr>
                 <td align="center" style="padding: 40px 0;">
-                  <table role="presentation" style="width: 100%; max-width: 600px; border-collapse: collapse; background-color: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+                  <table role="presentation" class="container" style="width: 100%; max-width: 600px; border-collapse: collapse; background-color: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
                     
-                    <!-- Success Header with Logo -->
+                    <!-- Header -->
                     <tr>
-                      <td style="padding: 48px 40px; text-align: center; background: black;">
+                      <td style="padding: 40px 40px 32px; text-align: center; background-color: #ffffff;">
                         <img src="${LOGO_URL}" alt="MFOURLABS" style="width: 80px; height: 80px; margin-bottom: 24px; display: block; margin-left: auto; margin-right: auto; filter: brightness(0) invert(1);">
-                        <h1 style="margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif; font-size: 32px; font-weight: 700; color: #ffffff; line-height: 1.2;">Access Granted! 🚀</h1>
+                        <h1 style="margin: 0; font-family: inherit; font-size: 28px; font-weight: 600; line-height: 1.3; color: #1a1a1a;">Access Granted 🚀</h1>
                       </td>
                     </tr>
                     
                     <!-- Main Content -->
                     <tr>
-                      <td style="padding: 40px 40px 32px;">
-                        <h2 style="margin: 0 0 16px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif; font-size: 24px; font-weight: 600; color: #1a1a1a;">Congratulations, ${after.name}!</h2>
+                      <td style="padding: 0 40px 40px;">
+                        <p style="margin: 0 0 16px; font-family: inherit; font-size: 16px; line-height: 1.5; color: #1a1a1a;">Hi <strong>${after.name}</strong>,</p>
                         
-                        <p style="margin: 0 0 24px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif; font-size: 16px; line-height: 1.6; color: #4a4a4a;">Your access to <strong>MVF Cloud (alpha)</strong> has been approved. You're now part of an exclusive group of engineers shaping the future of AI governance and software architecture.</p>
+                        <p style="margin: 0 0 24px; font-family: inherit; font-size: 16px; line-height: 1.6; color: #4a4a4a;">
+                          Congratulations! Your access to <strong>MVF Cloud (alpha)</strong> has been approved. You're now part of an exclusive group of engineers shaping the future of AI governance and first principles architecture.
+                        </p>
                         
-                        <!-- Getting Started Box -->
-                        <table role="presentation" style="width: 100%; border-collapse: collapse; margin: 32px 0;">
-                          <tr>
-                            <td style="padding: 24px; background-color: #f8f9fa; border-radius: 8px; border-left: 4px solid yellow;">
-                              <h3 style="margin: 0 0 16px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif; font-size: 18px; font-weight: 600; color: #1a1a1a;">🎯 Getting Started with MVF Cloud</h3>
-                              <ol style="margin: 0; padding-left: 20px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif; font-size: 15px; line-height: 1.8; color: #4a4a4a;">
-                                <li style="margin-bottom: 8px;">Visit <a href="https://mfourlabs.dev" style="color: rgb(0, 0, 0); text-decoration: none; font-weight: 600;">mfourlabs.dev</a> documentation</li>
-                                <li style="margin-bottom: 8px;">Access the platform using your credentials</li>
-                                <li style="margin-bottom: 8px;">Initialize your first project</li>
-                                <li style="margin-bottom: 0;">Follow us on <a href="https://x.com/mfourlabs" style="color: rgb(0, 0, 0); text-decoration: none; font-weight: 600;">X</a> for updates</li>
-                              </ol>
-                            </td>
-                          </tr>
-                        </table>
+                        <!-- Access Approved Status Card -->
+                        <div class="status-card" style="background-color: #d4edda; border: 1px solid #c3e6cb; padding: 20px; border-radius: 6px; margin-bottom: 24px;">
+                          <h2 style="margin: 0 0 12px; font-family: inherit; font-size: 18px; font-weight: 600; color: #155724;">Access Approved</h2>
+                          <p style="margin: 0; font-family: inherit; font-size: 15px; line-height: 1.6; color: #155724;">
+                            Your MVF Cloud (alpha) environment is now active. You can begin deploying AI governance kernels and implementing the MVF Protocol.
+                          </p>
+                        </div>
+
+                        <!-- Getting Started -->
+                        <h2 style="margin: 32px 0 16px; font-family: inherit; font-size: 18px; font-weight: 600; color: #1a1a1a;">Getting Started</h2>
                         
+                        <ol style="margin: 0 0 24px; padding-left: 20px; font-family: inherit; font-size: 15px; line-height: 1.8; color: #4a4a4a;">
+                          <li style="margin-bottom: 8px;">Visit <a href="https://mfourlabs.dev" style="color: #1a73e8; text-decoration: none; font-weight: 600;">mfourlabs.dev</a> for documentation</li>
+                          <li style="margin-bottom: 8px;">Access the platform using your credentials</li>
+                          <li style="margin-bottom: 8px;">Initialize your first AI governance kernel</li>
+                          <li style="margin-bottom: 0;">Join our community on <a href="https://x.com/mfourlabs" style="color: #1a73e8; text-decoration: none; font-weight: 600;">X</a> and <a href="https://www.linkedin.com/company/mfourlabs" style="color: #1a73e8; text-decoration: none; font-weight: 600;">LinkedIn</a></li>
+                        </ol>
+
                         <!-- CTA Button -->
                         <table role="presentation" style="width: 100%; border-collapse: collapse; margin: 32px 0;">
                           <tr>
                             <td align="center">
-                              <a href="https://mfourlabs.dev" style="display: inline-block; padding: 16px 40px; background-color: #1a1a1a; color: #ffffff; text-decoration: none; border-radius: 8px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif; font-size: 16px; font-weight: 600; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">Enter The Lab →</a>
+                              <a href="https://mfourlabs.dev" style="display: inline-block; padding: 14px 32px; background-color: #1a1a1a; color: #ffffff; text-decoration: none; border-radius: 6px; font-family: inherit; font-size: 16px; font-weight: 600; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">Enter The Lab →</a>
                             </td>
                           </tr>
                         </table>
+
+                        <!-- Account Details -->
+                        <h2 style="margin: 32px 0 16px; font-family: inherit; font-size: 18px; font-weight: 600; color: #1a1a1a;">Account Details</h2>
                         
-                        <!-- Access Details -->
-                        <div style="margin-top: 32px; padding: 20px; background-color: #f8f9fa; border-radius: 8px;">
-                          <p style="margin: 0 0 8px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif; font-size: 13px; color: #6c757d;">
-                            <strong style="color: #1a1a1a;">Your Access ID:</strong> ${after.accessId}
-                          </p>
-                          <p style="margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif; font-size: 13px; color: #6c757d;">
-                            <strong style="color: #1a1a1a;">Email:</strong> ${after.email}
-                          </p>
-                        </div>
-                        
-                        <!-- Help Text -->
-                        <p style="margin: 24px 0 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif; font-size: 14px; line-height: 1.5; color: #6c757d; text-align: center;">Need help? Reply to this email or reach out on <a href="https://x.com/mfourlabs" style="color: #6c757d; text-decoration: underline;">X</a>.</p>
+                        <table role="presentation" style="width: 100%; border-collapse: collapse; font-family: inherit; font-size: 15px;">
+                          <tr>
+                            <td style="padding: 8px 0; width: 35%; color: #5f6368; font-weight: 500;">Status:</td>
+                            <td style="padding: 8px 0; width: 65%;">
+                              <span class="status-badge" style="display: inline-block; padding: 6px 10px; font-weight: 600; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.5px; font-size: 12px; background-color: #d4edda; color: #155724;">
+                                APPROVED - ACTIVE
+                              </span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td style="padding: 8px 0; color: #5f6368; font-weight: 500;">Access ID:</td>
+                            <td style="padding: 8px 0; color: #1a1a1a; font-family: monospace;">${after.accessId}</td>
+                          </tr>
+                          <tr>
+                            <td style="padding: 8px 0; color: #5f6368; font-weight: 500;">Email:</td>
+                            <td style="padding: 8px 0; color: #1a1a1a;">${after.email}</td>
+                          </tr>
+                        </table>
+
+                        <p style="margin: 40px 0 0 0; font-family: inherit; font-size: 16px; line-height: 1.5; color: #1a1a1a;">
+                          Welcome aboard,
+                        </p>
+                        <p style="margin: 5px 0 0 0; font-family: inherit; font-size: 16px; line-height: 1.5; color: #1a1a1a; font-weight: 600;">
+                          The MFOUR LABS Team
+                        </p>
                       </td>
                     </tr>
                     
                     <!-- Footer -->
                     <tr>
                       <td style="padding: 32px 40px; background-color: #f8f9fa; border-top: 1px solid #e9ecef;">
-                        <p style="margin: 0 0 8px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif; font-size: 13px; line-height: 1.5; color: #6c757d; text-align: center;">© 2025 MFOUR LABS. All rights reserved.</p>
+                        <p style="margin: 0 0 10px; font-family: inherit; font-size: 12px; line-height: 1.5; color: #6c757d; text-align: center;">
+                          **MFOUR LABS** | Research Governance & Standards Division
+                        </p>
+                        <p style="margin: 0; font-family: inherit; font-size: 12px; line-height: 1.5; color: #6c757d; text-align: center;">
+                          <a href="mailto:research@mfourlabs.dev" style="color: #6c757d; text-decoration: underline;">research@mfourlabs.dev</a> | 
+                          <a href="https://www.mfourlabs.dev" style="color: #6c757d; text-decoration: underline;">www.mfourlabs.dev</a>
+                        </p>
+                        <p style="margin: 10px 0 0; font-family: inherit; font-size: 11px; line-height: 1.5; color: #9aa0a6; text-align: center;">
+                          © 2025 MFOUR LABS. All rights reserved.
+                        </p>
                       </td>
                     </tr>
                     
