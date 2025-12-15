@@ -44,7 +44,7 @@ export const ManifestoSection: React.FC = () => {
           <div className="md:text-right">
             <p className="text-brand-gray max-w-md ml-auto leading-relaxed text-sm md:text-base">
               The age of the coder is ending. The age of the architect has begun.
-              We are engineering Vibe Architects—builders who orchestrate intelligence through rigorous systems design.
+              We are engineering Vibe Architect-builders who orchestrate intelligence through rigorous systems design.
             </p>
           </div>
         </header>

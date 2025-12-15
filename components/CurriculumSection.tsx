@@ -13,7 +13,7 @@ export const CurriculumSection: React.FC = () => {
       number: "01",
       name: "The MVF Kernel Specification",
       focus: ["Interface Contracts", "Constraint Engineering", "System Boundaries"],
-      description: "Define the rigid contract boundaries between systems. No vague intentions—only explicit specifications."
+      description: "Define the rigid contract boundaries between systems. No vague intentions only explicit specifications."
     },
     {
       number: "02",
