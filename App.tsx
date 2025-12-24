@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { HeroSection } from './components/HeroSection';
 import { ManifestoSection } from './components/ManifestoSection';
 import { CurriculumSection } from './components/CurriculumSection';
+import { SentinelEUSection } from './components/SentinelEUSection';
+import { AdversarialTestingSection } from './components/AdversarialTestingSection';
 import { RoadmapSection } from './components/RoadmapSection';
 import { LabRegistration } from './components/LabRegistration';
 import { ArrowUpRight, Menu, X, ExternalLink, Globe, ShieldCheck, ChevronRight } from 'lucide-react';
@@ -119,12 +121,12 @@ const App: React.FC = () => {
             <div className="flex items-center gap-4">
               {/* Lab Registration - Coming Soon */}
               <button
-                id="nav-mvf-cloud-request"
+                id="nav-ironrag-access"
                 onClick={handleEnterLab}
                 className="group flex items-center gap-2 px-5 py-2.5 rounded-full bg-brand-yellow text-brand-black text-sm font-semibold transition-all duration-300 hover:bg-brand-yellowDim hover:scale-105 active:scale-95"
-                aria-label="Request MVF Cloud alpha access"
+                aria-label="Get IronRAG Platform access"
               >
-                <span>Request MVF Cloud (alpha)</span>
+                <span>Get IronRAG Access</span>
                 <ExternalLink className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
               </button>
 
@@ -156,6 +158,8 @@ const App: React.FC = () => {
         <HeroSection onEnterLab={handleEnterLab} />
         <ManifestoSection />
         <CurriculumSection />
+        <SentinelEUSection />
+        <AdversarialTestingSection />
         <RoadmapSection />
       </main>
 
@@ -181,16 +185,16 @@ const App: React.FC = () => {
 
             <div className="flex flex-col gap-4">
               <h4 className="text-sm font-semibold text-brand-white">Platform</h4>
-              <button onClick={handleEnterLab} className="text-sm text-brand-gray hover:text-brand-white transition-colors text-left">MVF CLI (beta) </button>
+              <button onClick={handleEnterLab} className="text-sm text-brand-gray hover:text-brand-white transition-colors text-left">IronRAG Platform</button>
+              <a href="#sentinel-eu" className="text-sm text-brand-gray hover:text-brand-white transition-colors text-left">Sentinel-EU Kernel</a>
               <a href="https://mfour-labs.gitbook.io/mfour-labs-docs/" className="text-sm text-brand-gray hover:text-brand-white transition-colors text-left">Documentation</a>
-              <button onClick={() => window.scrollTo(0, 0)} className="text-sm text-brand-gray hover:text-brand-white transition-colors text-left">System Design</button>
               <button onClick={() => window.scrollTo(0, 0)} className="text-sm text-brand-gray hover:text-brand-white transition-colors text-left">Changelog</button>
             </div>
 
             <div className="flex flex-col gap-4">
               <h4 className="text-sm font-semibold text-brand-white">Research</h4>
               <button onClick={() => window.scrollTo(0, 0)} className="text-sm text-brand-gray hover:text-brand-white transition-colors text-left">Methodology</button>
-              <button onClick={() => window.scrollTo(0, 0)} className="text-sm text-brand-gray hover:text-brand-white transition-colors text-left">Publications</button>
+              <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=OJ:L_202401689" target="_blank" rel="noopener noreferrer" className="text-sm text-brand-gray hover:text-brand-white transition-colors text-left">EU AI Act Reference</a>
               <button onClick={() => window.scrollTo(0, 0)} className="text-sm text-brand-gray hover:text-brand-white transition-colors text-left">Case Studies</button>
               <button onClick={() => window.scrollTo(0, 0)} className="text-sm text-brand-gray hover:text-brand-white transition-colors text-left">Open Source</button>
             </div>

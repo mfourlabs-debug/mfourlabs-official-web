@@ -10,22 +10,40 @@ interface ProtocolLayer {
 export const CurriculumSection: React.FC = () => {
   const layers: ProtocolLayer[] = [
     {
+      number: "00",
+      name: "GuardLayer",
+      focus: ["Prompt Injection Defense", "Jailbreak Detection", "Pre-computation Firewalls"],
+      description: "Security-first input validation. Blocks malicious prompts before they reach the model."
+    },
+    {
       number: "01",
-      name: "The MVF Kernel Specification",
-      focus: ["Interface Contracts", "Constraint Engineering", "System Boundaries"],
-      description: "Define the rigid contract boundaries between systems. No vague intentions only explicit specifications."
+      name: "KernelLayer",
+      focus: ["Role-Enforced Prompts", "Sentinel-EU Compliance", "Regulation (EU) 2024/1689"],
+      description: "The first kernel native to EU AI Act. System prompts that enforce Article 5 prohibited practices and high-risk classifications."
     },
     {
       number: "02",
-      name: "The Synapse Strategy",
-      focus: ["Agentic Routing", "Tool-Use Authorization", "Agent Orchestration"],
-      description: "Route intelligence through verified pathways. Every connection is audited, every tool-call is authorized."
+      name: "SynapseLayer",
+      focus: ["Strict Tool Authorization", "Agent Routing", "Zero Hallucinated API Calls"],
+      description: "Controlled intelligence routing through verified pathways. Every tool call is audited and authorized."
     },
     {
       number: "03",
-      name: "The Mirror Test",
-      focus: ["Automated Auditing", "Vibe Integrity Score", "Continuous Verification"],
-      description: "Observe systems in real-time. Measure integrity constantly. The system that cannot observe itself, cannot trust itself."
+      name: "AnchorLayer",
+      focus: ["Vector-Based Retrieval", "Legal Document Indexing", "Citation-Backed Accuracy"],
+      description: "Grounding layer for knowledge retrieval. Capable of indexing 144+ page regulations with precise citations."
+    },
+    {
+      number: "04",
+      name: "CognitiveLayer",
+      focus: ["Silent Reasoning", "Thinking Block Protocol", "Gemini-Style Logic Separation"],
+      description: "Internal reasoning that's separate from public output. Security without sacrificing transparency."
+    },
+    {
+      number: "05",
+      name: "MirrorLayer",
+      focus: ["Vibe Integrity Score (VIS)", "Post-Generation Auditing", "Compliance Verification"],
+      description: "Automated verification that blocks non-compliant responses. The system that observes itself."
     }
   ];
 
@@ -36,7 +54,7 @@ export const CurriculumSection: React.FC = () => {
         {/* Header */}
         <header className="mb-20 border-b border-brand-white/10 pb-12">
           <h2 id="mvf-spec-heading" className="text-5xl md:text-6xl lg:text-7xl font-display font-bold text-brand-white tracking-tighter mb-6">
-            The MVF Specification
+            The IronRAG Architecture
           </h2>
           <div className="flex flex-col md:flex-row md:items-center gap-4 md:gap-12">
             <div className="flex flex-col gap-3">
@@ -49,8 +67,8 @@ export const CurriculumSection: React.FC = () => {
             </div>
             <div className="border-l border-brand-white/10 pl-6 md:pl-8">
               <p className="text-sm text-brand-gray leading-relaxed max-w-md">
-                The authoritative specification for building rigorous AI systems.
-                Three interconnected layers that define the future of vibe architecture.
+                The six-layer defense pipeline for compliance-grade AI.
+                Security, compliance, and verification engineered into every interaction.
               </p>
             </div>
           </div>

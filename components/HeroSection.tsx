@@ -10,7 +10,7 @@ interface HeroProps {
 export const HeroSection: React.FC<HeroProps> = ({ onEnterLab }) => {
   const [dailyInsight, setDailyInsight] = useState<string>("INITIALIZING PROTOCOLS...");
   const [heroTitle, setHeroTitle] = useState({
-    line1: "The Global Standard For",
+    line1: "IronRAG: The Compliance-First",
     size1: "text-[6vw] md:text-[5vw] lg:text-[5.5rem]",
     key: "initial"
   });
@@ -47,8 +47,8 @@ export const HeroSection: React.FC<HeroProps> = ({ onEnterLab }) => {
 
     const switchTimer = setTimeout(() => {
       setHeroTitle({
-        line1: "Deterministic AI",
-        line2: "Governance",
+        line1: "AI Operating",
+        line2: "System",
         size1: "text-[6vw] md:text-[5vw] lg:text-[6rem]",
         size2: "text-[7vw] md:text-[6vw] lg:text-[7rem]",
         key: "final"
@@ -77,7 +77,7 @@ export const HeroSection: React.FC<HeroProps> = ({ onEnterLab }) => {
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-yellow opacity-75"></span>
             <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-yellow"></span>
           </span>
-          <span className="text-[10px] md:text-[11px] font-mono tracking-widest text-brand-gray uppercase">Global Research Node</span>
+          <span className="text-[10px] md:text-[11px] font-mono tracking-widest text-brand-gray uppercase">Enterprise Compliance Platform</span>
         </div>
 
         {/* Main Title - Massive & Responsive */}
@@ -94,19 +94,19 @@ export const HeroSection: React.FC<HeroProps> = ({ onEnterLab }) => {
 
         {/* Subtitle / Description */}
         <p className="text-base md:text-xl text-brand-gray max-w-xl md:max-w-2xl text-center mb-10 md:mb-14 leading-relaxed font-light animate-slide-up opacity-0 px-4" style={{ animationDelay: '0.4s' }}>
-          The Age of the Coder is ending. The Age of the Architect has begun. Master the <span className="text-brand-white font-medium">MFOUR Vibe Framework™ (MVF)</span> and design the systems of tomorrow.
+          Built on the <span className="text-brand-white font-medium">MFOUR Vibe Framework™</span>. Engineered for the <span className="text-brand-white font-medium">EU AI Act</span>, GDPR, and High-Risk Environments.
         </p>
 
         {/* Actions */}
         <div className="flex flex-col sm:flex-row gap-4 sm:gap-5 items-center animate-slide-up opacity-0 w-full sm:w-auto px-4" style={{ animationDelay: '0.5s' }}>
           <button
-            id="request-mvf-cloud-hero"
+            id="deploy-sentinel-eu-hero"
             onClick={onEnterLab}
             className="w-full sm:w-auto group relative px-8 py-4 bg-brand-yellow text-brand-black rounded-full font-medium tracking-tight overflow-hidden transition-all hover:scale-105 active:scale-95"
-            aria-label="Request MVF Cloud alpha access"
+            aria-label="Deploy Sentinel-EU Kernel"
           >
             <span className="relative flex items-center justify-center gap-2 transition-colors">
-              Request MVF Cloud (alpha) <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              Deploy Sentinel-EU Kernel <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </span>
           </button>
 
