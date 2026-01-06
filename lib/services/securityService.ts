@@ -17,6 +17,8 @@ class SecurityService {
             const oneDayAgo = new Date(now.getTime() - 24 * 60 * 60 * 1000);
 
             // Check IP-based rate limit (3 per hour)
+            if (!db) return { allowed: true }; // Fail open if DB not active
+
             const ipQuery = query(
                 collection(db, this.RATE_LIMIT_COLLECTION),
                 where('ipAddress', '==', ipAddress),
@@ -67,6 +69,7 @@ class SecurityService {
      */
     async logRateLimitAttempt(email: string, ipAddress: string, userAgent: string): Promise<void> {
         try {
+            if (!db) return;
             await addDoc(collection(db, this.RATE_LIMIT_COLLECTION), {
                 email: email.toLowerCase(),
                 ipAddress,
@@ -85,6 +88,8 @@ class SecurityService {
      */
     async checkDuplicateEmail(email: string): Promise<{ isDuplicate: boolean; existingUser?: any }> {
         try {
+            if (!db) return { isDuplicate: false };
+
             const normalizedEmail = email.toLowerCase().trim();
 
             const q = query(
@@ -229,6 +234,8 @@ class SecurityService {
      */
     async createVerificationRecord(email: string, token: string): Promise<void> {
         try {
+            if (!db) throw new Error('Firebase is not initialized');
+
             await addDoc(collection(db, 'email_verifications'), {
                 email: email.toLowerCase(),
                 token,
@@ -249,6 +256,8 @@ class SecurityService {
      */
     async verifyEmailToken(token: string): Promise<{ valid: boolean; email?: string; error?: string }> {
         try {
+            if (!db) throw new Error('Firebase is not initialized');
+
             const q = query(
                 collection(db, 'email_verifications'),
                 where('token', '==', token),
@@ -291,6 +300,8 @@ class SecurityService {
      */
     async isEmailVerified(email: string): Promise<boolean> {
         try {
+            if (!db) return false;
+
             const q = query(
                 collection(db, 'email_verifications'),
                 where('email', '==', email.toLowerCase()),
