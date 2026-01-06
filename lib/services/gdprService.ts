@@ -12,6 +12,9 @@ class GDPRService {
      */
     async requestAccountDeletion(email: string, reason?: string): Promise<{ success: boolean; requestId?: string; error?: string }> {
         try {
+            if (!db) {
+                throw new Error('Firebase is not initialized');
+            }
             // Find user by email
             const usersRef = collection(db, this.COLLECTION_NAME);
             const q = query(usersRef, where('email', '==', email));
@@ -71,6 +74,9 @@ class GDPRService {
      */
     async processAccountDeletion(requestId: string): Promise<{ success: boolean; error?: string }> {
         try {
+            if (!db) {
+                throw new Error('Firebase is not initialized');
+            }
             const requestDoc = await getDoc(doc(db, this.DELETION_REQUESTS_COLLECTION, requestId));
 
             if (!requestDoc.exists()) {
@@ -112,6 +118,9 @@ class GDPRService {
      */
     async requestDataExport(email: string): Promise<{ success: boolean; data?: any; requestId?: string; error?: string }> {
         try {
+            if (!db) {
+                throw new Error('Firebase is not initialized');
+            }
             // Find user by email
             const usersRef = collection(db, this.COLLECTION_NAME);
             const q = query(usersRef, where('email', '==', email));
@@ -213,6 +222,9 @@ class GDPRService {
         analytics?: boolean;
     }): Promise<{ success: boolean; error?: string }> {
         try {
+            if (!db) {
+                throw new Error('Firebase is not initialized');
+            }
             const usersRef = collection(db, this.COLLECTION_NAME);
             const q = query(usersRef, where('email', '==', email));
             const snapshot = await getDocs(q);

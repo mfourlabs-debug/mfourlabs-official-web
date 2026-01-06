@@ -24,6 +24,7 @@ export class WaitlistService {
      * Get total number of users in waitlist
      */
     static async getTotalUsers(): Promise<number> {
+        if (!db) throw new Error('Firebase is not initialized');
         const usersRef = collection(db, COLLECTION_NAME);
         const snapshot = await getCountFromServer(usersRef);
         return snapshot.data().count;
@@ -33,6 +34,7 @@ export class WaitlistService {
      * Get waitlist statistics
      */
     static async getWaitlistStats(): Promise<WaitlistStats> {
+        if (!db) throw new Error('Firebase is not initialized');
         const usersRef = collection(db, COLLECTION_NAME);
 
         const [total, pending, approved, active] = await Promise.all([
@@ -92,6 +94,7 @@ export class WaitlistService {
      * Get user by email
      */
     static async getUserByEmail(email: string): Promise<EarlyAccessUser | null> {
+        if (!db) throw new Error('Firebase is not initialized');
         const usersRef = collection(db, COLLECTION_NAME);
         const q = query(usersRef, where('email', '==', email));
         const snapshot = await getDocs(q);
@@ -105,6 +108,7 @@ export class WaitlistService {
      * Get user by referral code
      */
     static async getUserByReferralCode(referralCode: string): Promise<EarlyAccessUser | null> {
+        if (!db) throw new Error('Firebase is not initialized');
         const usersRef = collection(db, COLLECTION_NAME);
         const q = query(usersRef, where('referralCode', '==', referralCode));
         const snapshot = await getDocs(q);
@@ -118,6 +122,7 @@ export class WaitlistService {
      * Count referrals for a specific referral code
      */
     static async countReferrals(referralCode: string): Promise<number> {
+        if (!db) throw new Error('Firebase is not initialized');
         const usersRef = collection(db, COLLECTION_NAME);
         const q = query(usersRef, where('referredBy', '==', referralCode));
         const snapshot = await getCountFromServer(q);
@@ -170,6 +175,7 @@ export class WaitlistService {
         email: string,
         newStatus: 'pending' | 'approved' | 'active' | 'waitlist'
     ): Promise<void> {
+        if (!db) throw new Error('Firebase is not initialized');
         const usersRef = collection(db, COLLECTION_NAME);
         const q = query(usersRef, where('email', '==', email));
         const snapshot = await getDocs(q);
@@ -195,6 +201,7 @@ export class WaitlistService {
      * Get top referrers (leaderboard)
      */
     static async getTopReferrers(limit: number = 10): Promise<Array<{ user: EarlyAccessUser, referralCount: number }>> {
+        if (!db) throw new Error('Firebase is not initialized');
         const usersRef = collection(db, COLLECTION_NAME);
         const snapshot = await getDocs(usersRef);
 
@@ -224,6 +231,7 @@ export class WaitlistService {
      * Get users by status
      */
     static async getUsersByStatus(status: 'pending' | 'approved' | 'active' | 'waitlist'): Promise<EarlyAccessUser[]> {
+        if (!db) throw new Error('Firebase is not initialized');
         const usersRef = collection(db, COLLECTION_NAME);
         const q = query(usersRef, where('status', '==', status), orderBy('createdAt', 'asc'));
         const snapshot = await getDocs(q);
