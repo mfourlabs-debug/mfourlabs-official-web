@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { X, FileText, Shield, Scale, AlertCircle } from 'lucide-react';
+import { X } from 'lucide-react';
 
 interface TermsOfServiceProps {
     onClose: () => void;
@@ -12,22 +12,17 @@ export const TermsOfService: React.FC<TermsOfServiceProps> = ({ onClose }) => {
         <div className="fixed inset-0 z-[70] bg-black/95 backdrop-blur-xl flex items-center justify-center p-4 md:p-6 animate-fade-in overflow-hidden">
             {/* Background Effects */}
             <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none"></div>
-            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-brand-yellow/5 blur-[120px] rounded-full pointer-events-none"></div>
+            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-green-500/5 blur-[120px] rounded-full pointer-events-none"></div>
 
             {/* Modal Container */}
-            <div className="relative w-full max-w-4xl max-h-[90vh] bg-[#0A0A0A] border border-white/10 rounded-3xl overflow-hidden shadow-2xl ring-1 ring-white/5">
+            <div className="relative w-full max-w-4xl max-h-[90vh] bg-[#0A0A0A] border border-white/10 rounded-3xl overflow-hidden shadow-2xl ring-1 ring-white/5 flex flex-col">
 
                 {/* Header */}
-                <div className="sticky top-0 z-10 bg-gradient-to-b from-[#0A0A0A] to-[#0A0A0A]/95 backdrop-blur-xl border-b border-white/10 p-6">
+                <div className="shrink-0 bg-gradient-to-b from-[#0A0A0A] to-[#0A0A0A]/95 backdrop-blur-xl border-b border-white/10 p-6">
                     <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-4">
-                            <div className="p-3 bg-brand-yellow/10 rounded-xl border border-brand-yellow/20">
-                                <Scale className="w-6 h-6 text-brand-yellow" />
-                            </div>
-                            <div>
-                                <h2 className="text-2xl font-display font-bold text-white tracking-tight">Terms of Service</h2>
-                                <p className="text-sm text-neutral-400 mt-1">MFOUR LABS Research Lab Access Agreement</p>
-                            </div>
+                        <div>
+                            <h2 className="text-2xl font-display font-bold text-white tracking-tight">Terms of Service</h2>
+                            <p className="text-sm text-neutral-400 mt-1">MFOUR LABS Research Lab Access Agreement</p>
                         </div>
                         <button
                             onClick={onClose}
@@ -40,20 +35,18 @@ export const TermsOfService: React.FC<TermsOfServiceProps> = ({ onClose }) => {
                 </div>
 
                 {/* Content */}
-                <div className="overflow-y-auto max-h-[calc(90vh-120px)] p-6 md:p-8 space-y-8 scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent">
+                <div className="flex-1 overflow-y-auto p-6 md:p-8 space-y-8 scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent">
 
                     {/* Last Updated */}
                     <div className="flex items-center gap-2 text-xs text-neutral-500 font-mono">
-                        <FileText className="w-4 h-4" />
                         <span>Last Updated: January 7, 2026</span>
                     </div>
 
                     {/* Important Notice */}
-                    <div className="bg-orange-950/20 border border-orange-500/30 rounded-xl p-4">
+                    <div className="bg-green-500/10 border border-green-500/30 rounded-xl p-4">
                         <div className="flex items-start gap-3">
-                            <AlertCircle className="w-5 h-5 text-orange-400 mt-0.5 flex-shrink-0" />
                             <div>
-                                <h3 className="text-sm font-semibold text-orange-300 mb-1">Important Notice</h3>
+                                <h3 className="text-sm font-semibold text-green-500 mb-1">Important Notice</h3>
                                 <p className="text-xs text-neutral-300 leading-relaxed">
                                     By accessing the MFOUR LABS Research Lab, you agree to be bound by these Terms of Service.
                                     Please read them carefully before proceeding with registration.
@@ -65,7 +58,7 @@ export const TermsOfService: React.FC<TermsOfServiceProps> = ({ onClose }) => {
                     {/* Section 1: Acceptance of Terms */}
                     <section className="space-y-3">
                         <h3 className="text-lg font-semibold text-white flex items-center gap-2">
-                            <span className="text-brand-yellow">1.</span> Acceptance of Terms
+                            <span className="text-green-500">1.</span> Acceptance of Terms
                         </h3>
                         <div className="text-sm text-neutral-300 leading-relaxed space-y-2 pl-6">
                             <p>
@@ -81,7 +74,7 @@ export const TermsOfService: React.FC<TermsOfServiceProps> = ({ onClose }) => {
                     {/* Section 2: Eligibility */}
                     <section className="space-y-3">
                         <h3 className="text-lg font-semibold text-white flex items-center gap-2">
-                            <span className="text-brand-yellow">2.</span> Eligibility
+                            <span className="text-green-500">2.</span> Eligibility
                         </h3>
                         <div className="text-sm text-neutral-300 leading-relaxed space-y-2 pl-6">
                             <p>You must meet the following criteria to register:</p>
@@ -97,7 +90,7 @@ export const TermsOfService: React.FC<TermsOfServiceProps> = ({ onClose }) => {
                     {/* Section 3: Early Access Program */}
                     <section className="space-y-3">
                         <h3 className="text-lg font-semibold text-white flex items-center gap-2">
-                            <span className="text-brand-yellow">3.</span> Early Access Program
+                            <span className="text-green-500">3.</span> Early Access Program
                         </h3>
                         <div className="text-sm text-neutral-300 leading-relaxed space-y-2 pl-6">
                             <p>
@@ -118,7 +111,7 @@ export const TermsOfService: React.FC<TermsOfServiceProps> = ({ onClose }) => {
                     {/* Section 4: Account Responsibilities */}
                     <section className="space-y-3">
                         <h3 className="text-lg font-semibold text-white flex items-center gap-2">
-                            <span className="text-brand-yellow">4.</span> Account Responsibilities
+                            <span className="text-green-500">4.</span> Account Responsibilities
                         </h3>
                         <div className="text-sm text-neutral-300 leading-relaxed space-y-2 pl-6">
                             <p>You agree to:</p>
@@ -135,7 +128,7 @@ export const TermsOfService: React.FC<TermsOfServiceProps> = ({ onClose }) => {
                     {/* Section 5: Acceptable Use */}
                     <section className="space-y-3">
                         <h3 className="text-lg font-semibold text-white flex items-center gap-2">
-                            <span className="text-brand-yellow">5.</span> Acceptable Use Policy
+                            <span className="text-green-500">5.</span> Acceptable Use Policy
                         </h3>
                         <div className="text-sm text-neutral-300 leading-relaxed space-y-2 pl-6">
                             <p>You agree NOT to:</p>
@@ -155,7 +148,7 @@ export const TermsOfService: React.FC<TermsOfServiceProps> = ({ onClose }) => {
                     {/* Section 6: Intellectual Property */}
                     <section className="space-y-3">
                         <h3 className="text-lg font-semibold text-white flex items-center gap-2">
-                            <span className="text-brand-yellow">6.</span> Intellectual Property
+                            <span className="text-green-500">6.</span> Intellectual Property
                         </h3>
                         <div className="text-sm text-neutral-300 leading-relaxed space-y-2 pl-6">
                             <p>
@@ -172,7 +165,7 @@ export const TermsOfService: React.FC<TermsOfServiceProps> = ({ onClose }) => {
                     {/* Section 7: Data Privacy */}
                     <section className="space-y-3">
                         <h3 className="text-lg font-semibold text-white flex items-center gap-2">
-                            <span className="text-brand-yellow">7.</span> Data Privacy & GDPR Compliance
+                            <span className="text-green-500">7.</span> Data Privacy & GDPR Compliance
                         </h3>
                         <div className="text-sm text-neutral-300 leading-relaxed space-y-2 pl-6">
                             <p>
@@ -182,14 +175,14 @@ export const TermsOfService: React.FC<TermsOfServiceProps> = ({ onClose }) => {
                                 <strong className="text-white">Your Rights:</strong>
                             </p>
                             <ul className="list-disc list-inside space-y-1 ml-4">
-                                <li><strong>Right to Access:</strong> Request a copy of your personal data</li>
+                                <li><strong>Right to Access:</strong> Request a copy of the personal data we hold about you</li>
                                 <li><strong>Right to Rectification:</strong> Correct inaccurate data</li>
                                 <li><strong>Right to Erasure:</strong> Request deletion of your account and data</li>
                                 <li><strong>Right to Data Portability:</strong> Export your data in JSON format</li>
                                 <li><strong>Right to Withdraw Consent:</strong> Opt-out of communications</li>
                             </ul>
                             <p className="mt-2">
-                                For full details, please review our <span className="text-brand-yellow">Privacy Policy</span>.
+                                For full details, please review our <span className="text-green-500">Privacy Policy</span>.
                             </p>
                         </div>
                     </section>
@@ -197,7 +190,7 @@ export const TermsOfService: React.FC<TermsOfServiceProps> = ({ onClose }) => {
                     {/* Section 8: Termination */}
                     <section className="space-y-3">
                         <h3 className="text-lg font-semibold text-white flex items-center gap-2">
-                            <span className="text-brand-yellow">8.</span> Termination
+                            <span className="text-green-500">8.</span> Termination
                         </h3>
                         <div className="text-sm text-neutral-300 leading-relaxed space-y-2 pl-6">
                             <p>
@@ -213,7 +206,7 @@ export const TermsOfService: React.FC<TermsOfServiceProps> = ({ onClose }) => {
                     {/* Section 9: Limitation of Liability */}
                     <section className="space-y-3">
                         <h3 className="text-lg font-semibold text-white flex items-center gap-2">
-                            <span className="text-brand-yellow">9.</span> Limitation of Liability
+                            <span className="text-green-500">9.</span> Limitation of Liability
                         </h3>
                         <div className="text-sm text-neutral-300 leading-relaxed space-y-2 pl-6">
                             <p>
@@ -227,7 +220,7 @@ export const TermsOfService: React.FC<TermsOfServiceProps> = ({ onClose }) => {
                     {/* Section 10: Changes to Terms */}
                     <section className="space-y-3">
                         <h3 className="text-lg font-semibold text-white flex items-center gap-2">
-                            <span className="text-brand-yellow">10.</span> Changes to Terms
+                            <span className="text-green-500">10.</span> Changes to Terms
                         </h3>
                         <div className="text-sm text-neutral-300 leading-relaxed space-y-2 pl-6">
                             <p>
@@ -240,7 +233,7 @@ export const TermsOfService: React.FC<TermsOfServiceProps> = ({ onClose }) => {
                     {/* Section 11: Governing Law */}
                     <section className="space-y-3">
                         <h3 className="text-lg font-semibold text-white flex items-center gap-2">
-                            <span className="text-brand-yellow">11.</span> Governing Law
+                            <span className="text-green-500">11.</span> Governing Law
                         </h3>
                         <div className="text-sm text-neutral-300 leading-relaxed space-y-2 pl-6">
                             <p>
@@ -253,7 +246,7 @@ export const TermsOfService: React.FC<TermsOfServiceProps> = ({ onClose }) => {
                     {/* Section 12: Contact */}
                     <section className="space-y-3">
                         <h3 className="text-lg font-semibold text-white flex items-center gap-2">
-                            <span className="text-brand-yellow">12.</span> Contact Information
+                            <span className="text-green-500">12.</span> Contact Information
                         </h3>
                         <div className="text-sm text-neutral-300 leading-relaxed space-y-2 pl-6">
                             <p>For questions about these Terms, please contact us:</p>
@@ -266,11 +259,10 @@ export const TermsOfService: React.FC<TermsOfServiceProps> = ({ onClose }) => {
                     </section>
 
                     {/* Acknowledgment */}
-                    <div className="bg-brand-yellow/10 border border-brand-yellow/20 rounded-xl p-5 mt-8">
+                    <div className="bg-green-500/10 border border-green-500/20 rounded-xl p-5 mt-8">
                         <div className="flex items-start gap-3">
-                            <Shield className="w-5 h-5 text-brand-yellow mt-0.5 flex-shrink-0" />
                             <div>
-                                <h3 className="text-sm font-semibold text-brand-yellow mb-2">Acknowledgment</h3>
+                                <h3 className="text-sm font-semibold text-green-500 mb-2">Acknowledgment</h3>
                                 <p className="text-xs text-neutral-300 leading-relaxed">
                                     By clicking "I Accept" or by accessing the Lab, you acknowledge that you have read and understood
                                     these Terms of Service and agree to be bound by them. If you do not agree, please do not use our services.
@@ -281,14 +273,14 @@ export const TermsOfService: React.FC<TermsOfServiceProps> = ({ onClose }) => {
                 </div>
 
                 {/* Footer */}
-                <div className="sticky bottom-0 bg-gradient-to-t from-[#0A0A0A] to-[#0A0A0A]/95 backdrop-blur-xl border-t border-white/10 p-6">
+                <div className="shrink-0 bg-gradient-to-t from-[#0A0A0A] to-[#0A0A0A]/95 backdrop-blur-xl border-t border-white/10 p-6">
                     <div className="flex items-center justify-between">
                         <p className="text-xs text-neutral-500 font-mono tracking-widest uppercase">
                             COPYRIGHT © 2026 MFOUR LABS
                         </p>
                         <button
                             onClick={onClose}
-                            className="px-6 py-2.5 bg-brand-yellow text-black text-sm font-bold rounded-full hover:bg-white transition-all"
+                            className="px-6 py-2.5 bg-green-500 text-black text-sm font-bold rounded-full hover:bg-white transition-all shadow-[0_0_20px_rgba(34,197,94,0.2)] hover:shadow-[0_0_30px_rgba(34,197,94,0.4)]"
                         >
                             Close
                         </button>

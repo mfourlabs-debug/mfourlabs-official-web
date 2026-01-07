@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { X, Shield, Lock, Database, Eye, Mail, FileText, AlertCircle } from 'lucide-react';
+import { X } from 'lucide-react';
 
 interface PrivacyPolicyProps {
     onClose: () => void;
@@ -13,21 +13,16 @@ export const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ onClose }) => {
 
             {/* Background Grid */}
             <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none"></div>
-            <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-brand-yellow/5 blur-[120px] rounded-full pointer-events-none"></div>
+            <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-green-500/5 blur-[120px] rounded-full pointer-events-none"></div>
 
             {/* Main Container */}
             <div className="relative w-full max-w-4xl max-h-[90vh] bg-[#0A0A0A] border border-white/10 rounded-3xl overflow-hidden shadow-2xl ring-1 ring-white/5 flex flex-col">
 
                 {/* Header */}
                 <div className="flex items-center justify-between p-6 border-b border-white/5 bg-gradient-to-r from-white/[0.02] to-transparent shrink-0">
-                    <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-lg bg-brand-yellow/10 border border-brand-yellow/20 flex items-center justify-center">
-                            <Shield className="w-5 h-5 text-brand-yellow" />
-                        </div>
-                        <div>
-                            <h2 className="text-xl font-display font-semibold text-white tracking-tight">Privacy Policy</h2>
-                            <div className="text-[10px] font-mono text-neutral-500 uppercase tracking-widest">Last Updated: January 2026</div>
-                        </div>
+                    <div>
+                        <h2 className="text-xl font-display font-semibold text-white tracking-tight">Privacy Policy</h2>
+                        <div className="text-[10px] font-mono text-neutral-500 uppercase tracking-widest">Last Updated: January 2026</div>
                     </div>
                     <button
                         onClick={onClose}
@@ -46,7 +41,6 @@ export const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ onClose }) => {
                     {/* Introduction */}
                     <section className="space-y-3">
                         <div className="flex items-center gap-2 mb-3">
-                            <FileText className="w-4 h-4 text-brand-yellow" />
                             <h3 className="text-lg font-display font-semibold text-white">Introduction</h3>
                         </div>
                         <p className="text-sm text-neutral-300 leading-relaxed">
@@ -60,7 +54,6 @@ export const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ onClose }) => {
                     {/* Information We Collect */}
                     <section className="space-y-3">
                         <div className="flex items-center gap-2 mb-3">
-                            <Database className="w-4 h-4 text-brand-yellow" />
                             <h3 className="text-lg font-display font-semibold text-white">Information We Collect</h3>
                         </div>
                         <div className="space-y-4">
@@ -71,19 +64,19 @@ export const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ onClose }) => {
                                 </p>
                                 <ul className="space-y-1 text-sm text-neutral-400 ml-4">
                                     <li className="flex items-start gap-2">
-                                        <span className="text-brand-yellow mt-1">•</span>
+                                        <span className="text-green-500 mt-1">•</span>
                                         <span><strong className="text-white">Full Legal Name:</strong> To create your digital identity and lab credentials</span>
                                     </li>
                                     <li className="flex items-start gap-2">
-                                        <span className="text-brand-yellow mt-1">•</span>
+                                        <span className="text-green-500 mt-1">•</span>
                                         <span><strong className="text-white">Email Address:</strong> For account verification, communications, and newsletter delivery (if opted in)</span>
                                     </li>
                                     <li className="flex items-start gap-2">
-                                        <span className="text-brand-yellow mt-1">•</span>
+                                        <span className="text-green-500 mt-1">•</span>
                                         <span><strong className="text-white">Date of Birth:</strong> For age verification and compliance purposes</span>
                                     </li>
                                     <li className="flex items-start gap-2">
-                                        <span className="text-brand-yellow mt-1">•</span>
+                                        <span className="text-green-500 mt-1">•</span>
                                         <span><strong className="text-white">Role & Professional Information:</strong> Current role and organization</span>
                                     </li>
                                 </ul>
@@ -101,7 +94,6 @@ export const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ onClose }) => {
                     {/* How We Use Your Information */}
                     <section className="space-y-3">
                         <div className="flex items-center gap-2 mb-3">
-                            <Eye className="w-4 h-4 text-brand-yellow" />
                             <h3 className="text-lg font-display font-semibold text-white">How We Use Your Information</h3>
                         </div>
                         <p className="text-sm text-neutral-300 leading-relaxed mb-3">
@@ -110,8 +102,8 @@ export const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ onClose }) => {
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                             <div className="p-4 rounded-xl bg-neutral-900/40 border border-white/5">
                                 <div className="flex items-center gap-2 mb-2">
-                                    <div className="w-6 h-6 rounded bg-brand-yellow/10 flex items-center justify-center">
-                                        <span className="text-xs font-bold text-brand-yellow">1</span>
+                                    <div className="w-6 h-6 rounded bg-green-500/10 flex items-center justify-center">
+                                        <span className="text-xs font-bold text-green-500">1</span>
                                     </div>
                                     <h4 className="text-sm font-semibold text-white">Account Management</h4>
                                 </div>
@@ -122,8 +114,8 @@ export const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ onClose }) => {
 
                             <div className="p-4 rounded-xl bg-neutral-900/40 border border-white/5">
                                 <div className="flex items-center gap-2 mb-2">
-                                    <div className="w-6 h-6 rounded bg-brand-yellow/10 flex items-center justify-center">
-                                        <span className="text-xs font-bold text-brand-yellow">2</span>
+                                    <div className="w-6 h-6 rounded bg-green-500/10 flex items-center justify-center">
+                                        <span className="text-xs font-bold text-green-500">2</span>
                                     </div>
                                     <h4 className="text-sm font-semibold text-white">Communication</h4>
                                 </div>
@@ -134,8 +126,8 @@ export const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ onClose }) => {
 
                             <div className="p-4 rounded-xl bg-neutral-900/40 border border-white/5">
                                 <div className="flex items-center gap-2 mb-2">
-                                    <div className="w-6 h-6 rounded bg-brand-yellow/10 flex items-center justify-center">
-                                        <span className="text-xs font-bold text-brand-yellow">3</span>
+                                    <div className="w-6 h-6 rounded bg-green-500/10 flex items-center justify-center">
+                                        <span className="text-xs font-bold text-green-500">3</span>
                                     </div>
                                     <h4 className="text-sm font-semibold text-white">Research & Analytics</h4>
                                 </div>
@@ -146,8 +138,8 @@ export const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ onClose }) => {
 
                             <div className="p-4 rounded-xl bg-neutral-900/40 border border-white/5">
                                 <div className="flex items-center gap-2 mb-2">
-                                    <div className="w-6 h-6 rounded bg-brand-yellow/10 flex items-center justify-center">
-                                        <span className="text-xs font-bold text-brand-yellow">4</span>
+                                    <div className="w-6 h-6 rounded bg-green-500/10 flex items-center justify-center">
+                                        <span className="text-xs font-bold text-green-500">4</span>
                                     </div>
                                     <h4 className="text-sm font-semibold text-white">Security & Compliance</h4>
                                 </div>
@@ -161,7 +153,6 @@ export const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ onClose }) => {
                     {/* Data Storage & Security */}
                     <section className="space-y-3">
                         <div className="flex items-center gap-2 mb-3">
-                            <Lock className="w-4 h-4 text-brand-yellow" />
                             <h3 className="text-lg font-display font-semibold text-white">Data Storage & Security</h3>
                         </div>
                         <div className="p-4 rounded-xl bg-neutral-900/40 border border-white/5 space-y-3">
@@ -170,19 +161,19 @@ export const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ onClose }) => {
                             </p>
                             <ul className="space-y-2 text-sm text-neutral-400">
                                 <li className="flex items-start gap-2">
-                                    <span className="text-brand-yellow mt-1">✓</span>
+                                    <span className="text-green-500 mt-1">✓</span>
                                     <span><strong className="text-white">Cloud Storage:</strong> We use Firebase/Firestore, a secure cloud database service provided by Google</span>
                                 </li>
                                 <li className="flex items-start gap-2">
-                                    <span className="text-brand-yellow mt-1">✓</span>
+                                    <span className="text-green-500 mt-1">✓</span>
                                     <span><strong className="text-white">Encryption:</strong> All data is encrypted in transit (HTTPS) and at rest</span>
                                 </li>
                                 <li className="flex items-start gap-2">
-                                    <span className="text-brand-yellow mt-1">✓</span>
+                                    <span className="text-green-500 mt-1">✓</span>
                                     <span><strong className="text-white">Access Control:</strong> Strict access controls limit who can view your information</span>
                                 </li>
                                 <li className="flex items-start gap-2">
-                                    <span className="text-brand-yellow mt-1">✓</span>
+                                    <span className="text-green-500 mt-1">✓</span>
                                     <span><strong className="text-white">Local Storage:</strong> Your Access ID is stored locally on your device for convenience</span>
                                 </li>
                             </ul>
@@ -192,10 +183,9 @@ export const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ onClose }) => {
                     {/* Data Sharing */}
                     <section className="space-y-3">
                         <div className="flex items-center gap-2 mb-3">
-                            <AlertCircle className="w-4 h-4 text-brand-yellow" />
                             <h3 className="text-lg font-display font-semibold text-white">Data Sharing & Disclosure</h3>
                         </div>
-                        <div className="p-4 rounded-xl bg-red-900/10 border border-red-500/20">
+                        <div className="p-4 rounded-xl bg-green-500/10 border border-green-500/20">
                             <p className="text-sm text-neutral-300 leading-relaxed mb-2">
                                 <strong className="text-white">We do NOT sell your personal information.</strong>
                             </p>
@@ -204,15 +194,15 @@ export const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ onClose }) => {
                             </p>
                             <ul className="space-y-1 text-sm text-neutral-400 mt-2 ml-4">
                                 <li className="flex items-start gap-2">
-                                    <span className="text-brand-yellow mt-1">•</span>
+                                    <span className="text-green-500 mt-1">•</span>
                                     <span>With service providers who assist in operating our platform (e.g., Firebase/Google Cloud)</span>
                                 </li>
                                 <li className="flex items-start gap-2">
-                                    <span className="text-brand-yellow mt-1">•</span>
+                                    <span className="text-green-500 mt-1">•</span>
                                     <span>When required by law or to protect our legal rights</span>
                                 </li>
                                 <li className="flex items-start gap-2">
-                                    <span className="text-brand-yellow mt-1">•</span>
+                                    <span className="text-green-500 mt-1">•</span>
                                     <span>With your explicit consent</span>
                                 </li>
                             </ul>
@@ -222,7 +212,6 @@ export const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ onClose }) => {
                     {/* Your Rights */}
                     <section className="space-y-3">
                         <div className="flex items-center gap-2 mb-3">
-                            <Shield className="w-4 h-4 text-brand-yellow" />
                             <h3 className="text-lg font-display font-semibold text-white">Your Rights</h3>
                         </div>
                         <p className="text-sm text-neutral-300 leading-relaxed mb-3">
@@ -247,7 +236,6 @@ export const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ onClose }) => {
                     {/* Newsletter */}
                     <section className="space-y-3">
                         <div className="flex items-center gap-2 mb-3">
-                            <Mail className="w-4 h-4 text-brand-yellow" />
                             <h3 className="text-lg font-display font-semibold text-white">Newsletter Subscription</h3>
                         </div>
                         <div className="p-4 rounded-xl bg-neutral-900/40 border border-white/5">
@@ -260,7 +248,6 @@ export const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ onClose }) => {
                     {/* Contact */}
                     <section className="space-y-3">
                         <div className="flex items-center gap-2 mb-3">
-                            <Mail className="w-4 h-4 text-brand-yellow" />
                             <h3 className="text-lg font-display font-semibold text-white">Contact Us</h3>
                         </div>
                         <div className="p-4 rounded-xl bg-neutral-900/40 border border-white/5">
@@ -269,8 +256,7 @@ export const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ onClose }) => {
                             </p>
                             <div className="space-y-2 text-sm">
                                 <div className="flex items-center gap-2">
-                                    <Mail className="w-4 h-4 text-brand-yellow" />
-                                    <a href="mailto:hq@mfourlabs.dev" className="text-brand-yellow hover:underline">
+                                    <a href="mailto:hq@mfourlabs.dev" className="text-green-500 hover:underline">
                                         hq@mfourlabs.dev
                                     </a>
                                 </div>
@@ -282,7 +268,6 @@ export const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ onClose }) => {
                     {/* Updates */}
                     <section className="space-y-3">
                         <div className="flex items-center gap-2 mb-3">
-                            <FileText className="w-4 h-4 text-brand-yellow" />
                             <h3 className="text-lg font-display font-semibold text-white">Policy Updates</h3>
                         </div>
                         <div className="p-4 rounded-xl bg-neutral-900/40 border border-white/5">
@@ -302,7 +287,7 @@ export const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ onClose }) => {
                         </div>
                         <button
                             onClick={onClose}
-                            className="px-6 py-2.5 bg-brand-yellow text-black text-sm font-bold tracking-wide rounded-full hover:bg-brand-yellow/90 transition-all duration-300"
+                            className="px-6 py-2.5 bg-green-500 text-black text-sm font-bold tracking-wide rounded-full hover:bg-green-500/90 transition-all duration-300 shadow-[0_0_20px_rgba(34,197,94,0.2)] hover:shadow-[0_0_30px_rgba(34,197,94,0.4)]"
                         >
                             I Understand
                         </button>

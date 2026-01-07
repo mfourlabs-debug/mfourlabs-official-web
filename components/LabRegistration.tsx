@@ -291,11 +291,11 @@ export const LabRegistration: React.FC<LabRegistrationProps> = ({ onClose }) => 
    // Shared Input Styles
    // Shared Input Styles - COMPACT MODE
    // Shared Input Styles - COMPACT MODE
-   const inputContainerClass = (error?: boolean) => `group relative bg-neutral-900 border ${error ? 'border-red-500/50' : 'border-white/10'} rounded-lg transition-all duration-300 focus-within:border-brand-yellow/60 focus-within:bg-neutral-800/80 hover:border-white/20 overflow-hidden`;
+   const inputContainerClass = (error?: boolean) => `group relative bg-neutral-900 border ${error ? 'border-red-500/50' : 'border-white/10'} rounded-lg transition-all duration-300 focus-within:border-green-500/60 focus-within:bg-neutral-800/80 hover:border-white/20 overflow-hidden`;
    const inputClass = "w-full bg-transparent border-none py-2.5 pl-10 pr-4 text-base md:text-sm text-white placeholder-neutral-600 focus:ring-0 focus:outline-none transition-all";
    const selectClass = "w-full bg-transparent border-none py-2.5 pl-10 pr-10 text-base md:text-sm text-white focus:ring-0 focus:outline-none appearance-none cursor-pointer [&>option]:bg-neutral-900 [&>option]:text-white";
-   const labelClass = "text-[9px] font-mono uppercase tracking-widest text-neutral-500 ml-1 mb-1 block group-focus-within:text-brand-yellow/80 transition-colors";
-   const iconClass = "absolute left-3 top-2.5 w-4 h-4 text-neutral-600 group-focus-within:text-brand-yellow transition-colors duration-300 pointer-events-none";
+   const labelClass = "text-[9px] font-mono uppercase tracking-widest text-neutral-500 ml-1 mb-1 block group-focus-within:text-green-500/80 transition-colors";
+   const iconClass = "absolute left-3 top-2.5 w-4 h-4 text-neutral-600 group-focus-within:text-green-500 transition-colors duration-300 pointer-events-none";
    const errorClass = "text-[10px] text-red-400 mt-1 ml-1 font-medium animate-fade-in";
 
    return (
@@ -303,7 +303,7 @@ export const LabRegistration: React.FC<LabRegistrationProps> = ({ onClose }) => 
 
          {/* Background Grid & Ambient Light */}
          <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none"></div>
-         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-brand-yellow/5 blur-[120px] rounded-full pointer-events-none"></div>
+         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-green-500/5 blur-[120px] rounded-full pointer-events-none"></div>
 
          {/* Main Container */}
          {/* Main Container - Adjusted height for laptops */}
@@ -313,7 +313,7 @@ export const LabRegistration: React.FC<LabRegistrationProps> = ({ onClose }) => 
             <div className="md:hidden flex flex-col bg-neutral-900/50 backdrop-blur-md border-b border-white/5 shrink-0 relative z-30">
                <div className="flex items-center justify-between p-4">
                   <div className="flex items-center gap-2">
-                     <div className="w-2 h-2 bg-brand-yellow rounded-full animate-pulse"></div>
+                     <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
                      <span className="font-mono font-bold text-sm tracking-tight text-white">mfourlabs.Lab</span>
                   </div>
                   <button onClick={onClose} className="p-2 text-neutral-400 hover:text-white">
@@ -324,13 +324,13 @@ export const LabRegistration: React.FC<LabRegistrationProps> = ({ onClose }) => 
                   <div className="grid grid-cols-2 border-t border-white/5">
                      <button
                         onClick={() => setMobileTab('form')}
-                        className={`py-3 text-xs font-medium tracking-wide flex items-center justify-center gap-2 transition-colors ${mobileTab === 'form' ? 'bg-white/5 text-brand-yellow border-b-2 border-brand-yellow' : 'text-neutral-500'}`}
+                        className={`py-3 text-xs font-medium tracking-wide flex items-center justify-center gap-2 transition-colors ${mobileTab === 'form' ? 'bg-white/5 text-green-500 border-b-2 border-green-500' : 'text-neutral-500'}`}
                      >
                         <Edit3 className="w-3.5 h-3.5" /> Registration
                      </button>
                      <button
                         onClick={() => setMobileTab('preview')}
-                        className={`py-3 text-xs font-medium tracking-wide flex items-center justify-center gap-2 transition-colors ${mobileTab === 'preview' ? 'bg-white/5 text-brand-yellow border-b-2 border-brand-yellow' : 'text-neutral-500'}`}
+                        className={`py-3 text-xs font-medium tracking-wide flex items-center justify-center gap-2 transition-colors ${mobileTab === 'preview' ? 'bg-white/5 text-green-500 border-b-2 border-green-500' : 'text-neutral-500'}`}
                      >
                         <Wallet className="w-3.5 h-3.5" /> ID Preview
                      </button>
@@ -345,7 +345,7 @@ export const LabRegistration: React.FC<LabRegistrationProps> = ({ onClose }) => 
                <div className="hidden md:flex items-center justify-between p-5 border-b border-white/5 bg-gradient-to-r from-white/[0.02] to-transparent shrink-0">
                   <div className="flex items-center gap-3">
                      <div className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center">
-                        <Terminal className="w-4 h-4 text-brand-yellow" />
+                        <Terminal className="w-4 h-4 text-green-500" />
                      </div>
                      <div>
                         <h2 className="text-lg font-mono font-bold text-white tracking-tight">Access Protocol</h2>
@@ -368,21 +368,21 @@ export const LabRegistration: React.FC<LabRegistrationProps> = ({ onClose }) => 
 
 
                         {/* Enterprise Notice Banner */}
-                        <div className="mb-6 p-4 rounded-xl bg-gradient-to-br from-brand-yellow/10 via-brand-yellow/5 to-transparent border border-brand-yellow/30 shrink-0 animate-fade-in">
+                        <div className="mb-6 p-4 rounded-xl bg-gradient-to-br from-green-500/10 via-green-500/5 to-transparent border border-green-500/30 shrink-0 animate-fade-in">
                            <div className="flex items-start gap-3">
-                              <div className="p-2 bg-brand-yellow/20 rounded-lg text-brand-yellow ring-1 ring-brand-yellow/30 shrink-0">
+                              <div className="p-2 bg-green-500/20 rounded-lg text-green-500 ring-1 ring-green-500/30 shrink-0">
                                  <Building2 className="w-5 h-5" />
                               </div>
                               <div className="flex-1">
                                  <h4 className="text-sm font-bold text-white tracking-wide mb-1.5">Organizations & Enterprises</h4>
                                  <p className="text-xs text-neutral-300 leading-relaxed mb-2">
-                                    Interested in <span className="text-brand-yellow font-semibold">Iron-Grade</span> for your team? Get priority access to our enterprise-grade AI governance platform.
+                                    Interested in <span className="text-green-500 font-semibold">Irongrade</span> for your team? Get priority access to our enterprise-grade AI governance platform.
                                  </p>
-                                 <div className="flex items-center gap-2 p-2.5 rounded-lg bg-black/40 border border-white/10 group hover:border-brand-yellow/50 transition-all">
-                                    <Mail className="w-4 h-4 text-brand-yellow shrink-0" />
+                                 <div className="flex items-center gap-2 p-2.5 rounded-lg bg-black/40 border border-white/10 group hover:border-green-500/50 transition-all">
+                                    <Mail className="w-4 h-4 text-green-500 shrink-0" />
                                     <a
                                        href="mailto:hq@mfourlabs.dev"
-                                       className="text-xs font-mono text-brand-yellow hover:text-white transition-colors"
+                                       className="text-xs font-mono text-green-500 hover:text-white transition-colors"
                                     >
                                        hq@mfourlabs.dev
                                     </a>
@@ -500,8 +500,8 @@ export const LabRegistration: React.FC<LabRegistrationProps> = ({ onClose }) => 
                               {/* Role Dropdown */}
                               <div className="space-y-0.5">
                                  <label className={labelClass}>CURRENT ROLE</label>
-                                 <div className={`${inputContainerClass(false)} ring-1 ring-white/5 focus-within:ring-brand-yellow/50`}>
-                                    <div className="absolute left-0 top-0 bottom-0 w-1 bg-brand-yellow"></div>
+                                 <div className={`${inputContainerClass(false)} ring-1 ring-white/5 focus-within:ring-green-500/50`}>
+                                    <div className="absolute left-0 top-0 bottom-0 w-1 bg-green-500"></div>
                                     <ScanLine className={iconClass} />
                                     <select
                                        name="role"
@@ -544,7 +544,7 @@ export const LabRegistration: React.FC<LabRegistrationProps> = ({ onClose }) => 
                            {/* NEW ENHANCED DATA COLLECTION SECTION */}
                            <div className="pt-6 border-t border-white/10">
                               <div className="mb-4 flex items-center gap-2">
-                                 <Layers className="w-4 h-4 text-brand-yellow" />
+                                 <Layers className="w-4 h-4 text-green-500" />
                                  <h3 className="text-sm font-semibold text-white tracking-wide">Tell Us More About You</h3>
                               </div>
 
@@ -553,8 +553,8 @@ export const LabRegistration: React.FC<LabRegistrationProps> = ({ onClose }) => 
                                  {/* Experience Level */}
                                  <div className="space-y-0.5">
                                     <label className={labelClass}>EXPERIENCE LEVEL</label>
-                                    <div className={`${inputContainerClass(!!errors.experienceLevel)} ring-1 ring-white/5 focus-within:ring-brand-yellow/50`}>
-                                       <div className="absolute left-0 top-0 bottom-0 w-1 bg-brand-yellow/60"></div>
+                                    <div className={`${inputContainerClass(!!errors.experienceLevel)} ring-1 ring-white/5 focus-within:ring-green-500/50`}>
+                                       <div className="absolute left-0 top-0 bottom-0 w-1 bg-green-500/60"></div>
                                        <GraduationCap className={iconClass} />
                                        <select
                                           name="experienceLevel"
@@ -576,7 +576,7 @@ export const LabRegistration: React.FC<LabRegistrationProps> = ({ onClose }) => 
                                  <div className="space-y-0.5">
                                     <label className={labelClass}>WHAT ARE YOU MOST EXCITED ABOUT? (OPTIONAL)</label>
                                     <div className={inputContainerClass(false)}>
-                                       <Edit3 className="absolute left-3 top-3 w-4 h-4 text-neutral-600 group-focus-within:text-brand-yellow transition-colors duration-300 pointer-events-none" />
+                                       <Edit3 className="absolute left-3 top-3 w-4 h-4 text-neutral-600 group-focus-within:text-green-500 transition-colors duration-300 pointer-events-none" />
                                        <textarea
                                           name="motivation"
                                           value={formData.motivation}
@@ -601,12 +601,12 @@ export const LabRegistration: React.FC<LabRegistrationProps> = ({ onClose }) => 
                                        name="privacy"
                                        checked={formData.privacy}
                                        onChange={handleChange}
-                                       className={`peer appearance-none w-5 h-5 rounded border ${errors.privacy ? 'border-red-500' : 'border-white/20'} bg-black/40 checked:bg-brand-yellow checked:border-brand-yellow transition-all`}
+                                       className={`peer appearance-none w-5 h-5 rounded border ${errors.privacy ? 'border-red-500' : 'border-white/20'} bg-black/40 checked:bg-green-500 checked:border-green-500 transition-all`}
                                     />
                                     <CheckCircle2 className="w-3.5 h-3.5 text-black absolute opacity-0 peer-checked:opacity-100 pointer-events-none transition-opacity" />
                                  </div>
                                  <span className="text-xs text-neutral-400 group-hover:text-neutral-200 transition-colors leading-relaxed">
-                                    I accept the <button type="button" onClick={(e) => { e.preventDefault(); setShowPrivacyPolicy(true); }} className="text-brand-yellow underline decoration-brand-yellow/40 underline-offset-2 hover:decoration-brand-yellow transition-colors">Privacy Policy</button> and <button type="button" onClick={(e) => { e.preventDefault(); setShowTermsOfService(true); }} className="text-brand-yellow underline decoration-brand-yellow/40 underline-offset-2 hover:decoration-brand-yellow transition-colors">Terms of Service</button>, and agree to the processing of my research data for lab access credentials.
+                                    I accept the <button type="button" onClick={(e) => { e.preventDefault(); setShowPrivacyPolicy(true); }} className="text-green-500 underline decoration-green-500/40 underline-offset-2 hover:decoration-green-500 transition-colors">Privacy Policy</button> and <button type="button" onClick={(e) => { e.preventDefault(); setShowTermsOfService(true); }} className="text-green-500 underline decoration-green-500/40 underline-offset-2 hover:decoration-green-500 transition-colors">Terms of Service</button>, and agree to the processing of my research data for lab access credentials.
                                  </span>
                               </label>
                               {errors.privacy && <div className="text-[10px] text-red-400 text-center animate-fade-in">{errors.privacy}</div>}
@@ -620,9 +620,9 @@ export const LabRegistration: React.FC<LabRegistrationProps> = ({ onClose }) => 
                               <button
                                  type="submit"
                                  disabled={isSubmitting}
-                                 className="w-full md:w-auto mb-5 px-8 py-3 bg-brand-white text-black text-sm font-bold tracking-wide rounded-full hover:bg-brand-yellow 
+                                 className="w-full md:w-auto mb-5 px-8 py-3 bg-brand-white text-black text-sm font-bold tracking-wide rounded-full hover:bg-green-500 
                                  hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center 
-                                 justify-center gap-2 shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:shadow-[0_0_30px_rgba(255,230,0,0.3)]"
+                                 justify-center gap-2 shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:shadow-[0_0_30px_rgba(34,197,94,0.3)]"
                               >
                                  {isSubmitting ? 'Processing Request...' : 'Generate Identity'}
                                  {!isSubmitting && <ArrowRight className="w-4 h-4" />}
@@ -671,7 +671,7 @@ export const LabRegistration: React.FC<LabRegistrationProps> = ({ onClose }) => 
 
                {/* Environmental Lighting/Effects */}
                <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(15,15,15,1),rgba(0,0,0,1))]"></div>
-               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-brand-yellow/5 blur-[120px] rounded-full pointer-events-none mix-blend-screen"></div>
+               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-green-500/5 blur-[120px] rounded-full pointer-events-none mix-blend-screen"></div>
 
                {/* 3D Scene Container */}
                <div className="relative z-10 w-full max-w-[340px] perspective-[1200px] group">
@@ -688,7 +688,7 @@ export const LabRegistration: React.FC<LabRegistrationProps> = ({ onClose }) => 
                         <div className="absolute inset-0 opacity-20 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPgo8cmVjdCB3aWR0aD0iNCIgaGVpZ2h0PSI0IiBmaWxsPSIjZmZmIiBmaWxsLW9wYWNpdHk9IjAuMDUiLz4KPC9zdmc+')]"></div>
 
                         {/* Ment4AI Yellow Accent Line */}
-                        <div className="absolute top-0 left-0 w-full h-1 bg-brand-yellow shadow-[0_0_15px_rgba(255,230,0,0.5)]"></div>
+                        <div className="absolute top-0 left-0 w-full h-1 bg-green-500 shadow-[0_0_15px_rgba(34,197,94,0.5)]"></div>
 
                         {/* Card Content */}
                         <div className="relative z-10 p-6 h-full flex flex-col justify-between">
@@ -699,8 +699,8 @@ export const LabRegistration: React.FC<LabRegistrationProps> = ({ onClose }) => 
                                  {/* Minimalist M4 Logo */}
                                  <div className="w-8 h-8 rounded-lg bg-white text-black flex items-center justify-center font-mono font-bold text-sm shadow-lg">M4</div>
                                  <div>
-                                    <div className="text-[9px] font-bold text-brand-yellow uppercase tracking-widest mb-0.5">Early Access</div>
-                                    <div className="text-xs font-semibold text-white tracking-tight">Iron-Grade</div>
+                                    <div className="text-[9px] font-bold text-green-500 uppercase tracking-widest mb-0.5">Early Access</div>
+                                    <div className="text-xs font-semibold text-white tracking-tight">Irongrade</div>
                                  </div>
                               </div>
 
@@ -716,7 +716,7 @@ export const LabRegistration: React.FC<LabRegistrationProps> = ({ onClose }) => 
                            {/* Body - User Identity */}
                            <div className="mt-2">
                               <div className="flex items-center gap-2 mb-1 opacity-80">
-                                 <ScanLine className="w-3 h-3 text-brand-yellow" />
+                                 <ScanLine className="w-3 h-3 text-green-500" />
                                  <span className="text-[9px] font-mono text-neutral-300 uppercase tracking-widest">{formData.role || 'System Architect'}</span>
                               </div>
                               <h3 className="text-2xl md:text-3xl font-mono font-bold text-white tracking-tight leading-none truncate drop-shadow-md">
@@ -741,7 +741,7 @@ export const LabRegistration: React.FC<LabRegistrationProps> = ({ onClose }) => 
                               </div>
 
                               {/* Holographic Patch */}
-                              <div className="w-8 h-8 rounded bg-gradient-to-br from-brand-yellow/20 to-purple-500/20 border border-white/10 flex items-center justify-center relative overflow-hidden">
+                              <div className="w-8 h-8 rounded bg-gradient-to-br from-green-500/20 to-purple-500/20 border border-white/10 flex items-center justify-center relative overflow-hidden">
                                  <div className="absolute inset-0 bg-[linear-gradient(120deg,transparent,rgba(255,255,255,0.3),transparent)]"></div>
                                  <QrCode className="w-5 h-5 text-white/80" />
                               </div>
@@ -760,12 +760,12 @@ export const LabRegistration: React.FC<LabRegistrationProps> = ({ onClose }) => 
                   </div>
 
                   {/* Floor Shadow */}
-                  <div className="absolute -bottom-14 left-1/2 -translate-x-1/2 w-[70%] h-6 bg-brand-yellow/20 blur-[30px] rounded-[100%] transition-all duration-700 group-hover:w-[85%] group-hover:bg-brand-yellow/30"></div>
+                  <div className="absolute -bottom-14 left-1/2 -translate-x-1/2 w-[70%] h-6 bg-green-500/20 blur-[30px] rounded-[100%] transition-all duration-700 group-hover:w-[85%] group-hover:bg-green-500/30"></div>
 
                   {/* Status Indicator */}
                   <div className="mt-16 text-center space-y-2">
                      <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-neutral-900 border border-white/10 backdrop-blur-md shadow-lg">
-                        <div className={`w-1.5 h-1.5 rounded-full ${step === 2 ? 'bg-green-500' : 'bg-brand-yellow'} animate-pulse`}></div>
+                        <div className={`w-1.5 h-1.5 rounded-full ${step === 2 ? 'bg-green-500' : 'bg-green-500'} animate-pulse`}></div>
                         <span className="text-[10px] font-mono text-neutral-400 font-medium tracking-wider">
                            {step === 1 ? 'LIVE PREVIEW' : 'ISSUED'}
                         </span>
