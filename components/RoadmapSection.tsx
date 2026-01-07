@@ -6,20 +6,20 @@ import { RoadmapItem } from '@/lib/types';
 const ROADMAP_DATA: RoadmapItem[] = [
   {
     phase: "01",
-    title: "Phase I: Standardization",
-    description: "Certifying the first 100 Vibe Architects. Establishing the MFOUR Vibe Framework (MVF) as the universal language for System Design.",
+    title: "Phase I: Open Source Dominance",
+    description: "Releasing the MVS Canvas and XML Kernel Gists as public goods. We provide the 'Goldmine'—premium, high-value schemas—to the global freelance workforce. Establishing M4 protocols as the universal standard for commercial prompt engineering.",
     active: true
   },
   {
     phase: "02",
-    title: "Phase II: The Open Kernel",
-    description: "Releasing the 'Linux of Vibes'. An open-source repository of pre-architected Kernels and Synapse patterns for global use.",
+    title: "Phase II: Adversarial Hardening",
+    description: "The Shift to Safety. While the community builds on our Open Source kernel, M4 Labs launches the 'Red Team' unit to stress-test enterprise systems against hallucination, data leaks, and EU AI Act failures.",
     active: false
   },
   {
     phase: "03",
-    title: "Phase III: Decentralized Intelligence",
-    description: "Building the MFOURLABS Network. A decentralized guild of Architects replacing traditional software houses with Agentic Systems.",
+    title: "Phase III: Sovereign Runtime",
+    description: "The Iron Grade Deployment. Moving from 'Prompting' to 'Infrastructure'. We take the now-standardized M4 protocols and bake them into a sovereign, on-premise runtime environment for high-security industries.",
     active: false
   }
 ];
