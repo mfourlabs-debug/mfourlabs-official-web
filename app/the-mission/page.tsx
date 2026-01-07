@@ -66,7 +66,7 @@ export default function TheMissionPage() {
 
                     {/* Hero Section: The Manifesto */}
                     <div className="max-w-4xl mb-32">
-                        <span className="block text-brand-yellow text-xs tracking-[0.2em] mb-6">M4 LABS CORE PHILOSOPHY</span>
+                        <span className="block text-brand-yellow text-xs tracking-[0.2em] mb-6">MFOUR LABS CORE PHILOSOPHY</span>
                         <h1 className="text-5xl md:text-8xl font-bold text-white tracking-tighter mb-8 leading-[0.85]">
                             BRIDGING THE <br />
                             <span className="text-zinc-800 text-6xl md:text-7xl italic">DETERMINISTIC</span> <br />
