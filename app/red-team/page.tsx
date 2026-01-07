@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Menu, X, ArrowUpRight, ShieldAlert, Zap, Target, Crosshair } from 'lucide-react';
 import { GlobalPreloader } from '@/components/GlobalPreloader';
@@ -8,6 +8,38 @@ import { GlobalPreloader } from '@/components/GlobalPreloader';
 export default function RedTeamPage() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
+    const [heroTitle, setHeroTitle] = useState<{
+        line1: string;
+        line2: string;
+        line3?: string;
+        key: string;
+    }>({
+        line1: "BREAK",
+        line2: "THE SYSTEM",
+        key: "initial"
+    });
+    const [isExiting, setIsExiting] = useState(false);
+
+    useEffect(() => {
+        const fadeTimer = setTimeout(() => {
+            setIsExiting(true);
+        }, 3000);
+
+        const switchTimer = setTimeout(() => {
+            setHeroTitle({
+                line1: "ADVERSARIAL",
+                line2: "GOVERNANCE",
+                line3: "AUDITS",
+                key: "final"
+            });
+            setIsExiting(false);
+        }, 3800);
+
+        return () => {
+            clearTimeout(fadeTimer);
+            clearTimeout(switchTimer);
+        };
+    }, []);
 
     if (isLoading) {
         return <GlobalPreloader onComplete={() => setIsLoading(false)} theme="red" />;
@@ -72,18 +104,27 @@ export default function RedTeamPage() {
 
                 <div className="relative z-10 px-6 md:px-12">
                     {/* Hero Section */}
+                    {/* Hero Section */}
+                    {/* Hero Section */}
                     <div className="max-w-4xl mx-auto text-center mb-24">
-                        <span className="block text-red-500 text-xs tracking-[0.2em] mb-6">ADVERSARIAL UNIT // LEVEL 02</span>
-                        <h1 className="text-5xl md:text-7xl font-bold text-white tracking-tighter mb-8 leading-[0.9]">
-                            ADVERSARIAL <br />
-                            <span className="text-zinc-800">GOVERNANCE</span> <br />
-                            AUDITS
-                        </h1>
-                        <p className="text-zinc-500 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed mb-12">
+                        <span className="block text-red-500 text-xs tracking-[0.2em] mb-6 animate-slide-up opacity-0" style={{ animationDelay: '0.1s' }}>ADVERSARIAL UNIT // LEVEL 02</span>
+
+                        <div className={`transition-opacity duration-700 min-h-[180px] md:min-h-[240px] ${isExiting ? 'opacity-0' : 'opacity-100'}`}>
+                            <h1 key={heroTitle.key} className="text-5xl md:text-7xl font-bold text-white tracking-tighter mb-8 leading-[0.9] animate-slide-up opacity-0" style={{ animationDelay: '0.2s' }}>
+                                {heroTitle.line1} <br />
+                                <span className={heroTitle.key === 'initial' ? "text-zinc-600" : "text-zinc-800"}>{heroTitle.line2}</span>
+                                {heroTitle.line3 && (
+                                    <>
+                                        <br />
+                                        {heroTitle.line3}
+                                    </>
+                                )}
+                            </h1>
+                        </div>
+
+                        <p className="text-zinc-500 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed mb-12 animate-slide-up opacity-0" style={{ animationDelay: '0.4s' }}>
                             Don't just test your model; test your infrastructure. We execute advanced semantic hijacking, kernel-bypass attempts, and anchor-poisoning simulations to ensure your IronGrade stay ironclad.
                         </p>
-
-
                     </div>
 
                     {/* Features Grid */}

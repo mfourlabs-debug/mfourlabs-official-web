@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Menu, X, ArrowUpRight, ShieldCheck, Server, Lock, Globe, Cpu, FileText, Activity } from 'lucide-react';
 import { LabRegistration } from '@/components/LabRegistration';
@@ -10,6 +10,38 @@ export default function IronGradePage() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [showRegistration, setShowRegistration] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
+    const [heroTitle, setHeroTitle] = useState<{
+        line1: string;
+        line2: string;
+        line3?: string;
+        key: string;
+    }>({
+        line1: "ELIMINATE",
+        line2: "THE VIBE",
+        key: "initial"
+    });
+    const [isExiting, setIsExiting] = useState(false);
+
+    useEffect(() => {
+        const fadeTimer = setTimeout(() => {
+            setIsExiting(true);
+        }, 3000);
+
+        const switchTimer = setTimeout(() => {
+            setHeroTitle({
+                line1: "DETERMINISTIC",
+                line2: "GOVERNANCE",
+                line3: "INFRASTRUCTURE",
+                key: "final"
+            });
+            setIsExiting(false);
+        }, 3800);
+
+        return () => {
+            clearTimeout(fadeTimer);
+            clearTimeout(switchTimer);
+        };
+    }, []);
 
     if (isLoading) {
         return <GlobalPreloader onComplete={() => setIsLoading(false)} theme="yellow" />;
@@ -76,27 +108,39 @@ export default function IronGradePage() {
 
                 <div className="relative z-10 px-6 md:px-12">
                     {/* Hero Section */}
+                    {/* Hero Section */}
                     <div className="max-w-4xl mx-auto text-center mb-24">
-                        <span className="block text-brand-yellow text-xs tracking-[0.2em] mb-6">INFRASTRUCTURE LEVEL: IRON-GRADE</span>
-                        <h1 className="text-5xl md:text-7xl font-bold text-white tracking-tighter mb-8 leading-[0.9]">
-                            DETERMINISTIC <br />
-                            <span className="text-zinc-800">GOVERNANCE</span> <br />
-                            INFRASTRUCTURE
-                        </h1>
-                        <p className="text-zinc-500 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed mb-12">
+                        <span className="block text-brand-yellow text-xs tracking-[0.2em] mb-6 animate-slide-up opacity-0" style={{ animationDelay: '0.1s' }}>INFRASTRUCTURE LEVEL: IRON-GRADE</span>
+
+                        <div className={`transition-opacity duration-700 min-h-[180px] md:min-h-[240px] ${isExiting ? 'opacity-0' : 'opacity-100'}`}>
+                            <h1 key={heroTitle.key} className="text-5xl md:text-7xl font-bold text-white tracking-tighter mb-8 leading-[0.9] animate-slide-up opacity-0" style={{ animationDelay: '0.2s' }}>
+                                {heroTitle.line1} <br />
+                                <span className={heroTitle.key === 'initial' ? "text-zinc-600" : "text-zinc-800"}>{heroTitle.line2}</span>
+                                {heroTitle.line3 && (
+                                    <>
+                                        <br />
+                                        {heroTitle.line3}
+                                    </>
+                                )}
+                            </h1>
+                        </div>
+
+                        <p className="text-zinc-500 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed mb-12 animate-slide-up opacity-0" style={{ animationDelay: '0.4s' }}>
                             Sovereign AI security for high-risk deployments. Beyond probabilistic guessing—enforcing deterministic truth through Multi-layer Variable Frameworks (MVF) and real-time hallucination interception.
                         </p>
 
-                        <button
-                            onClick={() => setShowRegistration(true)}
-                            className="group relative inline-flex items-center gap-3 px-8 py-4 bg-zinc-900 border border-zinc-700 hover:border-brand-yellow/50 rounded-lg overflow-hidden transition-all duration-300"
-                        >
-                            <span className="absolute inset-0 bg-brand-yellow/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></span>
-                            <span className="relative font-bold text-white group-hover:text-brand-yellow transition-colors tracking-wider text-sm">
-                                REQUEST ACCESS ID
-                            </span>
-                            <ArrowUpRight className="relative w-4 h-4 text-zinc-500 group-hover:text-brand-yellow transition-colors" />
-                        </button>
+                        <div className="animate-slide-up opacity-0" style={{ animationDelay: '0.5s' }}>
+                            <button
+                                onClick={() => setShowRegistration(true)}
+                                className="group relative inline-flex items-center gap-3 px-8 py-4 bg-zinc-900 border border-zinc-700 hover:border-brand-yellow/50 rounded-lg overflow-hidden transition-all duration-300"
+                            >
+                                <span className="absolute inset-0 bg-brand-yellow/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></span>
+                                <span className="relative font-bold text-white group-hover:text-brand-yellow transition-colors tracking-wider text-sm">
+                                    REQUEST ACCESS ID
+                                </span>
+                                <ArrowUpRight className="relative w-4 h-4 text-zinc-500 group-hover:text-brand-yellow transition-colors" />
+                            </button>
+                        </div>
                     </div>
 
                     {/* Features Grid */}
