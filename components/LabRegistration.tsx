@@ -19,7 +19,7 @@ export const LabRegistration: React.FC<LabRegistrationProps> = ({ onClose }) => 
       name: '',
       email: '',
       dob: '',
-      role: 'Student', // Default
+      role: 'Independent Researcher', // Default
       studentLevel: 'Undergraduate',
       degree: '',
       organization: '',
@@ -89,9 +89,7 @@ export const LabRegistration: React.FC<LabRegistrationProps> = ({ onClose }) => 
          newErrors.organization = "Organization is required";
       }
 
-      if (formData.role === 'Student' && (!formData.degree || !formData.degree.trim())) {
-         newErrors.degree = "Degree/Major is required";
-      }
+
 
       // New field validations
 
@@ -316,7 +314,7 @@ export const LabRegistration: React.FC<LabRegistrationProps> = ({ onClose }) => 
                <div className="flex items-center justify-between p-4">
                   <div className="flex items-center gap-2">
                      <div className="w-2 h-2 bg-brand-yellow rounded-full animate-pulse"></div>
-                     <span className="font-display font-bold text-sm tracking-tight text-white">mfourlabs.Lab</span>
+                     <span className="font-mono font-bold text-sm tracking-tight text-white">mfourlabs.Lab</span>
                   </div>
                   <button onClick={onClose} className="p-2 text-neutral-400 hover:text-white">
                      <X className="w-5 h-5" />
@@ -350,8 +348,8 @@ export const LabRegistration: React.FC<LabRegistrationProps> = ({ onClose }) => 
                         <Terminal className="w-4 h-4 text-brand-yellow" />
                      </div>
                      <div>
-                        <h2 className="text-lg font-display font-semibold text-white tracking-tight">Access Protocol</h2>
-                        <div className="text-[10px] font-mono text-neutral-500 uppercase tracking-widest">Secure Gateway v2.4</div>
+                        <h2 className="text-lg font-mono font-bold text-white tracking-tight">Access Protocol</h2>
+                        <div className="text-[10px] font-mono text-neutral-500 uppercase tracking-widest">Secure Gateway</div>
                      </div>
                   </div>
                   <button onClick={onClose} className="text-neutral-500 hover:text-white transition-colors flex items-center gap-2 group">
@@ -378,15 +376,15 @@ export const LabRegistration: React.FC<LabRegistrationProps> = ({ onClose }) => 
                               <div className="flex-1">
                                  <h4 className="text-sm font-bold text-white tracking-wide mb-1.5">Organizations & Enterprises</h4>
                                  <p className="text-xs text-neutral-300 leading-relaxed mb-2">
-                                    Interested in <span className="text-brand-yellow font-semibold">MVF Cloud (alpha)</span> for your team? Get priority access to our enterprise-grade AI governance platform.
+                                    Interested in <span className="text-brand-yellow font-semibold">Iron-Grade</span> for your team? Get priority access to our enterprise-grade AI governance platform.
                                  </p>
                                  <div className="flex items-center gap-2 p-2.5 rounded-lg bg-black/40 border border-white/10 group hover:border-brand-yellow/50 transition-all">
                                     <Mail className="w-4 h-4 text-brand-yellow shrink-0" />
                                     <a
-                                       href="mailto:licensing@mfourlabs.dev"
+                                       href="mailto:hq@mfourlabs.dev"
                                        className="text-xs font-mono text-brand-yellow hover:text-white transition-colors"
                                     >
-                                       licensing@mfourlabs.dev
+                                       hq@mfourlabs.dev
                                     </a>
                                  </div>
                               </div>
@@ -511,7 +509,7 @@ export const LabRegistration: React.FC<LabRegistrationProps> = ({ onClose }) => 
                                        onChange={handleChange}
                                        className={selectClass}
                                     >
-                                       <option value="Student">Student</option>
+
                                        <option value="Independent Researcher">Independent Researcher</option>
                                        <option value="Software Engineer">Software Engineer</option>
                                        <option value="Systems Architect">Systems Architect</option>
@@ -523,48 +521,11 @@ export const LabRegistration: React.FC<LabRegistrationProps> = ({ onClose }) => 
                                  </div>
                               </div>
 
-                              {/* CONDITIONAL STUDENT FIELDS */}
-                              {formData.role === 'Student' && (
-                                 <>
-                                    <div className="space-y-0.5 animate-fade-in">
-                                       <label className={labelClass}>ACADEMIC LEVEL</label>
-                                       <div className={`${inputContainerClass(false)} border-l-2 border-l-brand-yellow/50`}>
-                                          <GraduationCap className={iconClass} />
-                                          <select
-                                             name="studentLevel"
-                                             value={formData.studentLevel}
-                                             onChange={handleChange}
-                                             className={selectClass}
-                                          >
-                                             <option value="Undergraduate">Undergraduate</option>
-                                             <option value="Masters / Graduate">Masters / Graduate</option>
-                                             <option value="PhD / Doctorate">PhD / Doctorate</option>
-                                             <option value="Post-Doc">Post-Doc</option>
-                                          </select>
-                                          <ChevronRight className="absolute right-3 top-3 w-3 h-3 text-neutral-500 rotate-90 pointer-events-none" />
-                                       </div>
-                                    </div>
-                                    <div className="space-y-0.5 animate-fade-in">
-                                       <label className={labelClass}>DEGREE / MAJOR</label>
-                                       <div className={inputContainerClass(!!errors.degree)}>
-                                          <BookOpen className={iconClass} />
-                                          <input
-                                             name="degree"
-                                             value={formData.degree}
-                                             onChange={handleChange}
-                                             type="text"
-                                             placeholder="ex. Computer Science"
-                                             className={inputClass}
-                                          />
-                                       </div>
-                                       {errors.degree && <div className={errorClass}>{errors.degree}</div>}
-                                    </div>
-                                 </>
-                              )}
+
 
                               {/* Organization */}
                               <div className="space-y-0.5 md:col-span-2">
-                                 <label className={labelClass}>{formData.role === 'Student' ? 'UNIVERSITY / INSTITUTION' : 'ORGANIZATION'}</label>
+                                 <label className={labelClass}>ORGANIZATION</label>
                                  <div className={inputContainerClass(!!errors.organization)}>
                                     <Building2 className={iconClass} />
                                     <input
@@ -572,7 +533,7 @@ export const LabRegistration: React.FC<LabRegistrationProps> = ({ onClose }) => 
                                        value={formData.organization}
                                        onChange={handleChange}
                                        type="text"
-                                       placeholder={formData.role === 'Student' ? "ex. MIT, Stanford, Local University" : "ex. Google, Startup, Self"}
+                                       placeholder="ex. Google, Startup, Self"
                                        className={inputClass}
                                     />
                                  </div>
@@ -675,7 +636,7 @@ export const LabRegistration: React.FC<LabRegistrationProps> = ({ onClose }) => 
                            <CheckCircle2 className="w-10 h-10" />
                         </div>
                         <div className="space-y-2">
-                           <h3 className="text-4xl font-display font-medium text-white">You're On The List!</h3>
+                           <h3 className="text-4xl font-mono font-bold text-white">You're On The List!</h3>
                            <p className="text-neutral-400 max-w-md mx-auto text-sm leading-relaxed">
                               Welcome to the Node, <span className="text-white font-medium">{formData.name}</span>. Your early access request has been received.
                            </p>
@@ -736,10 +697,10 @@ export const LabRegistration: React.FC<LabRegistrationProps> = ({ onClose }) => 
                            <div className="flex items-start justify-between">
                               <div className="flex items-center gap-3">
                                  {/* Minimalist M4 Logo */}
-                                 <div className="w-8 h-8 rounded-lg bg-white text-black flex items-center justify-center font-display font-bold text-sm shadow-lg">M4</div>
+                                 <div className="w-8 h-8 rounded-lg bg-white text-black flex items-center justify-center font-mono font-bold text-sm shadow-lg">M4</div>
                                  <div>
                                     <div className="text-[9px] font-bold text-brand-yellow uppercase tracking-widest mb-0.5">Early Access</div>
-                                    <div className="text-xs font-semibold text-white tracking-tight">MVF Cloud (alpha)</div>
+                                    <div className="text-xs font-semibold text-white tracking-tight">Iron-Grade</div>
                                  </div>
                               </div>
 
@@ -758,7 +719,7 @@ export const LabRegistration: React.FC<LabRegistrationProps> = ({ onClose }) => 
                                  <ScanLine className="w-3 h-3 text-brand-yellow" />
                                  <span className="text-[9px] font-mono text-neutral-300 uppercase tracking-widest">{formData.role || 'System Architect'}</span>
                               </div>
-                              <h3 className="text-2xl md:text-3xl font-display font-semibold text-white tracking-tight leading-none truncate drop-shadow-md">
+                              <h3 className="text-2xl md:text-3xl font-mono font-bold text-white tracking-tight leading-none truncate drop-shadow-md">
                                  {formData.name || 'Member Name'}
                               </h3>
                               <p className="text-[10px] text-neutral-400 mt-1 font-medium truncate">
@@ -771,7 +732,7 @@ export const LabRegistration: React.FC<LabRegistrationProps> = ({ onClose }) => 
                               <div className="flex gap-6">
                                  <div>
                                     <div className="text-[7px] uppercase tracking-widest text-neutral-500 mb-0.5">Issued</div>
-                                    <div className="font-mono text-[10px] text-neutral-300">2025</div>
+                                    <div className="font-mono text-[10px] text-neutral-300">2026</div>
                                  </div>
                                  <div>
                                     <div className="text-[7px] uppercase tracking-widest text-neutral-500 mb-0.5">ID Ref</div>

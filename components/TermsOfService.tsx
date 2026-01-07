@@ -26,7 +26,7 @@ export const TermsOfService: React.FC<TermsOfServiceProps> = ({ onClose }) => {
                             </div>
                             <div>
                                 <h2 className="text-2xl font-display font-bold text-white tracking-tight">Terms of Service</h2>
-                                <p className="text-sm text-neutral-400 mt-1">MFOURLABS Research Lab Access Agreement</p>
+                                <p className="text-sm text-neutral-400 mt-1">MFOUR LABS Research Lab Access Agreement</p>
                             </div>
                         </div>
                         <button
@@ -45,7 +45,7 @@ export const TermsOfService: React.FC<TermsOfServiceProps> = ({ onClose }) => {
                     {/* Last Updated */}
                     <div className="flex items-center gap-2 text-xs text-neutral-500 font-mono">
                         <FileText className="w-4 h-4" />
-                        <span>Last Updated: December 8, 2025</span>
+                        <span>Last Updated: January 7, 2026</span>
                     </div>
 
                     {/* Important Notice */}
@@ -55,7 +55,7 @@ export const TermsOfService: React.FC<TermsOfServiceProps> = ({ onClose }) => {
                             <div>
                                 <h3 className="text-sm font-semibold text-orange-300 mb-1">Important Notice</h3>
                                 <p className="text-xs text-neutral-300 leading-relaxed">
-                                    By accessing the MFOURLABS Research Lab, you agree to be bound by these Terms of Service.
+                                    By accessing the MFOUR LABS Research Lab, you agree to be bound by these Terms of Service.
                                     Please read them carefully before proceeding with registration.
                                 </p>
                             </div>
@@ -69,7 +69,7 @@ export const TermsOfService: React.FC<TermsOfServiceProps> = ({ onClose }) => {
                         </h3>
                         <div className="text-sm text-neutral-300 leading-relaxed space-y-2 pl-6">
                             <p>
-                                By registering for early access to MFOURLABS ("the Lab"), you acknowledge that you have read,
+                                By registering for early access to MFOUR LABS ("the Lab"), you acknowledge that you have read,
                                 understood, and agree to be bound by these Terms of Service and our Privacy Policy.
                             </p>
                             <p>
@@ -160,7 +160,7 @@ export const TermsOfService: React.FC<TermsOfServiceProps> = ({ onClose }) => {
                         <div className="text-sm text-neutral-300 leading-relaxed space-y-2 pl-6">
                             <p>
                                 All content, features, and functionality of the Lab, including but not limited to text, graphics,
-                                logos, code, and software, are owned by MFOURLABS and protected by international copyright,
+                                logos, code, and software, are owned by MFOUR LABS and protected by international copyright,
                                 trademark, and other intellectual property laws.
                             </p>
                             <p>
@@ -217,7 +217,7 @@ export const TermsOfService: React.FC<TermsOfServiceProps> = ({ onClose }) => {
                         </h3>
                         <div className="text-sm text-neutral-300 leading-relaxed space-y-2 pl-6">
                             <p>
-                                To the maximum extent permitted by law, MFOURLABS shall not be liable for any indirect, incidental,
+                                To the maximum extent permitted by law, MFOUR LABS shall not be liable for any indirect, incidental,
                                 special, consequential, or punitive damages, or any loss of profits or revenues, whether incurred
                                 directly or indirectly, or any loss of data, use, goodwill, or other intangible losses.
                             </p>
@@ -258,9 +258,9 @@ export const TermsOfService: React.FC<TermsOfServiceProps> = ({ onClose }) => {
                         <div className="text-sm text-neutral-300 leading-relaxed space-y-2 pl-6">
                             <p>For questions about these Terms, please contact us:</p>
                             <div className="bg-neutral-900/60 border border-white/10 rounded-lg p-4 mt-3 space-y-1">
-                                <p><strong className="text-white">Email:</strong> legal@mfourlabs.com</p>
-                                <p><strong className="text-white">Privacy:</strong> privacy@mfourlabs.com</p>
-                                <p><strong className="text-white">Support:</strong> support@mfourlabs.com</p>
+                                <p><strong className="text-white">Email:</strong> hq@mfourlabs.dev</p>
+                                <p><strong className="text-white">Privacy:</strong> hq@mfourlabs.dev</p>
+                                <p><strong className="text-white">Support:</strong> hq@mfourlabs.dev</p>
                             </div>
                         </div>
                     </section>
@@ -283,8 +283,8 @@ export const TermsOfService: React.FC<TermsOfServiceProps> = ({ onClose }) => {
                 {/* Footer */}
                 <div className="sticky bottom-0 bg-gradient-to-t from-[#0A0A0A] to-[#0A0A0A]/95 backdrop-blur-xl border-t border-white/10 p-6">
                     <div className="flex items-center justify-between">
-                        <p className="text-xs text-neutral-500 font-mono">
-                            © 2025 MFOURLABS. All rights reserved.
+                        <p className="text-xs text-neutral-500 font-mono tracking-widest uppercase">
+                            COPYRIGHT © 2026 MFOUR LABS
                         </p>
                         <button
                             onClick={onClose}

@@ -40,17 +40,14 @@ export const AdversarialTestingSection: React.FC = () => {
 
     const engineeringFeatures = [
         {
-            icon: <Cpu className="w-5 h-5" />,
             title: "Smart Polling Architecture",
             description: "Bulletproof status updates without 429 errors"
         },
         {
-            icon: <Zap className="w-5 h-5" />,
             title: "Secure Thinking UI",
             description: "Admin-only debug views vs. user-safe states"
         },
         {
-            icon: <Target className="w-5 h-5" />,
             title: "Real-time VIS Checks",
             description: "Vibe Integrity Score computed on every response"
         }
@@ -62,8 +59,8 @@ export const AdversarialTestingSection: React.FC = () => {
 
                 {/* Section Header */}
                 <header className="mb-16 md:mb-20 text-center">
-                    <span className="block font-mono text-xs text-brand-yellow uppercase tracking-widest mb-4">Trust Through Testing</span>
-                    <h2 id="testing-heading" className="text-4xl md:text-5xl lg:text-6xl font-display font-medium text-brand-white tracking-tighter mb-6">
+                    <span className="block font-mono text-xs text-blue-500 uppercase tracking-widest mb-4">Trust Through Testing</span>
+                    <h2 id="testing-heading" className="text-4xl md:text-5xl lg:text-6xl font-mono font-bold text-brand-white tracking-tighter mb-6">
                         Adversarial Testing Suite
                     </h2>
                     <p className="text-xl text-brand-gray max-w-3xl mx-auto leading-relaxed">
@@ -73,17 +70,17 @@ export const AdversarialTestingSection: React.FC = () => {
 
                 {/* Testing Dimensions Grid */}
                 <div className="mb-20">
-                    <h3 className="font-mono text-xs text-brand-yellow uppercase tracking-widest mb-8">Legal Pressure Test Categories</h3>
+                    <h3 className="font-mono text-xs text-blue-500 uppercase tracking-widest mb-8">Legal Pressure Test Categories</h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         {testingDimensions.map((dimension, index) => (
                             <div
                                 key={index}
-                                className="group p-6 bg-brand-surface/50 border border-brand-white/5 rounded-xl hover:bg-brand-surface hover:border-brand-white/10 transition-all duration-300"
+                                className="group p-6 bg-brand-surface/50 border border-brand-white/5 rounded-xl hover:bg-brand-surface hover:border-blue-500/30 transition-all duration-300"
                             >
                                 <div className="flex items-start gap-3 mb-3">
-                                    <span className="text-brand-yellow font-mono text-sm mt-1">→</span>
+                                    <span className="text-zinc-600 group-hover:text-blue-400 font-mono text-sm mt-1 transition-colors">→</span>
                                     <div className="flex-1">
-                                        <h4 className="text-lg font-display font-medium text-brand-white mb-2">
+                                        <h4 className="text-lg font-mono font-bold text-white mb-2 group-hover:text-blue-400 transition-colors">
                                             {dimension.title}
                                         </h4>
                                         <p className="text-sm text-brand-gray leading-relaxed mb-3">
@@ -99,18 +96,60 @@ export const AdversarialTestingSection: React.FC = () => {
                     </div>
                 </div>
 
+                {/* Technical Pressure Tests */}
+                <div className="mb-20">
+                    <h3 className="font-mono text-xs text-blue-500 uppercase tracking-widest mb-8">Technical Pressure Tests</h3>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {[
+                            {
+                                title: "Prompt Injection",
+                                description: "Simulating unauthorized access via prompt manipulation.",
+                                regulation: "OWASP LLM01"
+                            },
+                            {
+                                title: "Model Denial of Service",
+                                description: "Stress-testing via Context Window Flooding to ensure availability.",
+                                regulation: "Context Flooding"
+                            },
+                            {
+                                title: "Training Data Poisoning",
+                                description: "Verifying model integrity against supply chain corruption.",
+                                regulation: "Supply Chain"
+                            }
+                        ].map((test, index) => (
+                            <div
+                                key={index}
+                                className="group p-6 bg-brand-surface/50 border border-brand-white/5 rounded-xl hover:bg-brand-surface hover:border-blue-500/30 transition-all duration-300"
+                            >
+                                <div className="flex items-start gap-3 mb-3">
+                                    <Target className="w-5 h-5 text-zinc-600 group-hover:text-blue-400 mt-1 transition-colors" />
+                                    <div className="flex-1">
+                                        <h4 className="text-lg font-mono font-bold text-white mb-2 group-hover:text-blue-400 transition-colors">
+                                            {test.title}
+                                        </h4>
+                                        <p className="text-sm text-brand-gray leading-relaxed mb-3">
+                                            {test.description}
+                                        </p>
+                                        <span className="inline-block px-3 py-1 rounded-full bg-brand-white/5 border border-brand-white/10 text-[10px] font-mono text-brand-sub uppercase tracking-widest">
+                                            {test.regulation}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+
                 {/* Engineering Details - The "1%" Flex */}
                 <div className="border-t border-brand-white/10 pt-16">
-                    <h3 className="font-mono text-xs text-brand-yellow uppercase tracking-widest mb-8 text-center">
+                    <h3 className="font-mono text-xs text-blue-500 uppercase tracking-widest mb-8 text-center">
                         Engineering Excellence (The "1%" Details)
                     </h3>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
                         {engineeringFeatures.map((feature, index) => (
-                            <div key={index} className="text-center">
-                                <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-brand-yellow/10 text-brand-yellow mb-4">
-                                    {feature.icon}
-                                </div>
-                                <h4 className="text-base font-display font-medium text-brand-white mb-2">
+                            <div key={index} className="text-center group">
+
+                                <h4 className="text-base font-mono font-bold text-white mb-2 group-hover:text-blue-400 transition-colors">
                                     {feature.title}
                                 </h4>
                                 <p className="text-sm text-brand-gray">

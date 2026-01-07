@@ -26,7 +26,7 @@ export const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ onClose }) => {
                         </div>
                         <div>
                             <h2 className="text-xl font-display font-semibold text-white tracking-tight">Privacy Policy</h2>
-                            <div className="text-[10px] font-mono text-neutral-500 uppercase tracking-widest">Last Updated: December 2025</div>
+                            <div className="text-[10px] font-mono text-neutral-500 uppercase tracking-widest">Last Updated: January 2026</div>
                         </div>
                     </div>
                     <button
@@ -50,7 +50,7 @@ export const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ onClose }) => {
                             <h3 className="text-lg font-display font-semibold text-white">Introduction</h3>
                         </div>
                         <p className="text-sm text-neutral-300 leading-relaxed">
-                            Welcome to <span className="text-white font-semibold">MFOURLABS</span> ("we," "our," or "us"). We are committed to protecting your privacy and ensuring the security of your personal information. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you register for access on our platform.
+                            Welcome to <span className="text-white font-semibold">MFOUR LABS</span> ("we," "our," or "us"). We are committed to protecting your privacy and ensuring the security of your personal information. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you register for access on our platform.
                         </p>
                         <p className="text-sm text-neutral-300 leading-relaxed">
                             By using our services and submitting your registration, you agree to the collection and use of information in accordance with this policy.
@@ -84,7 +84,7 @@ export const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ onClose }) => {
                                     </li>
                                     <li className="flex items-start gap-2">
                                         <span className="text-brand-yellow mt-1">•</span>
-                                        <span><strong className="text-white">Role & Professional Information:</strong> Current role, academic level, degree/major, and organization</span>
+                                        <span><strong className="text-white">Role & Professional Information:</strong> Current role and organization</span>
                                     </li>
                                 </ul>
                             </div>
@@ -270,8 +270,8 @@ export const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ onClose }) => {
                             <div className="space-y-2 text-sm">
                                 <div className="flex items-center gap-2">
                                     <Mail className="w-4 h-4 text-brand-yellow" />
-                                    <a href="mailto:connect.mfourlabs@gmail.com" className="text-brand-yellow hover:underline">
-                                        connect.mfourlabs@gmail.com
+                                    <a href="mailto:hq@mfourlabs.dev" className="text-brand-yellow hover:underline">
+                                        hq@mfourlabs.dev
                                     </a>
                                 </div>
 
@@ -297,8 +297,8 @@ export const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ onClose }) => {
                 {/* Footer */}
                 <div className="p-6 border-t border-white/5 bg-gradient-to-r from-white/[0.02] to-transparent shrink-0">
                     <div className="flex items-center justify-between">
-                        <div className="text-xs text-neutral-500 font-mono">
-                            MFOURLABS © 2025 • All Rights Reserved
+                        <div className="text-xs text-neutral-500 font-mono tracking-widest uppercase">
+                            COPYRIGHT © 2026 MFOUR LABS
                         </div>
                         <button
                             onClick={onClose}

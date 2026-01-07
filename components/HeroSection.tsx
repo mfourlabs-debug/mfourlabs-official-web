@@ -6,10 +6,10 @@ import { GoogleGenAI } from "@google/genai";
 import { ArrowRight, Terminal } from 'lucide-react';
 
 interface HeroProps {
-  onEnterLab: () => void;
+  // Props removed as button is removed
 }
 
-export const HeroSection: React.FC<HeroProps> = ({ onEnterLab }) => {
+export const HeroSection: React.FC<HeroProps> = () => {
   const [dailyInsight, setDailyInsight] = useState<string>("INITIALIZING PROTOCOLS...");
   const [heroTitle, setHeroTitle] = useState<{
     line1: string;
@@ -55,10 +55,8 @@ export const HeroSection: React.FC<HeroProps> = ({ onEnterLab }) => {
 
     const switchTimer = setTimeout(() => {
       setHeroTitle({
-        line1: "AI Operating",
-        line2: "System",
+        line1: "AI Operating System",
         size1: "text-[6vw] md:text-[5vw] lg:text-[6rem]",
-        size2: "text-[7vw] md:text-[6vw] lg:text-[7rem]",
         key: "final"
       });
       setIsExiting(false);
@@ -82,8 +80,8 @@ export const HeroSection: React.FC<HeroProps> = ({ onEnterLab }) => {
         {/* Status Badge */}
         <div className="mb-8 md:mb-10 animate-slide-up opacity-0 flex items-center gap-3 px-4 py-1.5 rounded-full border border-brand-white/10 bg-brand-white/5 backdrop-blur" style={{ animationDelay: '0.1s' }} role="status" aria-live="polite">
           <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-yellow opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-yellow"></span>
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-500 opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
           </span>
           <span className="text-[10px] md:text-[11px] font-mono tracking-widest text-brand-gray uppercase">Enterprise Compliance Platform</span>
         </div>
@@ -91,10 +89,10 @@ export const HeroSection: React.FC<HeroProps> = ({ onEnterLab }) => {
         {/* Main Title - Massive & Responsive */}
         <header className="text-center mb-8 md:mb-10 relative">
           <div className={`transition-opacity duration-700 ${isExiting ? 'opacity-0' : 'opacity-100'}`}>
-            <h1 id="hero-heading" key={`${heroTitle.key}-1`} className={`${heroTitle.size1} font-display font-bold tracking-tighter leading-[0.85] text-brand-white animate-slide-up opacity-0`} style={{ animationDelay: '0.2s' }}>
+            <h1 id="hero-heading" key={`${heroTitle.key}-1`} className={`${heroTitle.size1} font-mono font-bold tracking-tighter leading-[0.85] text-brand-white animate-slide-up opacity-0`} style={{ animationDelay: '0.2s' }}>
               {heroTitle.line1}
             </h1>
-            <p key={`${heroTitle.key}-2`} className={`${heroTitle.size2} font-display font-bold tracking-tighter leading-[0.85] text-transparent bg-clip-text bg-gradient-to-b from-brand-gray/50 to-brand-black/0 animate-slide-up opacity-0`} style={{ animationDelay: '0.3s' }} aria-label="For Deterministic AI Governance">
+            <p key={`${heroTitle.key}-2`} className={`${heroTitle.size2} font-mono font-bold tracking-tighter leading-[0.85] text-transparent bg-clip-text bg-gradient-to-b from-brand-gray/50 to-brand-black/0 animate-slide-up opacity-0`} style={{ animationDelay: '0.3s' }} aria-label="For Deterministic AI Governance">
               {heroTitle.line2}
             </p>
           </div>
@@ -107,17 +105,6 @@ export const HeroSection: React.FC<HeroProps> = ({ onEnterLab }) => {
 
         {/* Actions */}
         <div className="flex flex-col sm:flex-row gap-4 sm:gap-5 items-center animate-slide-up opacity-0 w-full sm:w-auto px-4" style={{ animationDelay: '0.5s' }}>
-          <button
-            id="deploy-sentinel-eu-hero"
-            onClick={onEnterLab}
-            className="w-full sm:w-auto group relative px-8 py-4 bg-brand-yellow text-brand-black rounded-full font-medium tracking-tight overflow-hidden transition-all hover:scale-105 active:scale-95"
-            aria-label="Deploy Sentinel-EU Kernel"
-          >
-            <span className="relative flex items-center justify-center gap-2 transition-colors">
-              Deploy Sentinel-EU Kernel <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </span>
-          </button>
-
           <a
             id="whitepaper-link-hero"
             href="https://doi.org/10.5281/zenodo.17924469"
@@ -136,7 +123,7 @@ export const HeroSection: React.FC<HeroProps> = ({ onEnterLab }) => {
             <Terminal className="w-3 h-3" />
             <span>System Broadcast // Daily-Ref</span>
           </div>
-          <div className="pl-3 border-l border-brand-yellow/50">
+          <div className="pl-3 border-l border-blue-500/50">
             <p className="text-xs text-brand-gray font-mono max-w-[200px] uppercase">{dailyInsight}</p>
           </div>
         </aside>

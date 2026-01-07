@@ -1,245 +1,102 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
-import { HeroSection } from '@/components/HeroSection';
-import { ManifestoSection } from '@/components/ManifestoSection';
-import { CurriculumSection } from '@/components/CurriculumSection';
-import { SentinelEUSection } from '@/components/SentinelEUSection';
-import { AdversarialTestingSection } from '@/components/AdversarialTestingSection';
-import { RoadmapSection } from '@/components/RoadmapSection';
-import { LabRegistration } from '@/components/LabRegistration';
-import { ArrowUpRight, Menu, X, ExternalLink, Globe, ShieldCheck, ChevronRight } from 'lucide-react';
+import Link from 'next/link';
+import { ArrowUpRight } from 'lucide-react';
+import { useState } from 'react';
+import { GlobalPreloader } from '@/components/GlobalPreloader';
 
-const Preloader: React.FC<{ onComplete: () => void }> = ({ onComplete }) => {
-    const [progress, setProgress] = useState(0);
-    const [log, setLog] = useState("Initializing Core Systems...");
-
-    useEffect(() => {
-        const logs = [
-            "Loading Architectural Patterns...",
-            "Deconstructing Legacy Modules...",
-            "Optimizing Neural Pathways...",
-            "Verifying Mirror Protocol...",
-            "Establishing Secure Connection...",
-            "Welcome to mfourlabs."
-        ];
-
-        let step = 0;
-        const interval = setInterval(() => {
-            setProgress(prev => Math.min(prev + Math.floor(Math.random() * 15), 100));
-            if (Math.random() > 0.6 && step < logs.length) {
-                setLog(logs[step]);
-                step++;
-            }
-        }, 150);
-
-        const timeout = setTimeout(() => {
-            setProgress(100);
-            setTimeout(onComplete, 800);
-        }, 2500);
-
-        return () => {
-            clearInterval(interval);
-            clearTimeout(timeout);
-        };
-    }, [onComplete]);
-
-    return (
-        <div className="fixed inset-0 z-[100] bg-brand-black flex flex-col items-center justify-center font-mono text-xs text-brand-gray">
-            <div className="w-64 mb-4 flex justify-between">
-                <span>SYS.BOOT</span>
-                <span className="text-brand-yellow">{progress}%</span>
-            </div>
-            <div className="w-64 h-0.5 bg-brand-surfaceHighlight overflow-hidden relative">
-                <div
-                    className="absolute top-0 left-0 h-full bg-brand-yellow transition-all duration-200 ease-out"
-                    style={{ width: `${progress}%` }}
-                ></div>
-            </div>
-            <div className="mt-4 h-6 text-brand-sub uppercase tracking-widest text-[10px] animate-pulse">
-                {log}
-            </div>
-        </div>
-    );
-};
-
-export default function Home() {
+export default function Gateway() {
     const [isLoading, setIsLoading] = useState(true);
-    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-    const [scrolled, setScrolled] = useState(false);
-    const [showRegistration, setShowRegistration] = useState(false);
-
-    useEffect(() => {
-        const handleScroll = () => {
-            setScrolled(window.scrollY > 50);
-        };
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
-
-    const handleEnterLab = () => {
-        setShowRegistration(true);
-    };
 
     if (isLoading) {
-        return <Preloader onComplete={() => setIsLoading(false)} />;
+        return <GlobalPreloader onComplete={() => setIsLoading(false)} theme="default" />;
     }
 
     return (
-        <div className="min-h-screen bg-brand-black text-brand-white font-sans selection:bg-brand-yellow selection:text-black animate-reveal">
+        <main className="min-h-screen bg-black text-white font-mono flex flex-col items-center justify-center p-4">
 
-            {/* Registration Overlay */}
-            {showRegistration && <LabRegistration onClose={() => setShowRegistration(false)} />}
-
-            {/* Floating Navigation Island */}
-            <header role="banner">
-                <nav
-                    className={`fixed top-6 left-0 right-0 z-50 transition-all duration-500 flex justify-center px-4`}
-                    aria-label="Main navigation"
-                >
-                    <div className={`
-            flex items-center justify-between pl-6 pr-2 py-2.5 rounded-full transition-all duration-500
-            ${scrolled
-                            ? 'w-full max-w-5xl bg-brand-surface/80 backdrop-blur-xl border border-brand-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.5)]'
-                            : 'w-full max-w-7xl bg-transparent border-transparent'}
-          `}>
-
-                        {/* Brand */}
-                        <div className="flex items-center gap-3 cursor-pointer" onClick={() => window.scrollTo(0, 0)}>
-                            <div className="relative flex items-center gap-1">
-                                {/* M4 */}
-                                <span className="font-montserrat font-bold text-2xl text-brand-white tracking-tight">
-                                    M4
-                                </span>
-                                <span className='font-montserrat font-bold text-6xl text-brand-white tracking-tight'>/</span>
-                                <span className="font-montserrat font-medium text-xl text-brand-white tracking-wider">
-                                    LABS
-                                </span>
-                            </div>
-                        </div>
-
-                        {/* Desktop Links */}
-                        <div className="hidden md:flex items-center gap-1">
-                            <a id="nav-docs-link" href="https://mfour-labs.gitbook.io/mfour-labs-docs/" className="px-4 py-2 text-sm font-medium text-brand-gray hover:text-brand-white transition-colors hover:bg-white/5 rounded-full" target="_blank" rel="noopener noreferrer" aria-label="View MFOUR Labs documentation">Docs</a>
-                            <a id="nav-manifesto-link" href="#philosophy" className="px-4 py-2 text-sm font-medium text-brand-gray hover:text-brand-white transition-colors hover:bg-white/5 rounded-full" aria-label="Read our manifesto">Manifesto</a>
-                            <a id="nav-roadmap-link" href="#roadmap" className="px-4 py-2 text-sm font-medium text-brand-gray hover:text-brand-white transition-colors hover:bg-white/5 rounded-full" aria-label="View research trajectory">Research Trajectory</a>
-                        </div>
-
-                        {/* Action */}
-                        <div className="flex items-center gap-4">
-                            {/* Lab Registration - Coming Soon */}
-                            <button
-                                id="nav-ironrag-access"
-                                onClick={handleEnterLab}
-                                className="group flex items-center gap-2 px-5 py-2.5 rounded-full bg-brand-yellow text-brand-black text-sm font-semibold transition-all duration-300 hover:bg-brand-yellowDim hover:scale-105 active:scale-95"
-                                aria-label="Get IronRAG Platform access"
-                            >
-                                <span>Get IronRAG Access</span>
-                                <ExternalLink className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                            </button>
-
-                            {/* Mobile Toggle */}
-                            <button
-                                className="md:hidden w-10 h-10 flex items-center justify-center text-brand-white bg-white/5 rounded-full"
-                                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                                aria-label="Toggle mobile menu"
-                                aria-expanded={isMobileMenuOpen}
-                            >
-                                {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-                            </button>
-                        </div>
-                    </div>
-
-                    {/* Mobile Menu Overlay */}
-                    {isMobileMenuOpen && (
-                        <div className="md:hidden absolute top-20 left-4 right-4 bg-brand-surface border border-brand-border rounded-2xl p-6 flex flex-col gap-2 shadow-2xl animate-slide-up">
-                            <a href="https://mfour-labs.gitbook.io/mfour-labs-docs/" onClick={() => setIsMobileMenuOpen(false)} className="px-4 py-3 text-lg font-medium text-brand-white hover:bg-white/5 rounded-lg">Docs</a>
-                            <a href="#philosophy" onClick={() => setIsMobileMenuOpen(false)} className="px-4 py-3 text-lg font-medium text-brand-white hover:bg-white/5 rounded-lg">Manifesto</a>
-                            <a href="#roadmap" onClick={() => setIsMobileMenuOpen(false)} className="px-4 py-3 text-lg font-medium text-brand-white hover:bg-white/5 rounded-lg">Research Trejectory</a>
-                        </div>
-                    )}
-                </nav>
+            {/* HEADER: Minimalist Lab Branding */}
+            <header className="absolute top-0 left-0 w-full p-6 border-b border-zinc-900 flex justify-between items-center">
+                <div className="flex items-center gap-0.5 text-xl tracking-tighter text-white">
+                    <span className="font-montserrat font-bold">M4</span>
+                    <span className="italic text-zinc-500 text-3xl font-black leading-none pb-1">|</span>
+                    <span className="font-montserrat ">LABS</span>
+                </div>
+                <Link href="/about" className="text-xs text-zinc-500 hover:text-white transition-colors tracking-widest">
+                    THE MISSION
+                </Link>
             </header>
 
+            {/* HERO TEXT: Abstract, not Salesy */}
+            <div className="mt-20 mb-12 text-center">
+                <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-4">
+                    DETERMINISTIC <span className="text-zinc-600">INTELLIGENCE</span>
+                </h1>
+                <p className="text-zinc-500 text-sm md:text-base max-w-xl mx-auto">
+                    We architect Stochastic Processing Units (SPUs) for high-stakes environments.
+                    Select your access level below.
+                </p>
+            </div>
 
-            <main className="bg-noise bg-repeat" role="main">
-                <HeroSection onEnterLab={handleEnterLab} />
-                <ManifestoSection />
-                <CurriculumSection />
-                <SentinelEUSection />
-                <AdversarialTestingSection />
-                <RoadmapSection />
-            </main>
+            {/* THE 3 ROADS GRID */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-0 border border-zinc-800 w-full max-w-6xl">
 
-            {/* Massive Architectural Footer */}
-            <footer className="pt-32 pb-12 px-6 bg-brand-offblack border-t border-brand-border font-sans" role="contentinfo">
-                <div className="max-w-7xl mx-auto">
-
-                    {/* Top Section */}
-                    <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-12 mb-24">
-                        <div className="col-span-2 lg:col-span-2">
-                            <div className="flex items-center gap-2 mb-6">
-                                <div className="w-6 h-6 bg-brand-yellow rounded-full"></div>
-                                <span className="font-display font-bold text-xl tracking-tight">mfourlabs</span>
-                            </div>
-                            <p className="text-brand-sub text-sm leading-relaxed max-w-xs mb-8">
-                                The Research Lab for First Principles Engineering. Deconstructing the stack, rebuilding intelligence, and defining the 1% standard.
-                            </p>
-                            <div className="flex gap-4">
-                                <Globe className="w-5 h-5 text-brand-sub hover:text-brand-white transition-colors cursor-pointer" />
-                                <ShieldCheck className="w-5 h-5 text-brand-sub hover:text-brand-white transition-colors cursor-pointer" />
-                            </div>
-                        </div>
-
-                        <div className="flex flex-col gap-4">
-                            <h4 className="text-sm font-semibold text-brand-white">Platform</h4>
-                            <button onClick={handleEnterLab} className="text-sm text-brand-gray hover:text-brand-white transition-colors text-left">IronRAG Platform</button>
-                            <a href="#sentinel-eu" className="text-sm text-brand-gray hover:text-brand-white transition-colors text-left">Sentinel-EU Kernel</a>
-                            <a href="https://mfour-labs.gitbook.io/mfour-labs-docs/" className="text-sm text-brand-gray hover:text-brand-white transition-colors text-left">Documentation</a>
-                            <button onClick={() => window.scrollTo(0, 0)} className="text-sm text-brand-gray hover:text-brand-white transition-colors text-left">Changelog</button>
-                        </div>
-
-                        <div className="flex flex-col gap-4">
-                            <h4 className="text-sm font-semibold text-brand-white">Research</h4>
-                            <button onClick={() => window.scrollTo(0, 0)} className="text-sm text-brand-gray hover:text-brand-white transition-colors text-left">Methodology</button>
-                            <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=OJ:L_202401689" target="_blank" rel="noopener noreferrer" className="text-sm text-brand-gray hover:text-brand-white transition-colors text-left">EU AI Act Reference</a>
-                            <button onClick={() => window.scrollTo(0, 0)} className="text-sm text-brand-gray hover:text-brand-white transition-colors text-left">Case Studies</button>
-                            <button onClick={() => window.scrollTo(0, 0)} className="text-sm text-brand-gray hover:text-brand-white transition-colors text-left">Open Source</button>
-                        </div>
-
-                        <div className="flex flex-col gap-4">
-                            <h4 className="text-sm font-semibold text-brand-white">Community</h4>
-                            <a href="https://x.com/mfourlabs" target="_blank" rel="noreferrer" className="text-sm text-brand-gray hover:text-brand-white transition-colors">X (Twitter)</a>
-                            <a href="https://www.linkedin.com/company/mfourlabs" target="_blank" rel="noreferrer" className="text-sm text-brand-gray hover:text-brand-white transition-colors">LinkedIn</a>
-                        </div>
-
-                        <div className="flex flex-col gap-4">
-                            <h4 className="text-sm font-semibold text-brand-white">Legal</h4>
-                            <button onClick={() => window.scrollTo(0, 0)} className="text-sm text-brand-gray hover:text-brand-white transition-colors text-left">Privacy</button>
-                            <button onClick={() => window.scrollTo(0, 0)} className="text-sm text-brand-gray hover:text-brand-white transition-colors text-left">Terms</button>
-                        </div>
-                    </div>
-
-                    {/* Bottom Section */}
-                    <div className="pt-8 border-t border-brand-border flex flex-col md:flex-row justify-between items-center gap-4">
-                        <p className="text-xs text-brand-sub font-mono">
-                            © 2025 MFOUR LABS. ALL RIGHTS RESERVED. The MFOUR Vibe Framework™ is licensed under CC BY-ND 4.0. Verified Authority: mfourlabs.dev | Global Standard: MF-CVA-02
+                {/* ROAD 1: THE PROTOCOL (Links to your Old Page) */}
+                <div className="group border-r border-b md:border-b-0 border-zinc-800 p-8 hover:bg-zinc-900 transition-all cursor-pointer relative h-80 flex flex-col justify-between">
+                    <div>
+                        <span className="text-xs text-zinc-500 mb-2 block">01 // RESEARCH</span>
+                        <h2 className="text-2xl font-bold mb-2 text-white group-hover:text-blue-400 transition-colors">
+                            MVF PROTOCOL
+                        </h2>
+                        <p className="text-sm text-zinc-400 leading-relaxed">
+                            The academic standard for SPU governance. Open-source kernel schemas and whitepapers.
                         </p>
-                        <div className="flex items-center gap-2">
-                            <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
-                            <span className="text-xs text-brand-sub font-mono uppercase">All Systems Operational</span>
-                        </div>
                     </div>
-
-                    {/* Big Text Background */}
-                    <div className="mt-20 border-t border-brand-border/30 pt-10 overflow-hidden select-none">
-                        <h1 className="text-[12vw] leading-none font-bold text-brand-white/5 text-center tracking-tighter">
-                            START ARCHITECTING
-                        </h1>
-                    </div>
-
+                    <Link href="/mvf" className="flex items-center gap-2 text-sm text-zinc-300 group-hover:underline">
+                        Access Documentation <ArrowUpRight className="w-4 h-4" />
+                    </Link>
                 </div>
+
+                {/* ROAD 2: THE RED TEAM (Service) */}
+                <div className="group border-r border-b md:border-b-0 border-zinc-800 p-8 hover:bg-zinc-900 transition-all cursor-pointer relative h-80 flex flex-col justify-between">
+                    <div>
+                        <span className="text-xs text-zinc-500 mb-2 block">02 // ADVERSARIAL</span>
+                        <h2 className="text-2xl font-bold mb-2 text-white group-hover:text-red-400 transition-colors">
+                            RED TEAM UNIT
+                        </h2>
+                        <p className="text-sm text-zinc-400 leading-relaxed">
+                            Stress-testing for hallucination vectors, PII leaks, and EU AI Act compliance failures.
+                        </p>
+                    </div>
+                    <Link href="/red-team" className="flex items-center gap-2 text-sm text-zinc-300 group-hover:underline">
+                        Initialize Audit <ArrowUpRight className="w-4 h-4" />
+                    </Link>
+                </div>
+
+                {/* ROAD 3: THE FORTRESS (Product) */}
+                <div className="group border-zinc-800 p-8 hover:bg-zinc-900 transition-all cursor-pointer relative h-80 flex flex-col justify-between">
+                    <div>
+                        <span className="text-xs text-zinc-500 mb-2 block">03 // INFRASTRUCTURE</span>
+                        <h2 className="text-2xl font-bold mb-2 text-white group-hover:text-brand-yellow transition-colors">
+                            IRON-GRADE
+                        </h2>
+                        <p className="text-sm text-zinc-400 leading-relaxed">
+                            Sovereign Runtime environment. On-premise deployment with ISO 42001 compliance logs.
+                        </p>
+                    </div>
+                    <Link href="/iron-grade" className="flex items-center gap-2 text-sm text-zinc-300 group-hover:underline">
+                        Request Pilot <ArrowUpRight className="w-4 h-4" />
+                    </Link>
+                </div>
+
+            </div>
+
+            {/* FOOTER: Technical Credentials */}
+            <footer className="absolute bottom-6 text-center w-full">
+                <p className="text-[10px] text-zinc-700 font-mono tracking-widest uppercase">
+                    COPYRIGHT © 2026 MFOUR LABS
+                </p>
             </footer>
-        </div>
+        </main>
     );
 }

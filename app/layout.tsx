@@ -119,7 +119,7 @@ export default function RootLayout({
     return (
         <html
             lang="en"
-            className={`scroll-smooth antialiased selection:bg-brand-yellow selection:text-black ${inter.variable} ${interTight.variable} ${jetbrainsMono.variable} ${montserrat.variable}`}
+            className={`scroll-smooth antialiased selection:bg-white selection:text-black ${inter.variable} ${interTight.variable} ${jetbrainsMono.variable} ${montserrat.variable}`}
             itemScope
             itemType="https://schema.org/WebPage"
         >
