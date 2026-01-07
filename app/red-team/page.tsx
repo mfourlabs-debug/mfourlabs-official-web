@@ -32,6 +32,7 @@ export default function RedTeamPage() {
                     </Link>
                     <div className="hidden md:flex items-center gap-6 text-[10px] tracking-widest text-zinc-500">
                         <Link href="/about" className="hover:text-red-500 transition-colors cursor-pointer uppercase">The Mission</Link>
+                        <Link href="/contact" className="hover:text-red-500 transition-colors cursor-pointer uppercase">Contact</Link>
                         <div className="flex items-center gap-2 pl-6 border-l border-zinc-800">
                             <span className="w-1.5 h-1.5 bg-red-500 rounded-full animate-pulse"></span>
                             <span className="text-red-500">ACTIVE</span>
@@ -62,15 +63,7 @@ export default function RedTeamPage() {
                             Don't just test your model; test your infrastructure. We execute advanced semantic hijacking, kernel-bypass attempts, and anchor-poisoning simulations to ensure your IronGrade stay ironclad.
                         </p>
 
-                        <button
-                            className="group relative inline-flex items-center gap-3 px-8 py-4 bg-zinc-900 border border-zinc-700 hover:border-red-500/50 rounded-lg overflow-hidden transition-all duration-300"
-                        >
-                            <span className="absolute inset-0 bg-red-900/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></span>
-                            <span className="relative font-bold text-white group-hover:text-red-500 transition-colors tracking-wider text-sm">
-                                INITIATE AUDIT
-                            </span>
-                            <ShieldAlert className="relative w-4 h-4 text-zinc-500 group-hover:text-red-500 transition-colors" />
-                        </button>
+
                     </div>
 
                     {/* Features Grid */}

@@ -29,6 +29,9 @@ export default function AboutPage() {
                             LABS HQ // THE MISSION
                         </div>
                     </Link>
+                    <div className="hidden md:flex items-center gap-6 text-[10px] tracking-widest text-zinc-500">
+                        <Link href="/contact" className="hover:text-white transition-colors cursor-pointer uppercase">Contact</Link>
+                    </div>
                 </div>
             </header>
 

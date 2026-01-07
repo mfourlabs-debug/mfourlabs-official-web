@@ -45,6 +45,7 @@ export default function ResearchLab() {
                         <a href="https://mfour-labs.gitbook.io/mfour-labs-docs/" className="hover:text-blue-400 transition-colors">DOCS</a>
                         <a href="#philosophy" className="hover:text-blue-400 transition-colors">MANIFESTO</a>
                         <a href="#roadmap" className="hover:text-blue-400 transition-colors">TRAJECTORY</a>
+                        <Link href="/contact" className="hover:text-blue-400 transition-colors">CONTACT</Link>
 
                         {/* Status Indicator */}
                         <div className="flex items-center gap-2 pl-6 border-l border-zinc-800">
@@ -67,6 +68,7 @@ export default function ResearchLab() {
                     <div className="md:hidden border-t border-zinc-800 bg-black p-4 flex flex-col gap-4 text-xs tracking-wider">
                         <a href="https://mfour-labs.gitbook.io/mfour-labs-docs/" className="text-zinc-400">DOCS</a>
                         <a href="#philosophy" className="text-zinc-400">MANIFESTO</a>
+                        <Link href="/contact" className="text-zinc-400">CONTACT</Link>
                     </div>
                 )}
             </header>

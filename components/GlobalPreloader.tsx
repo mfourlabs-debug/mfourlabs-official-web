@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 
-type PreloaderTheme = 'blue' | 'red' | 'yellow' | 'default';
+type PreloaderTheme = 'blue' | 'red' | 'yellow' | 'default' | 'white';
 
 interface GlobalPreloaderProps {
     onComplete: () => void;
@@ -38,6 +38,12 @@ export const GlobalPreloader: React.FC<GlobalPreloaderProps> = ({ onComplete, th
             pulse: 'text-white',
             bar: 'bg-white',
             bootText: 'INITIALIZING GATEWAY...'
+        },
+        white: {
+            text: 'text-white',
+            pulse: 'text-zinc-400',
+            bar: 'bg-white',
+            bootText: 'ESTABLISHING SECURE CONNECTION...'
         }
     };
 
