@@ -198,7 +198,7 @@ export default function TheMissionPage() {
                             Transition from probabilistic risk to deterministic stability.
                             Schedule a high-level briefing with our Architects.
                         </p>
-                        <Link href="/iron-grade" className="text-brand-yellow text-xs font-bold tracking-[0.3em] flex items-center justify-center gap-2 hover:gap-4 transition-all">
+                        <Link href="/irongrade" className="text-brand-yellow text-xs font-bold tracking-[0.3em] flex items-center justify-center gap-2 hover:gap-4 transition-all">
                             SECURE CHANNEL <ArrowUpRight className="w-4 h-4" />
                         </Link>
                     </div>
