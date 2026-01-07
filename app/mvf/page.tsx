@@ -5,8 +5,6 @@ import Link from 'next/link';
 import { HeroSection } from '@/components/HeroSection';
 import { ManifestoSection } from '@/components/ManifestoSection';
 import { CurriculumSection } from '@/components/CurriculumSection';
-import { SentinelEUSection } from '@/components/SentinelEUSection';
-import { AdversarialTestingSection } from '@/components/AdversarialTestingSection';
 import { RoadmapSection } from '@/components/RoadmapSection';
 import { GlobalPreloader } from '@/components/GlobalPreloader';
 import { Menu, X, ExternalLink, Globe, ShieldCheck, Terminal, Cpu, Activity, ArrowUpRight } from 'lucide-react';
@@ -95,8 +93,6 @@ export default function ResearchLab() {
                     <HeroSection />
                     <div id="philosophy" className="border-t border-zinc-800"><ManifestoSection /></div>
                     <div className="border-t border-zinc-800"><CurriculumSection /></div>
-                    <div className="border-t border-zinc-800"><SentinelEUSection /></div>
-                    <div className="border-t border-zinc-800"><AdversarialTestingSection /></div>
                     <div id="roadmap" className="border-t border-zinc-800"><RoadmapSection /></div>
                 </div>
 
