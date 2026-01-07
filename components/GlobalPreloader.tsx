@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 
-type PreloaderTheme = 'blue' | 'red' | 'yellow' | 'default';
+type PreloaderTheme = 'blue' | 'red' | 'yellow' | 'green' | 'default' | 'white';
 
 interface GlobalPreloaderProps {
     onComplete: () => void;
@@ -27,17 +27,29 @@ export const GlobalPreloader: React.FC<GlobalPreloaderProps> = ({ onComplete, th
             bar: 'bg-red-500',
             bootText: 'INITIALIZING ADVERSARIAL UNIT...'
         },
+        green: {
+            text: 'text-green-500',
+            pulse: 'text-green-400',
+            bar: 'bg-green-500',
+            bootText: 'INITIALIZING IRONGRADE...'
+        },
         yellow: {
             text: 'text-brand-yellow',
             pulse: 'text-brand-yellow',
             bar: 'bg-brand-yellow',
-            bootText: 'INITIALIZING IRON GRADE...'
+            bootText: 'INITIALIZING IRONGRADE...'
         },
         default: {
             text: 'text-zinc-300',
             pulse: 'text-white',
             bar: 'bg-white',
             bootText: 'INITIALIZING GATEWAY...'
+        },
+        white: {
+            text: 'text-white',
+            pulse: 'text-zinc-400',
+            bar: 'bg-white',
+            bootText: 'ESTABLISHING SECURE CONNECTION...'
         }
     };
 

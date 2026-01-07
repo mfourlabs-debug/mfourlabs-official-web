@@ -2,11 +2,12 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { ArrowUpRight, Cpu, Layers, Zap, ShieldCheck, Award } from 'lucide-react';
+import { ArrowUpRight, Cpu, Layers, Zap, ShieldCheck, Award, Menu, X } from 'lucide-react';
 import { GlobalPreloader } from '@/components/GlobalPreloader';
 
-export default function AboutPage() {
+export default function TheMissionPage() {
     const [isLoading, setIsLoading] = useState(true);
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
     if (isLoading) {
         return <GlobalPreloader onComplete={() => setIsLoading(false)} theme="yellow" />;
@@ -29,7 +30,35 @@ export default function AboutPage() {
                             LABS HQ // THE MISSION
                         </div>
                     </Link>
+
+                    {/* Desktop Nav */}
+                    <div className="hidden md:flex items-center gap-6 text-[10px] tracking-widest text-zinc-500">
+                        <Link href="/mvf" className="hover:text-white transition-colors">MVF PROTOCOL</Link>
+                        <Link href="/irongrade" className="hover:text-white transition-colors">IRONGRADE</Link>
+                        <Link href="/red-team" className="hover:text-white transition-colors">RED TEAM</Link>
+                        <Link href="/the-mission" className="text-white cursor-default">THE MISSION</Link>
+                        <Link href="/contact" className="hover:text-white transition-colors">CONTACT</Link>
+                    </div>
+
+                    {/* Mobile Menu Toggle */}
+                    <button
+                        className="md:hidden text-zinc-400 hover:text-white"
+                        onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                    >
+                        {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+                    </button>
                 </div>
+
+                {/* Mobile Menu Dropdown */}
+                {isMobileMenuOpen && (
+                    <div className="md:hidden border-t border-zinc-800 bg-black p-4 flex flex-col gap-4 text-xs tracking-wider">
+                        <Link href="/mvf" className="text-zinc-400">MVF PROTOCOL</Link>
+                        <Link href="/irongrade" className="text-zinc-400">IRONGRADE</Link>
+                        <Link href="/red-team" className="text-zinc-400">RED TEAM</Link>
+                        <Link href="/the-mission" className="text-white">THE MISSION</Link>
+                        <Link href="/contact" className="text-zinc-400">CONTACT</Link>
+                    </div>
+                )}
             </header>
 
             <main className="w-full max-w-7xl border-x border-zinc-800 min-h-screen pt-32 pb-20 relative">
@@ -65,7 +94,7 @@ export default function AboutPage() {
                         </div>
                         <div className="p-8 border border-brand-yellow/20 bg-brand-yellow/5">
                             <h3 className="text-brand-yellow text-xs tracking-widest mb-6">THE SOLUTION</h3>
-                            <h2 className="text-2xl font-bold text-white mb-4">Iron Grade Infrastructure</h2>
+                            <h2 className="text-2xl font-bold text-white mb-4">IronGrade Infrastructure</h2>
                             <p className="text-sm text-zinc-400 leading-relaxed mb-6">
                                 We enforce deterministic integrity. Through MVF Kernels and Mirror Layer interception,
                                 we ensure that AI agents never speak unless they are anchored in truth.

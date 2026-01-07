@@ -1,6 +1,10 @@
 {
-    "name": "MFOURLABS | Deterministic AI Governance",
-    "short_name": "M4LABS",
+
+    "name": "MFOURLABS",
+    "short_name": "MFOURLABS",
+
+   
+
     "icons": [
         {
             "src": "/android-chrome-192x192.png",

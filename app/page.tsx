@@ -7,6 +7,7 @@ import { GlobalPreloader } from '@/components/GlobalPreloader';
 
 export default function Gateway() {
     const [isLoading, setIsLoading] = useState(true);
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
     if (isLoading) {
         return <GlobalPreloader onComplete={() => setIsLoading(false)} theme="default" />;
@@ -22,9 +23,32 @@ export default function Gateway() {
                     <span className="italic text-zinc-500 text-3xl font-black leading-none pb-1">|</span>
                     <span className="font-montserrat ">LABS</span>
                 </div>
-                <Link href="/about" className="text-xs text-zinc-500 hover:text-white transition-colors tracking-widest">
-                    THE MISSION
-                </Link>
+                {/* Desktop Navigation */}
+                <div className="hidden md:flex items-center space-x-4">
+                    <Link href="/the-mission" className="px-4 py-2 text-sm font-medium text-zinc-500 hover:text-white transition-colors hover:bg-white/5 rounded-full" aria-label="Read our mission">The Mission</Link>
+                    <Link href="/contact" className="px-4 py-2 text-sm font-medium text-zinc-500 hover:text-white transition-colors hover:bg-white/5 rounded-full" aria-label="Contact M4 Labs">Contact</Link>
+                </div>
+
+                {/* Mobile Menu Button */}
+                <div className="md:hidden">
+                    <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="text-zinc-500 hover:text-white focus:outline-none">
+                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            {isMobileMenuOpen ? (
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
+                            ) : (
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                            )}
+                        </svg>
+                    </button>
+                </div>
+
+                {/* Mobile Menu */}
+                {isMobileMenuOpen && (
+                    <div className="md:hidden absolute top-full left-0 w-full bg-black border-b border-zinc-900 flex flex-col items-center py-4 space-y-2 z-10">
+                        <Link href="/the-mission" onClick={() => setIsMobileMenuOpen(false)} className="px-4 py-3 text-lg font-medium text-white hover:bg-white/5 rounded-lg">The Mission</Link>
+                        <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)} className="px-4 py-3 text-lg font-medium text-white hover:bg-white/5 rounded-lg">Contact</Link>
+                    </div>
+                )}
             </header>
 
             {/* HERO TEXT: Abstract, not Salesy */}
@@ -52,7 +76,7 @@ export default function Gateway() {
                             The academic standard for SPU governance. Open-source kernel schemas and whitepapers.
                         </p>
                     </div>
-                    <Link href="/mvf" className="flex items-center gap-2 text-sm text-zinc-300 group-hover:underline">
+                    <Link href="/mvf" className="flex items-center gap-2 text-sm text-zinc-300 group-hover:text-blue-500">
                         Access Documentation <ArrowUpRight className="w-4 h-4" />
                     </Link>
                 </div>
@@ -68,7 +92,7 @@ export default function Gateway() {
                             Stress-testing for hallucination vectors, PII leaks, and EU AI Act compliance failures.
                         </p>
                     </div>
-                    <Link href="/red-team" className="flex items-center gap-2 text-sm text-zinc-300 group-hover:underline">
+                    <Link href="/red-team" className="flex items-center gap-2 text-sm text-zinc-300 group-hover:text-red-500">
                         Initialize Audit <ArrowUpRight className="w-4 h-4" />
                     </Link>
                 </div>
@@ -77,14 +101,14 @@ export default function Gateway() {
                 <div className="group border-zinc-800 p-8 hover:bg-zinc-900 transition-all cursor-pointer relative h-80 flex flex-col justify-between">
                     <div>
                         <span className="text-xs text-zinc-500 mb-2 block">03 // INFRASTRUCTURE</span>
-                        <h2 className="text-2xl font-bold mb-2 text-white group-hover:text-brand-yellow transition-colors">
-                            IRON-GRADE
+                        <h2 className="text-2xl font-bold mb-2 text-white group-hover:text-green-500 transition-colors">
+                            IRONGRADE
                         </h2>
                         <p className="text-sm text-zinc-400 leading-relaxed">
                             Sovereign Runtime environment. On-premise deployment with ISO 42001 compliance logs.
                         </p>
                     </div>
-                    <Link href="/iron-grade" className="flex items-center gap-2 text-sm text-zinc-300 group-hover:underline">
+                    <Link href="/irongrade" className="flex items-center gap-2 text-sm text-zinc-300 group-hover:text-green-500 transition-colors">
                         Request Pilot <ArrowUpRight className="w-4 h-4" />
                     </Link>
                 </div>
