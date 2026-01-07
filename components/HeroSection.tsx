@@ -80,8 +80,8 @@ export const HeroSection: React.FC<HeroProps> = () => {
         {/* Status Badge */}
         <div className="mb-8 md:mb-10 animate-slide-up opacity-0 flex items-center gap-3 px-4 py-1.5 rounded-full border border-brand-white/10 bg-brand-white/5 backdrop-blur" style={{ animationDelay: '0.1s' }} role="status" aria-live="polite">
           <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-yellow opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-yellow"></span>
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-500 opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
           </span>
           <span className="text-[10px] md:text-[11px] font-mono tracking-widest text-brand-gray uppercase">Enterprise Compliance Platform</span>
         </div>
@@ -123,7 +123,7 @@ export const HeroSection: React.FC<HeroProps> = () => {
             <Terminal className="w-3 h-3" />
             <span>System Broadcast // Daily-Ref</span>
           </div>
-          <div className="pl-3 border-l border-brand-yellow/50">
+          <div className="pl-3 border-l border-blue-500/50">
             <p className="text-xs text-brand-gray font-mono max-w-[200px] uppercase">{dailyInsight}</p>
           </div>
         </aside>

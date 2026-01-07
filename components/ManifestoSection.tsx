@@ -24,7 +24,7 @@ const BentoCard: React.FC<{
     </div>
 
     {/* Hover Glow */}
-    <div className="absolute -top-24 -right-24 w-64 h-64 bg-brand-yellow/5 blur-[80px] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
+    <div className="absolute -top-24 -right-24 w-64 h-64 bg-blue-500/5 blur-[80px] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
   </div>
 );
 
@@ -36,7 +36,7 @@ export const ManifestoSection: React.FC = () => {
         {/* Section Header */}
         <header className="mb-16 md:mb-20 grid grid-cols-1 md:grid-cols-2 gap-8 items-end">
           <div>
-            <span className="block font-mono text-xs text-brand-yellow uppercase tracking-widest mb-4">2025 Manifesto</span>
+            <span className="block font-mono text-xs text-blue-500 uppercase tracking-widest mb-4">2026 Manifesto</span>
             <h2 id="manifesto-heading" className="text-4xl md:text-5xl lg:text-6xl font-mono font-bold text-white tracking-tighter">
               Design the <br /> <span className="text-blue-500">Mind.</span>
             </h2>
@@ -59,8 +59,8 @@ export const ManifestoSection: React.FC = () => {
             className="md:col-span-3 lg:col-span-8 bg-gradient-to-br from-brand-surfaceHighlight to-brand-surface min-h-[300px]"
           >
             <div className="mt-8 p-4 bg-brand-black/50 rounded-lg border border-brand-white/5 font-mono text-[10px] md:text-xs text-brand-sub">
-              <div className="flex gap-2 mb-1"><span className="text-blue-400">From:</span> <span className="text-brand-yellow">Hardcore Coding</span></div>
-              <div className="flex gap-2"><span className="text-blue-400">To:</span> <span className="text-brand-yellow">Hardcore Architecture</span></div>
+              <div className="flex gap-2 mb-1"><span className="text-zinc-500">From:</span> <span className="text-zinc-300">Hardcore Coding</span></div>
+              <div className="flex gap-2"><span className="text-zinc-500">To:</span> <span className="text-blue-400">Hardcore Architecture</span></div>
             </div>
           </BentoCard>
 
@@ -94,7 +94,7 @@ export const ManifestoSection: React.FC = () => {
           <BentoCard
             title="Core Values"
             subtitle="Architecture > Syntax. No Hallucinations. The Mirror Test. Rigorous Vibe."
-            className="md:col-span-6 lg:col-span-3 bg-brand-yellow/10 border-brand-yellow/20 min-h-[250px]"
+            className="md:col-span-6 lg:col-span-3 bg-blue-500/10 border-blue-500/20 min-h-[250px]"
           />
 
         </div>

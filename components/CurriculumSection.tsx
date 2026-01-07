@@ -87,12 +87,12 @@ export const CurriculumSection: React.FC = () => {
               <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-8 mb-6">
                 <div className="flex-1">
                   <div className="flex items-center gap-4 mb-3">
-                    <span className="font-mono text-xs text-zinc-500 group-hover:text-brand-yellow transition-colors uppercase tracking-widest">
+                    <span className="font-mono text-xs text-zinc-500 group-hover:text-blue-400 transition-colors uppercase tracking-widest">
                       LAYER {layer.number}
                     </span>
                     <div className="flex-1 h-px bg-brand-white/10 group-hover:bg-brand-white/20 transition-colors"></div>
                   </div>
-                  <h3 className="text-2xl md:text-3xl font-mono font-bold text-white group-hover:text-brand-yellow transition-colors tracking-tighter mb-3">
+                  <h3 className="text-2xl md:text-3xl font-mono font-bold text-white group-hover:text-blue-400 transition-colors tracking-tighter mb-3">
                     {layer.name}
                   </h3>
                   <p className="text-base text-brand-gray leading-relaxed max-w-2xl">
@@ -107,9 +107,9 @@ export const CurriculumSection: React.FC = () => {
                   {layer.focus.map((focus, focusIndex) => (
                     <div key={focusIndex} className="group/item">
                       <div className="flex items-start gap-3">
-                        <span className="text-zinc-600 group-hover/item:text-brand-yellow font-mono text-sm mt-0.5 transition-colors">→</span>
+                        <span className="text-zinc-600 group-hover/item:text-blue-400 font-mono text-sm mt-0.5 transition-colors">→</span>
                         <div>
-                          <p className="font-mono text-xs text-zinc-500 group-hover/item:text-brand-yellow transition-colors uppercase tracking-widest mb-1">
+                          <p className="font-mono text-xs text-zinc-500 group-hover/item:text-blue-400 transition-colors uppercase tracking-widest mb-1">
                             {focus.split(' ')[0]}
                           </p>
                           <p className="text-sm text-brand-gray group-hover/item:text-white transition-colors">
@@ -131,10 +131,10 @@ export const CurriculumSection: React.FC = () => {
           <div className="flex items-center justify-center mb-12">
             <a
               href="#"
-              className="group font-mono text-sm text-brand-gray hover:text-brand-yellow transition-all duration-300 flex items-center gap-2"
+              className="group font-mono text-sm text-brand-gray hover:text-blue-400 transition-all duration-300 flex items-center gap-2"
             >
-              <span className="text-brand-yellow opacity-0 group-hover:opacity-100 transition-opacity">→</span>
-              <span className="border-b border-transparent group-hover:border-brand-yellow transition-colors">
+              <span className="text-blue-400 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
+              <span className="border-b border-transparent group-hover:border-blue-400 transition-colors">
                 Request Framework Access
               </span>
             </a>

@@ -13,7 +13,7 @@ export default function AboutPage() {
     }
 
     return (
-        <div className="min-h-screen bg-black text-zinc-300 font-mono selection:bg-yellow-900 selection:text-white flex flex-col items-center">
+        <div className="min-h-screen bg-black text-zinc-300 font-mono flex flex-col items-center">
 
             {/* HEADER (Reusing your branding) */}
             <header className="fixed top-0 left-0 w-full z-50 bg-black/90 backdrop-blur-sm border-b border-zinc-800">

@@ -22,7 +22,7 @@ export default function ResearchLab() {
 
     return (
         // KEY CHANGE: font-mono to match Gateway, bg-black, selection blue
-        <div className="min-h-screen bg-black text-zinc-300 font-mono selection:bg-blue-900 selection:text-white flex flex-col items-center">
+        <div className="min-h-screen bg-black text-zinc-300 font-mono flex flex-col items-center">
 
             <header className="fixed top-0 left-0 w-full z-50 bg-black/90 backdrop-blur-sm border-b border-zinc-800">
                 <div className="max-w-7xl mx-auto px-6 h-16 flex justify-between items-center">

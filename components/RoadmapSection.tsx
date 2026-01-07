@@ -7,19 +7,19 @@ const ROADMAP_DATA: RoadmapItem[] = [
   {
     phase: "01",
     title: "Phase I: Open Source Dominance",
-    description: "Releasing the MVS Canvas and XML Kernel Gists as public goods. We provide the 'Goldmine'—premium, high-value schemas—to the global freelance workforce. Establishing M4 protocols as the universal standard for commercial prompt engineering.",
+    description: "Releasing the MVS Canvas and XML Kernel Gists as public goods. We provide the 'Goldmine'—premium, high-value schemas—to the global freelance workforce. Establishing MFOUR protocols as the universal standard for commercial prompt engineering.",
     active: true
   },
   {
     phase: "02",
     title: "Phase II: Adversarial Hardening",
-    description: "The Shift to Safety. While the community builds on our Open Source kernel, M4 Labs launches the 'Red Team' unit to stress-test enterprise systems against hallucination, data leaks, and EU AI Act failures.",
+    description: "The Shift to Safety. While the community builds on our Open Source kernel, MFOUR Labs launches the 'Red Team' unit to stress-test enterprise systems against hallucination, data leaks, and EU AI Act failures.",
     active: false
   },
   {
     phase: "03",
     title: "Phase III: Sovereign Runtime",
-    description: "The Iron Grade Deployment. Moving from 'Prompting' to 'Infrastructure'. We take the now-standardized M4 protocols and bake them into a sovereign, on-premise runtime environment for high-security industries.",
+    description: "The Iron Grade Deployment. Moving from 'Prompting' to 'Infrastructure'. We take the now-standardized MFOUR protocols and bake them into a sovereign, on-premise runtime environment for high-security industries.",
     active: false
   }
 ];
@@ -42,8 +42,8 @@ export const RoadmapSection: React.FC = () => {
               <article key={index} className={`relative flex flex-col md:flex-row items-center gap-8 md:gap-16 group ${index % 2 === 0 ? 'md:flex-row-reverse' : ''}`}>
 
                 {/* Center Marker */}
-                <div className="absolute left-0 md:left-1/2 md:-translate-x-1/2 w-4 h-4 rounded-full bg-black border border-zinc-700 z-10 group-hover:border-brand-yellow group-hover:scale-125 transition-all duration-300">
-                  {item.active && <div className="absolute inset-0 m-auto w-1.5 h-1.5 rounded-full bg-zinc-400 group-hover:bg-brand-yellow animate-pulse transition-colors"></div>}
+                <div className="absolute left-0 md:left-1/2 md:-translate-x-1/2 w-4 h-4 rounded-full bg-black border border-zinc-700 z-10 group-hover:border-blue-500 group-hover:scale-125 transition-all duration-300">
+                  {item.active && <div className="absolute inset-0 m-auto w-1.5 h-1.5 rounded-full bg-zinc-400 group-hover:bg-blue-500 animate-pulse transition-colors"></div>}
                 </div>
 
                 {/* Content Spacer for layout balance */}
@@ -52,8 +52,8 @@ export const RoadmapSection: React.FC = () => {
                 {/* Content */}
                 <div className="w-full pl-6 md:pl-0 text-left">
                   <div className="flex items-center gap-3 mb-3">
-                    <span className="font-mono text-xs text-zinc-500 group-hover:text-brand-yellow transition-colors">{item.phase}</span>
-                    <h3 className="text-xl font-mono font-bold text-white group-hover:text-brand-yellow transition-colors">{item.title}</h3>
+                    <span className="font-mono text-xs text-zinc-500 group-hover:text-blue-400 transition-colors">{item.phase}</span>
+                    <h3 className="text-xl font-mono font-bold text-white group-hover:text-blue-400 transition-colors">{item.title}</h3>
                   </div>
                   <p className="text-brand-gray text-sm leading-relaxed max-w-sm">
                     {item.description}

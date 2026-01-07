@@ -39,10 +39,10 @@ export const SentinelEUSection: React.FC = () => {
 
                 {/* Section Header */}
                 <header className="mb-16 md:mb-20">
-                    <span className="block font-mono text-xs text-brand-yellow uppercase tracking-widest mb-4">Flagship Product</span>
+                    <span className="block font-mono text-xs text-blue-500 uppercase tracking-widest mb-4">Flagship Product</span>
                     <h2 id="sentinel-heading" className="text-4xl md:text-5xl lg:text-6xl font-mono font-bold text-brand-white tracking-tighter mb-6">
                         Case Study: Automated <br className="hidden md:block" />
-                        <span className="text-brand-yellow">EU AI Act Compliance</span>
+                        <span className="text-blue-500">EU AI Act Compliance</span>
                     </h2>
                     <p className="text-lg text-brand-gray max-w-2xl leading-relaxed">
                         <span className="text-brand-white font-medium">Sentinel-EU</span> is the first kernel native to Regulation (EU) 2024/1689.
@@ -55,7 +55,7 @@ export const SentinelEUSection: React.FC = () => {
                     {capabilities.map((capability, index) => (
                         <div
                             key={index}
-                            className="group p-6 bg-brand-surface border border-brand-white/5 rounded-2xl hover:border-brand-yellow/30 transition-all duration-300"
+                            className="group p-6 bg-brand-surface border border-brand-white/5 rounded-2xl hover:border-blue-500/30 transition-all duration-300"
                         >
 
                             <h3 className="text-lg font-mono font-bold text-brand-white mb-2">
@@ -75,7 +75,7 @@ export const SentinelEUSection: React.FC = () => {
                 <div className="relative rounded-2xl border border-brand-white/10 bg-brand-surface overflow-hidden mb-12">
                     <div className="aspect-video flex items-center justify-center bg-gradient-to-br from-brand-surfaceHighlight to-brand-surface">
                         <div className="text-center">
-                            <Shield className="w-16 h-16 text-brand-yellow/50 mx-auto mb-4" />
+                            <Shield className="w-16 h-16 text-blue-500/50 mx-auto mb-4" />
                             <p className="font-mono text-sm text-brand-sub uppercase tracking-widest">
                                 Adversarial Testing Dashboard
                             </p>
@@ -93,9 +93,9 @@ export const SentinelEUSection: React.FC = () => {
                         href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=OJ:L_202401689"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="group inline-flex items-center gap-2 text-brand-white hover:text-brand-yellow transition-colors"
+                        className="group inline-flex items-center gap-2 text-brand-white hover:text-blue-400 transition-colors"
                     >
-                        <span className="border-b border-transparent group-hover:border-brand-yellow transition-colors">
+                        <span className="border-b border-transparent group-hover:border-blue-400 transition-colors">
                             Regulation (EU) 2024/1689
                         </span>
                         <ExternalLink className="w-3.5 h-3.5" />

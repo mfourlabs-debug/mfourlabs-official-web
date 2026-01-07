@@ -16,7 +16,7 @@ export default function IronGradePage() {
     }
 
     return (
-        <div className="min-h-screen bg-black text-zinc-300 font-mono selection:bg-yellow-900 selection:text-white flex flex-col items-center">
+        <div className="min-h-screen bg-black text-zinc-300 font-mono flex flex-col items-center">
             {/* Registration Modal */}
             {showRegistration && <LabRegistration onClose={() => setShowRegistration(false)} />}
 

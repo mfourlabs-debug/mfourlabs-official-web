@@ -59,7 +59,7 @@ export const AdversarialTestingSection: React.FC = () => {
 
                 {/* Section Header */}
                 <header className="mb-16 md:mb-20 text-center">
-                    <span className="block font-mono text-xs text-brand-yellow uppercase tracking-widest mb-4">Trust Through Testing</span>
+                    <span className="block font-mono text-xs text-blue-500 uppercase tracking-widest mb-4">Trust Through Testing</span>
                     <h2 id="testing-heading" className="text-4xl md:text-5xl lg:text-6xl font-mono font-bold text-brand-white tracking-tighter mb-6">
                         Adversarial Testing Suite
                     </h2>
@@ -70,17 +70,17 @@ export const AdversarialTestingSection: React.FC = () => {
 
                 {/* Testing Dimensions Grid */}
                 <div className="mb-20">
-                    <h3 className="font-mono text-xs text-brand-yellow uppercase tracking-widest mb-8">Legal Pressure Test Categories</h3>
+                    <h3 className="font-mono text-xs text-blue-500 uppercase tracking-widest mb-8">Legal Pressure Test Categories</h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         {testingDimensions.map((dimension, index) => (
                             <div
                                 key={index}
-                                className="group p-6 bg-brand-surface/50 border border-brand-white/5 rounded-xl hover:bg-brand-surface hover:border-brand-yellow/30 transition-all duration-300"
+                                className="group p-6 bg-brand-surface/50 border border-brand-white/5 rounded-xl hover:bg-brand-surface hover:border-blue-500/30 transition-all duration-300"
                             >
                                 <div className="flex items-start gap-3 mb-3">
-                                    <span className="text-zinc-600 group-hover:text-brand-yellow font-mono text-sm mt-1 transition-colors">→</span>
+                                    <span className="text-zinc-600 group-hover:text-blue-400 font-mono text-sm mt-1 transition-colors">→</span>
                                     <div className="flex-1">
-                                        <h4 className="text-lg font-mono font-bold text-white mb-2 group-hover:text-brand-yellow transition-colors">
+                                        <h4 className="text-lg font-mono font-bold text-white mb-2 group-hover:text-blue-400 transition-colors">
                                             {dimension.title}
                                         </h4>
                                         <p className="text-sm text-brand-gray leading-relaxed mb-3">
@@ -98,14 +98,14 @@ export const AdversarialTestingSection: React.FC = () => {
 
                 {/* Engineering Details - The "1%" Flex */}
                 <div className="border-t border-brand-white/10 pt-16">
-                    <h3 className="font-mono text-xs text-brand-yellow uppercase tracking-widest mb-8 text-center">
+                    <h3 className="font-mono text-xs text-blue-500 uppercase tracking-widest mb-8 text-center">
                         Engineering Excellence (The "1%" Details)
                     </h3>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
                         {engineeringFeatures.map((feature, index) => (
                             <div key={index} className="text-center group">
 
-                                <h4 className="text-base font-mono font-bold text-white mb-2 group-hover:text-brand-yellow transition-colors">
+                                <h4 className="text-base font-mono font-bold text-white mb-2 group-hover:text-blue-400 transition-colors">
                                     {feature.title}
                                 </h4>
                                 <p className="text-sm text-brand-gray">
