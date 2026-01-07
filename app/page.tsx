@@ -76,7 +76,7 @@ export default function Gateway() {
                             The academic standard for SPU governance. Open-source kernel schemas and whitepapers.
                         </p>
                     </div>
-                    <Link href="/mvf" className="flex items-center gap-2 text-sm text-zinc-300 group-hover:underline">
+                    <Link href="/mvf" className="flex items-center gap-2 text-sm text-zinc-300 group-hover:text-blue-500">
                         Access Documentation <ArrowUpRight className="w-4 h-4" />
                     </Link>
                 </div>
@@ -92,7 +92,7 @@ export default function Gateway() {
                             Stress-testing for hallucination vectors, PII leaks, and EU AI Act compliance failures.
                         </p>
                     </div>
-                    <Link href="/red-team" className="flex items-center gap-2 text-sm text-zinc-300 group-hover:underline">
+                    <Link href="/red-team" className="flex items-center gap-2 text-sm text-zinc-300 group-hover:text-red-500">
                         Initialize Audit <ArrowUpRight className="w-4 h-4" />
                     </Link>
                 </div>
