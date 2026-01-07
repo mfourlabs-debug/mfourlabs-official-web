@@ -96,6 +96,50 @@ export const AdversarialTestingSection: React.FC = () => {
                     </div>
                 </div>
 
+                {/* Technical Pressure Tests */}
+                <div className="mb-20">
+                    <h3 className="font-mono text-xs text-blue-500 uppercase tracking-widest mb-8">Technical Pressure Tests</h3>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {[
+                            {
+                                title: "Prompt Injection",
+                                description: "Simulating unauthorized access via prompt manipulation.",
+                                regulation: "OWASP LLM01"
+                            },
+                            {
+                                title: "Model Denial of Service",
+                                description: "Stress-testing via Context Window Flooding to ensure availability.",
+                                regulation: "Context Flooding"
+                            },
+                            {
+                                title: "Training Data Poisoning",
+                                description: "Verifying model integrity against supply chain corruption.",
+                                regulation: "Supply Chain"
+                            }
+                        ].map((test, index) => (
+                            <div
+                                key={index}
+                                className="group p-6 bg-brand-surface/50 border border-brand-white/5 rounded-xl hover:bg-brand-surface hover:border-blue-500/30 transition-all duration-300"
+                            >
+                                <div className="flex items-start gap-3 mb-3">
+                                    <Target className="w-5 h-5 text-zinc-600 group-hover:text-blue-400 mt-1 transition-colors" />
+                                    <div className="flex-1">
+                                        <h4 className="text-lg font-mono font-bold text-white mb-2 group-hover:text-blue-400 transition-colors">
+                                            {test.title}
+                                        </h4>
+                                        <p className="text-sm text-brand-gray leading-relaxed mb-3">
+                                            {test.description}
+                                        </p>
+                                        <span className="inline-block px-3 py-1 rounded-full bg-brand-white/5 border border-brand-white/10 text-[10px] font-mono text-brand-sub uppercase tracking-widest">
+                                            {test.regulation}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+
                 {/* Engineering Details - The "1%" Flex */}
                 <div className="border-t border-brand-white/10 pt-16">
                     <h3 className="font-mono text-xs text-blue-500 uppercase tracking-widest mb-8 text-center">
