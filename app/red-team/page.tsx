@@ -64,7 +64,7 @@ export default function RedTeamPage() {
                     </Link>
                     <div className="hidden md:flex items-center gap-6 text-[10px] tracking-widest text-zinc-500">
                         <Link href="/mvf" className="hover:text-red-500 transition-colors cursor-pointer uppercase">MVF Protocol</Link>
-                        <Link href="/iron-grade" className="hover:text-red-500 transition-colors cursor-pointer uppercase">Iron Grade</Link>
+                        <Link href="/irongrade" className="hover:text-red-500 transition-colors cursor-pointer uppercase">IronGrade</Link>
                         <Link href="/the-mission" className="hover:text-red-500 transition-colors cursor-pointer uppercase">The Mission</Link>
                         <Link href="/contact" className="hover:text-red-500 transition-colors cursor-pointer uppercase">Contact</Link>
                         <div className="flex items-center gap-2 pl-6 border-l border-zinc-800">
@@ -86,7 +86,7 @@ export default function RedTeamPage() {
                 {isMobileMenuOpen && (
                     <div className="md:hidden border-t border-zinc-800 bg-black p-4 flex flex-col gap-4 text-xs tracking-wider">
                         <Link href="/mvf" className="text-zinc-400">MVF PROTOCOL</Link>
-                        <Link href="/iron-grade" className="text-zinc-400">IRON GRADE</Link>
+                        <Link href="/irongrade" className="text-zinc-400">IRONGRADE</Link>
                         <Link href="/the-mission" className="text-zinc-400">THE MISSION</Link>
                         <Link href="/contact" className="text-zinc-400">CONTACT</Link>
                     </div>

@@ -101,14 +101,14 @@ export default function Gateway() {
                 <div className="group border-zinc-800 p-8 hover:bg-zinc-900 transition-all cursor-pointer relative h-80 flex flex-col justify-between">
                     <div>
                         <span className="text-xs text-zinc-500 mb-2 block">03 // INFRASTRUCTURE</span>
-                        <h2 className="text-2xl font-bold mb-2 text-white group-hover:text-brand-yellow transition-colors">
-                            IRON-GRADE
+                        <h2 className="text-2xl font-bold mb-2 text-white group-hover:text-green-500 transition-colors">
+                            IRONGRADE
                         </h2>
                         <p className="text-sm text-zinc-400 leading-relaxed">
                             Sovereign Runtime environment. On-premise deployment with ISO 42001 compliance logs.
                         </p>
                     </div>
-                    <Link href="/iron-grade" className="flex items-center gap-2 text-sm text-zinc-300 group-hover:underline">
+                    <Link href="/irongrade" className="flex items-center gap-2 text-sm text-zinc-300 group-hover:text-green-500 transition-colors">
                         Request Pilot <ArrowUpRight className="w-4 h-4" />
                     </Link>
                 </div>

@@ -19,7 +19,7 @@ const ROADMAP_DATA: RoadmapItem[] = [
   {
     phase: "03",
     title: "Phase III: Sovereign Runtime",
-    description: "The Iron Grade Deployment. Moving from 'Prompting' to 'Infrastructure'. We take the now-standardized MFOUR protocols and bake them into a sovereign, on-premise runtime environment for high-security industries.",
+    description: "The IronGrade Deployment. Moving from 'Prompting' to 'Infrastructure'. We take the now-standardized MFOUR protocols and bake them into a sovereign, on-premise runtime environment for high-security industries.",
     active: false
   }
 ];
