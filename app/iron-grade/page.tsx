@@ -31,7 +31,7 @@ export default function IronGradePage() {
                         </div>
                         <div className="hidden md:block h-4 w-[1px] bg-zinc-800"></div>
                         <div className="hidden md:block text-xs text-zinc-500 tracking-widest group-hover:text-brand-yellow/70 transition-colors">
-                            IRON GRADE UNIT
+                            IRON-GRADE UNIT
                         </div>
                     </Link>
                     <div className="hidden md:flex items-center gap-6 text-[10px] tracking-widest text-zinc-500">
@@ -61,7 +61,7 @@ export default function IronGradePage() {
                         <h1 className="text-5xl md:text-7xl font-bold text-white tracking-tighter mb-8 leading-[0.9]">
                             DETERMINISTIC <br />
                             <span className="text-zinc-800">GOVERNANCE</span> <br />
-                            INFRASTRUCTURE.
+                            INFRASTRUCTURE
                         </h1>
                         <p className="text-zinc-500 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed mb-12">
                             Sovereign AI security for high-risk deployments. Beyond probabilistic guessing—enforcing deterministic truth through Multi-layer Variable Frameworks (MVF) and real-time hallucination interception.

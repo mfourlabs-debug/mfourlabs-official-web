@@ -76,13 +76,13 @@ export default function Gateway() {
                     <div>
                         <span className="text-xs text-zinc-500 mb-2 block">03 // INFRASTRUCTURE</span>
                         <h2 className="text-2xl font-bold mb-2 text-white group-hover:text-brand-yellow transition-colors">
-                            IRON GRADE
+                            IRON-GRADE
                         </h2>
                         <p className="text-sm text-zinc-400 leading-relaxed">
                             Sovereign Runtime environment. On-premise deployment with ISO 42001 compliance logs.
                         </p>
                     </div>
-                    <Link href="/contact" className="flex items-center gap-2 text-sm text-zinc-300 group-hover:underline">
+                    <Link href="/iron-grade" className="flex items-center gap-2 text-sm text-zinc-300 group-hover:underline">
                         Request Pilot <ArrowUpRight className="w-4 h-4" />
                     </Link>
                 </div>
