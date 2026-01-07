@@ -36,7 +36,7 @@ export default function ContactPage() {
                         <Link href="/mvf" className="hover:text-white transition-colors">MVF PROTOCOL</Link>
                         <Link href="/iron-grade" className="hover:text-white transition-colors">IRON GRADE</Link>
                         <Link href="/red-team" className="hover:text-white transition-colors">RED TEAM</Link>
-                        <Link href="/about" className="hover:text-white transition-colors">ABOUT</Link>
+                        <Link href="/the-mission" className="hover:text-white transition-colors">THE MISSION</Link>
                         <div className="flex items-center gap-2 pl-6 border-l border-zinc-800">
                             <span className="w-1.5 h-1.5 bg-white rounded-full animate-pulse"></span>
                             <span className="text-white">LISTENING</span>
@@ -58,7 +58,7 @@ export default function ContactPage() {
                         <Link href="/mvf" className="text-zinc-400">MVF PROTOCOL</Link>
                         <Link href="/iron-grade" className="text-zinc-400">IRON GRADE</Link>
                         <Link href="/red-team" className="text-zinc-400">RED TEAM</Link>
-                        <Link href="/about" className="text-zinc-400">ABOUT</Link>
+                        <Link href="/the-mission" className="text-zinc-400">THE MISSION</Link>
                     </div>
                 )}
             </header>

@@ -35,14 +35,34 @@ export default function IronGradePage() {
                         </div>
                     </Link>
                     <div className="hidden md:flex items-center gap-6 text-[10px] tracking-widest text-zinc-500">
-                        <Link href="/about" className="hover:text-brand-yellow transition-colors cursor-pointer uppercase">The Mission</Link>
+                        <Link href="/mvf" className="hover:text-brand-yellow transition-colors cursor-pointer uppercase">MVF Protocol</Link>
+                        <Link href="/red-team" className="hover:text-brand-yellow transition-colors cursor-pointer uppercase">Red Team</Link>
+                        <Link href="/the-mission" className="hover:text-brand-yellow transition-colors cursor-pointer uppercase">The Mission</Link>
                         <Link href="/contact" className="hover:text-brand-yellow transition-colors cursor-pointer uppercase">Contact</Link>
                         <div className="flex items-center gap-2 pl-6 border-l border-zinc-800">
                             <span className="w-1.5 h-1.5 bg-brand-yellow rounded-full animate-pulse"></span>
                             <span className="text-brand-yellow">OPERATIONAL</span>
                         </div>
                     </div>
+
+                    {/* Mobile Menu Toggle */}
+                    <button
+                        className="md:hidden text-zinc-400 hover:text-white"
+                        onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                    >
+                        {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+                    </button>
                 </div>
+
+                {/* Mobile Menu Dropdown */}
+                {isMobileMenuOpen && (
+                    <div className="md:hidden border-t border-zinc-800 bg-black p-4 flex flex-col gap-4 text-xs tracking-wider">
+                        <Link href="/mvf" className="text-zinc-400">MVF PROTOCOL</Link>
+                        <Link href="/red-team" className="text-zinc-400">RED TEAM</Link>
+                        <Link href="/the-mission" className="text-zinc-400">THE MISSION</Link>
+                        <Link href="/contact" className="text-zinc-400">CONTACT</Link>
+                    </div>
+                )}
             </header >
 
             <main className="w-full max-w-7xl border-x border-zinc-800 min-h-screen pt-32 pb-20 relative">

@@ -25,6 +25,7 @@ export default function Gateway() {
                 </div>
                 {/* Desktop Navigation */}
                 <div className="hidden md:flex items-center space-x-4">
+                    <Link href="/the-mission" className="px-4 py-2 text-sm font-medium text-zinc-500 hover:text-white transition-colors hover:bg-white/5 rounded-full" aria-label="Read our mission">The Mission</Link>
                     <Link href="/contact" className="px-4 py-2 text-sm font-medium text-zinc-500 hover:text-white transition-colors hover:bg-white/5 rounded-full" aria-label="Contact M4 Labs">Contact</Link>
                 </div>
 
@@ -44,6 +45,7 @@ export default function Gateway() {
                 {/* Mobile Menu */}
                 {isMobileMenuOpen && (
                     <div className="md:hidden absolute top-full left-0 w-full bg-black border-b border-zinc-900 flex flex-col items-center py-4 space-y-2 z-10">
+                        <Link href="/the-mission" onClick={() => setIsMobileMenuOpen(false)} className="px-4 py-3 text-lg font-medium text-white hover:bg-white/5 rounded-lg">The Mission</Link>
                         <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)} className="px-4 py-3 text-lg font-medium text-white hover:bg-white/5 rounded-lg">Contact</Link>
                     </div>
                 )}
