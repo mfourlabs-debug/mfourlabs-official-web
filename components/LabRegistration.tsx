@@ -177,8 +177,46 @@ export const LabRegistration: React.FC<LabRegistrationProps> = ({ onClose }) => 
 
       try {
          // Check if Firebase is initialized
-         if (!db) {
-            throw new Error('Firebase is not initialized. Please check your environment variables.');
+         if (!db || !auth) {
+            throw new Error('Firebase is not fully initialized. Please check your environment variables.');
+         }
+
+         // Attempt anonymous sign-in to ensure we have auth context for RLS
+         if (!auth.currentUser) {
+            try {
+               const { signInAnonymously } = await import('firebase/auth');
+               await signInAnonymously(auth);
+               console.log('✅ Signed in anonymously for registration');
+            } catch (authError: any) {
+               console.error('🔐 Authentication failed:', authError);
+
+               const errorCode = authError?.code || '';
+               const is400Error = authError?.message?.includes('400') || authError?.message?.includes('Bad Request');
+
+               // Known configuration errors - Firebase Console setup required
+               if (errorCode.includes('admin-restricted') ||
+                  errorCode.includes('operation-not-allowed') ||
+                  is400Error) {
+                  alert(
+                     "⚠️ FIREBASE CONFIGURATION REQUIRED\n\n" +
+                     "Anonymous Authentication must be enabled in your Firebase Console.\n\n" +
+                     "Steps to fix:\n" +
+                     "1. Open Firebase Console (console.firebase.google.com)\n" +
+                     "2. Select your project\n" +
+                     "3. Go to Authentication → Sign-in method\n" +
+                     "4. Click 'Anonymous' and toggle it to ENABLED\n" +
+                     "5. Save and try registering again\n\n" +
+                     "If already enabled, check:\n" +
+                     "- API key restrictions (should allow localhost for dev)\n" +
+                     "- Firestore Security Rules (should allow authenticated writes)"
+                  );
+                  setIsSubmitting(false);
+                  return; // Stop submission - no point trying to write without auth
+               }
+
+               // Unknown error - log but continue (will likely fail at addDoc)
+               console.warn('⚠️ Proceeding without authentication - database write may fail');
+            }
          }
 
          // Get user metadata
@@ -220,11 +258,13 @@ export const LabRegistration: React.FC<LabRegistrationProps> = ({ onClose }) => 
 
          console.log('✅ Security checks passed');
 
-         // Check for duplicate email & Calculate waitlist position
-         const { getCountFromServer, query, where, getDocs } = await import('firebase/firestore');
-         const usersRef = collection(db, "mvf_cli_beta_access_users");
+         // 2. Perform Registration
+         // NOTE: Removed client-side duplicate check to avoid "Missing Permissions" error.
+         // Unauthenticated users cannot query the user list.
+         // Duplicates should be handled by Firestore Rules or Security Rules.
 
-         // Check if email already exists
+         /* 
+         // Check for duplicate email
          const duplicateCheckQuery = query(usersRef, where("email", "==", formData.email));
          const duplicateCheckSnapshot = await getDocs(duplicateCheckQuery);
 
@@ -237,6 +277,9 @@ export const LabRegistration: React.FC<LabRegistrationProps> = ({ onClose }) => 
          const snapshot = await getCountFromServer(usersRef);
          const position = snapshot.data().count + 1;
          setWaitlistPosition(position);
+         */
+
+         const position = 0; // Placeholder for UI
 
          // Build comprehensive registration data
          const registrationData = {
@@ -248,7 +291,7 @@ export const LabRegistration: React.FC<LabRegistrationProps> = ({ onClose }) => 
 
 
             // Waitlist & Status
-            waitlistPosition: position,
+            waitlistPosition: position, // This will be updated by server functions if needed
             status: 'pending' as const, // Start as pending, admin can approve
             approvedAt: null,
             lastActiveAt: serverTimestamp(),
@@ -314,7 +357,7 @@ export const LabRegistration: React.FC<LabRegistrationProps> = ({ onClose }) => 
                <div className="flex items-center justify-between p-4">
                   <div className="flex items-center gap-2">
                      <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                     <span className="font-mono font-bold text-sm tracking-tight text-white">mfourlabs.Lab</span>
+                     <span className="font-mono font-bold text-sm tracking-tight text-white">mfourlabs.dev</span>
                   </div>
                   <button onClick={onClose} className="p-2 text-neutral-400 hover:text-white">
                      <X className="w-5 h-5" />
