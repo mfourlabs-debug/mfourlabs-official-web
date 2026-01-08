@@ -141,7 +141,7 @@ exports.sendWelcomeEmail = onDocumentCreated(
                       </p>
                       <p style="margin: 0; font-size: 11px; line-height: 1.5; color: #52525b; text-align: center;">
                         <a href="mailto:hq@mfourlabs.dev" style="color: #71717a; text-decoration: underline;">hq@mfourlabs.dev</a> | 
-                        <a href="https://www.mfourlabs.dev" style="color: #71717a; text-decoration: underline;">mfourlabs.dev</a>
+                        <a href="https://mfourlabs.dev/" style="color: #71717a; text-decoration: underline;">mfourlabs.dev</a>
                       </p>
                       <p style="margin: 10px 0 0; font-size: 10px; line-height: 1.5; color: #3f3f46; text-align: center;">
                         © ${new Date().getFullYear()} MFOUR LABS. All rights reserved.
