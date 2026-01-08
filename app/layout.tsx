@@ -3,7 +3,7 @@ import { Inter, Inter_Tight, JetBrains_Mono, Montserrat } from 'next/font/google
 import './globals.css';
 import MaintenancePage from '@/components/MaintenancePage';
 
-const MAINTENANCE_MODE = true;
+const MAINTENANCE_MODE = false;
 
 const inter = Inter({
     subsets: ['latin'],
