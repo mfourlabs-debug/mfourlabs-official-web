@@ -100,7 +100,7 @@ export const HeroSection: React.FC<HeroProps> = () => {
 
         {/* Subtitle / Description */}
         <p className="text-base md:text-xl text-brand-gray max-w-xl md:max-w-2xl text-center mb-10 md:mb-14 leading-relaxed font-light animate-slide-up opacity-0 px-4" style={{ animationDelay: '0.4s' }}>
-          Built on the <span className="text-brand-white font-medium">MFOUR Vibe Framework™</span>. Engineered for the <span className="text-brand-white font-medium">EU AI Act</span>, GDPR, and High-Risk Environments.
+          Built on the <span className="text-brand-white font-medium">MFOUR Vibe Framework™</span>. Engineered for <span className="text-brand-white font-medium">Data Sovereignty</span>, GDPR-Ready Architecture, and High-Risk Environments.
         </p>
 
         {/* Actions */}
