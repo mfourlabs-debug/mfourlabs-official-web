@@ -15,7 +15,7 @@ export const CurriculumSection: React.FC = () => {
       number: "00",
       name: "GuardLayer",
       focus: ["Prompt Injection Defense", "Jailbreak Detection", "Pre-computation Firewalls"],
-      description: "Security-first input validation. Blocks malicious prompts before they reach the model."
+      description: "Security-first input validation. Intercepts malicious prompts before they reach the model."
     },
     {
       number: "01",
@@ -143,7 +143,7 @@ export const CurriculumSection: React.FC = () => {
           {/* Specification Notice */}
           <div className="text-center">
             <p className="font-mono text-xs text-brand-sub uppercase tracking-widest">
-              The MFOUR Vibe Framework™ is licensed under CC BY-ND 4.0.
+              The MFOUR Vibe Framework™ is licensed under CC BY 4.0.
               <span className="block mt-2 text-brand-gray">
                 Published by MFOUR LABS. All Systems Operational.
               </span>

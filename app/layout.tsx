@@ -218,7 +218,7 @@ export default function RootLayout({
                                 'MVF Cloud: Enterprise AI governance middleware (alpha)',
                                 'First Principles Engineering methodology',
                             ],
-                            license: 'CC BY-ND 4.0',
+                            license: 'MIT License',
                             creator: {
                                 '@type': 'Organization',
                                 name: 'MFOURLABS',
@@ -286,7 +286,7 @@ export default function RootLayout({
                                     name: 'Enterprise AI Systems',
                                 },
                             ],
-                            license: 'CC BY-ND 4.0',
+                            license: 'CC BY 4.0',
                             inLanguage: 'en',
                             isAccessibleForFree: true,
                         }),
