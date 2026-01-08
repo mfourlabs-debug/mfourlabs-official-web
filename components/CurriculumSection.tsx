@@ -26,7 +26,7 @@ export const CurriculumSection: React.FC = () => {
     {
       number: "02",
       name: "SynapseLayer",
-      focus: ["Strict Tool Authorization", "Agent Routing", "Zero Hallucinated API Calls"],
+      focus: ["Strict Tool Authorization", "Agent Routing", "Strict Hallucination Barriers"],
       description: "Controlled intelligence routing through verified pathways. Every tool call is audited and authorized."
     },
     {

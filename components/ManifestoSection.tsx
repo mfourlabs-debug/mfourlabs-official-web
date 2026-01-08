@@ -93,7 +93,7 @@ export const ManifestoSection: React.FC = () => {
           {/* Brand Values */}
           <BentoCard
             title="Core Values"
-            subtitle="Architecture > Syntax. No Hallucinations. The Mirror Test. Rigorous Vibe."
+            subtitle="Architecture > Syntax. Hallucination Suppression. The Mirror Test. Rigorous Vibe."
             className="md:col-span-6 lg:col-span-3 bg-blue-500/10 border-blue-500/20 min-h-[250px]"
           />
 

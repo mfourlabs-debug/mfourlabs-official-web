@@ -243,7 +243,7 @@ export default function RedTeamPage() {
                                 {[
                                     { label: 'COMPLIANCE', val: 'EU AI ACT' },
                                     { label: 'LATENCY', val: '<200MS' },
-                                    { label: 'ACCURACY', val: '100% DET.' },
+                                    { label: 'ACCURACY', val: 'HARDENED DET.' },
                                     { label: 'RUNTIME', val: 'SOVEREIGN' },
                                 ].map((stat, i) => (
                                     <div key={i} className="p-6 border border-zinc-800 bg-zinc-900/20 text-center">
