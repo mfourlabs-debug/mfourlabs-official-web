@@ -105,7 +105,7 @@ export default function Gateway() {
                             IRONGRADE
                         </h2>
                         <p className="text-sm text-zinc-400 leading-relaxed">
-                            Sovereign Runtime environment. On-premise deployment with ISO 42001 compliance logs.
+                            Sovereign Runtime environment. On-premise deployment with ISO 42001-Aligned logs.
                         </p>
                     </div>
                     <Link href="/irongrade" className="flex items-center gap-2 text-sm text-zinc-300 group-hover:text-green-500 transition-colors">

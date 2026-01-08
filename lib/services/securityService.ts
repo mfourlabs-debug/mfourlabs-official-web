@@ -55,8 +55,9 @@ class SecurityService {
             }
 
             return { allowed: true };
-        } catch (error) {
-            if (process.env.NODE_ENV !== 'production') {
+        } catch (error: any) {
+            // Silently fail open on permission errors (likely unauthenticated user)
+            if (process.env.NODE_ENV !== 'production' && error?.code !== 'permission-denied') {
                 console.error('Rate limit check failed:', error);
             }
             // Fail open - allow registration if rate limit check fails
@@ -76,8 +77,8 @@ class SecurityService {
                 userAgent,
                 timestamp: serverTimestamp(),
             });
-        } catch (error) {
-            if (process.env.NODE_ENV !== 'production') {
+        } catch (error: any) {
+            if (process.env.NODE_ENV !== 'production' && error?.code !== 'permission-denied') {
                 console.error('Failed to log rate limit attempt:', error);
             }
         }
@@ -113,8 +114,8 @@ class SecurityService {
             }
 
             return { isDuplicate: false };
-        } catch (error) {
-            if (process.env.NODE_ENV !== 'production') {
+        } catch (error: any) {
+            if (process.env.NODE_ENV !== 'production' && error?.code !== 'permission-denied') {
                 console.error('Duplicate check failed:', error);
             }
             // Fail open - allow registration if duplicate check fails
@@ -310,8 +311,8 @@ class SecurityService {
 
             const snapshot = await getDocs(q);
             return !snapshot.empty;
-        } catch (error) {
-            if (process.env.NODE_ENV !== 'production') {
+        } catch (error: any) {
+            if (process.env.NODE_ENV !== 'production' && error?.code !== 'permission-denied') {
                 console.error('Email verification check failed:', error);
             }
             return false;
