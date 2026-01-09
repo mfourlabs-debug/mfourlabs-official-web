@@ -123,6 +123,7 @@ export default function RootLayout({
             className={`scroll-smooth antialiased selection:bg-white selection:text-black ${inter.variable} ${interTight.variable} ${jetbrainsMono.variable} ${montserrat.variable}`}
             itemScope
             itemType="https://schema.org/WebPage"
+            suppressHydrationWarning
         >
             <head>
                 {/* Structured Data - Organization */}
@@ -293,7 +294,7 @@ export default function RootLayout({
                     }}
                 />
             </head>
-            <body className="font-sans">
+            <body className="font-sans" suppressHydrationWarning={true}>
                 {MAINTENANCE_MODE ? <MaintenancePage /> : children}
             </body>
         </html>

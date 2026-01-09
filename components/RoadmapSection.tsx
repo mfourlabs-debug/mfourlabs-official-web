@@ -13,7 +13,7 @@ const ROADMAP_DATA: RoadmapItem[] = [
   {
     phase: "02",
     title: "Phase II: Adversarial Hardening",
-    description: "The Shift to Safety. While the community builds on our Open Source kernel, MFOUR Labs launches the 'Red Team' unit to stress-test enterprise systems against hallucination, data leaks, and EU AI Act failures.",
+    description: "The Shift to Safety. While the community builds on our Open Source kernel, MFOUR Labs launches the 'M4-VIGILANT' unit to stress-test enterprise systems against hallucination, data leaks, and EU AI Act failures.",
     active: false
   },
   {

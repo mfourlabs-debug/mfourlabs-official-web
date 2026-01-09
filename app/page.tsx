@@ -81,18 +81,18 @@ export default function Gateway() {
                     </Link>
                 </div>
 
-                {/* ROAD 2: THE RED TEAM (Service) */}
+                {/* ROAD 2: THE M4-VIGILANT (Service) */}
                 <div className="group border-r border-b md:border-b-0 border-zinc-800 p-8 hover:bg-zinc-900 transition-all cursor-pointer relative h-80 flex flex-col justify-between">
                     <div>
                         <span className="text-xs text-zinc-500 mb-2 block">02 // ADVERSARIAL</span>
                         <h2 className="text-2xl font-bold mb-2 text-white group-hover:text-red-400 transition-colors">
-                            RED TEAM UNIT
+                            M4-VIGILANT
                         </h2>
                         <p className="text-sm text-zinc-400 leading-relaxed">
                             Stress-testing for hallucination vectors, PII leaks, and EU AI Act compliance failures.
                         </p>
                     </div>
-                    <Link href="/red-team" className="flex items-center gap-2 text-sm text-zinc-300 group-hover:text-red-500">
+                    <Link href="/m4-vigilant" className="flex items-center gap-2 text-sm text-zinc-300 group-hover:text-red-500">
                         Initialize Audit <ArrowUpRight className="w-4 h-4" />
                     </Link>
                 </div>

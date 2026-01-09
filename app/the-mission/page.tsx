@@ -33,9 +33,9 @@ export default function TheMissionPage() {
 
                     {/* Desktop Nav */}
                     <div className="hidden md:flex items-center gap-6 text-[10px] tracking-widest text-zinc-500">
-                        <Link href="/mvf" className="hover:text-white transition-colors">MVF PROTOCOL</Link>
+                        <Link href="/mvf" className="hover:text-white transition-colors">MVF</Link>
                         <Link href="/irongrade" className="hover:text-white transition-colors">IRONGRADE</Link>
-                        <Link href="/red-team" className="hover:text-white transition-colors">RED TEAM</Link>
+                        <Link href="/m4-vigilant" className="hover:text-white transition-colors">M4-VIGILANT</Link>
                         <Link href="/the-mission" className="text-white cursor-default">THE MISSION</Link>
                         <Link href="/contact" className="hover:text-white transition-colors">CONTACT</Link>
                     </div>
@@ -54,7 +54,7 @@ export default function TheMissionPage() {
                     <div className="md:hidden border-t border-zinc-800 bg-black p-4 flex flex-col gap-4 text-xs tracking-wider">
                         <Link href="/mvf" className="text-zinc-400">MVF PROTOCOL</Link>
                         <Link href="/irongrade" className="text-zinc-400">IRONGRADE</Link>
-                        <Link href="/red-team" className="text-zinc-400">RED TEAM</Link>
+                        <Link href="/m4-vigilant" className="text-zinc-400">M4-VIGILANT</Link>
                         <Link href="/the-mission" className="text-white">THE MISSION</Link>
                         <Link href="/contact" className="text-zinc-400">CONTACT</Link>
                     </div>
@@ -123,7 +123,7 @@ export default function TheMissionPage() {
                             {
                                 icon: <Zap />,
                                 title: "Adversarial Stress",
-                                desc: "Constant red-teaming to probe for semantic drift and kernel bypass vulnerabilities."
+                                desc: "Constant M4-VIGILANT probing for semantic drift and kernel bypass vulnerabilities."
                             }
                         ].map((pillar, i) => (
                             <div key={i} className="p-8 md:p-12 border-b md:border-b-0 md:border-r border-zinc-800 last:border-b-0 md:last:border-r-0 hover:bg-zinc-900/30 transition-colors group">

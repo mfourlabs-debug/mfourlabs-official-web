@@ -33,9 +33,9 @@ export default function ContactPage() {
 
                     {/* Desktop Nav */}
                     <div className="hidden md:flex items-center gap-6 text-[10px] tracking-widest text-zinc-500">
-                        <Link href="/mvf" className="hover:text-white transition-colors">MVF PROTOCOL</Link>
+                        <Link href="/mvf" className="hover:text-white transition-colors">MVF</Link>
                         <Link href="/irongrade" className="hover:text-white transition-colors">IRONGRADE</Link>
-                        <Link href="/red-team" className="hover:text-white transition-colors">RED TEAM</Link>
+                        <Link href="/m4-vigilant" className="hover:text-white transition-colors">M4-VIGILANT</Link>
                         <Link href="/the-mission" className="hover:text-white transition-colors">THE MISSION</Link>
                         <div className="flex items-center gap-2 pl-6 border-l border-zinc-800">
                             <span className="w-1.5 h-1.5 bg-white rounded-full animate-pulse"></span>
@@ -57,7 +57,7 @@ export default function ContactPage() {
                     <div className="md:hidden border-t border-zinc-800 bg-black p-4 flex flex-col gap-4 text-xs tracking-wider">
                         <Link href="/mvf" className="text-zinc-400">MVF PROTOCOL</Link>
                         <Link href="/irongrade" className="text-zinc-400">IRONGRADE</Link>
-                        <Link href="/red-team" className="text-zinc-400">RED TEAM</Link>
+                        <Link href="/m4-vigilant" className="text-zinc-400">M4-VIGILANT</Link>
                         <Link href="/the-mission" className="text-zinc-400">THE MISSION</Link>
                     </div>
                 )}
@@ -79,7 +79,7 @@ export default function ContactPage() {
                         <span className="text-zinc-700">CONTACT</span>
                     </h1>
                     <p className="text-zinc-400 text-lg md:text-xl leading-relaxed mb-12">
-                        For enterprise licensing, research collaboration, or red team audits.
+                        For enterprise licensing, research collaboration, or M4-VIGILANT audits.
                         We operate on secured channels.
                     </p>
 

@@ -64,7 +64,7 @@ export const AdversarialTestingSection: React.FC = () => {
                         Adversarial Testing Suite
                     </h2>
                     <p className="text-xl text-brand-gray max-w-3xl mx-auto leading-relaxed">
-                        <span className="text-brand-white font-medium">We don't just prompt; we Red Team.</span> Our kernels are battle-tested against 5+ dimensions of legal pressure tests, from deepfake satire to medical device exceptions.
+                        <span className="text-brand-white font-medium">We don't just prompt; we M4-VIGILANT.</span> Our kernels are battle-tested against 5+ dimensions of legal pressure tests, from deepfake satire to medical device exceptions.
                     </p>
                 </header>
 
