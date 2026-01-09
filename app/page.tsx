@@ -73,7 +73,7 @@ export default function Gateway() {
                             MVF PROTOCOL
                         </h2>
                         <p className="text-sm text-zinc-400 leading-relaxed">
-                            The academic standard for SPU governance. Open-source kernel schemas and whitepapers.
+                            The Foundational Standard for Stochastic Processing Unit (SPU) governance. Open-source kernel schemas and whitepapers.
                         </p>
                     </div>
                     <Link href="/mvf" className="flex items-center gap-2 text-sm text-zinc-300 group-hover:text-blue-500">
@@ -105,7 +105,7 @@ export default function Gateway() {
                             IRONGRADE
                         </h2>
                         <p className="text-sm text-zinc-400 leading-relaxed">
-                            Sovereign Runtime environment. On-premise deployment with ISO 42001-Aligned logs.
+                            Zero-Custody Governance. Cloud-Native integration with Private-Link options. ISO 42001-Aligned logging.
                         </p>
                     </div>
                     <Link href="/irongrade" className="flex items-center gap-2 text-sm text-zinc-300 group-hover:text-green-500 transition-colors">
